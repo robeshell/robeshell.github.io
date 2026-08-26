@@ -15,13 +15,24 @@ const pageTitle = title ? `${title} · W.` : 'W.';
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang="zh-CN" data-theme="minimal">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <script is:inline>
+      (() => {
+        const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds'];
+        try {
+          const saved = localStorage.getItem('site-theme');
+          if (saved && themes.includes(saved)) document.documentElement.dataset.theme = saved;
+        } catch {
+          // Keep the default theme when storage is unavailable.
+        }
+      })();
+    </script>
     <title>{pageTitle}</title>
   </head>
   <body>

@@ -1,0 +1,31 @@
+<label class="theme-picker" for="theme-select">
+  <span class="visually-hidden">选择网站主题</span>
+  <select id="theme-select" aria-label="网站主题">
+    <option value="minimal">极简</option>
+    <option value="magazine">杂志</option>
+    <option value="terminal">编程</option>
+    <option value="cyber">赛博朋克</option>
+    <option value="island">岛屿生活</option>
+    <option value="wilds">旷野冒险</option>
+  </select>
+</label>
+
+<script>
+  const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds'];
+  const picker = document.querySelector<HTMLSelectElement>('#theme-select');
+
+  if (picker) {
+    const activeTheme = document.documentElement.dataset.theme ?? 'minimal';
+    picker.value = themes.includes(activeTheme) ? activeTheme : 'minimal';
+
+    picker.addEventListener('change', () => {
+      const theme = themes.includes(picker.value) ? picker.value : 'minimal';
+      document.documentElement.dataset.theme = theme;
+      try {
+        localStorage.setItem('site-theme', theme);
+      } catch {
+        // The theme still applies for this page when storage is unavailable.
+      }
+    });
+  }
+</script>

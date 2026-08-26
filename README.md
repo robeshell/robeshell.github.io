@@ -38,6 +38,12 @@ section: writing
 
 图片放在 `public/images/`，在 Markdown 中使用 `![说明](/images/文件名.jpg)`。
 
+## 主题
+
+网站提供极简、杂志、编程、赛博朋克、岛屿生活和旷野冒险六种主题。主题只改变视觉，不影响内容。
+
+主题颜色、字体和版式变量集中在 `src/styles/global.css`，切换控件位于 `src/components/ThemePicker.astro`。新增主题时，在这两个文件中增加同名选项和 `data-theme` 变量即可。
+
 ## 发布
 
 提交并推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。
