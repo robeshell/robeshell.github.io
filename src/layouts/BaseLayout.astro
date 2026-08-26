@@ -12,6 +12,7 @@ const {
   description = '写作、笔记、旅行、照片与音乐。',
 } = Astro.props;
 const pageTitle = title ? `${title} · W.` : 'W.';
+const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -20,11 +21,17 @@ const pageTitle = title ? `${title} · W.` : 'W.';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="description" content={description} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="zh_CN" />
+    <meta name="twitter:card" content="summary" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="canonical" href={canonical} />
     <script is:inline>
       (() => {
-        const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds'];
+        const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds', 'persona'];
         try {
           const saved = localStorage.getItem('site-theme');
           if (saved && themes.includes(saved)) document.documentElement.dataset.theme = saved;

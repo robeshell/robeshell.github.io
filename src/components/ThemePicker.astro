@@ -1,31 +1,118 @@
-<label class="theme-picker" for="theme-select">
-  <span class="visually-hidden">选择网站主题</span>
-  <select id="theme-select" aria-label="网站主题">
-    <option value="minimal">极简</option>
-    <option value="magazine">杂志</option>
-    <option value="terminal">编程</option>
-    <option value="cyber">赛博朋克</option>
-    <option value="island">岛屿生活</option>
-    <option value="wilds">旷野冒险</option>
-  </select>
-</label>
+---
+const themes = [
+  ['minimal', '极简', '留白与秩序'],
+  ['magazine', '杂志', '编辑感排版'],
+  ['terminal', '编程', '终端与代码'],
+  ['cyber', '赛博朋克', '霓虹夜色'],
+  ['island', '岛屿生活', '晴空与草地'],
+  ['wilds', '旷野冒险', '原野与遗迹'],
+  ['persona', '异闻录', '红黑与斜切'],
+];
+---
+
+<details class="theme-menu">
+  <summary aria-label="切换网站主题">
+    <span class="theme-preview theme-preview--minimal theme-trigger-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span class="theme-current">极简</span>
+  </summary>
+
+  <div class="theme-panel">
+    <div class="theme-options" role="group" aria-label="网站主题">
+      {themes.map(([value, label, description]) => (
+        <button type="button" class="theme-option" data-theme-value={value} aria-pressed="false">
+          <span class={`theme-preview theme-preview--${value}`} aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="theme-option-copy"><strong>{label}</strong><small>{description}</small></span>
+          <span class="theme-check" aria-hidden="true"></span>
+        </button>
+      ))}
+    </div>
+  </div>
+</details>
 
 <script>
-  const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds'];
-  const picker = document.querySelector<HTMLSelectElement>('#theme-select');
+  const themeNames: Record<string, string> = {
+    minimal: '极简', magazine: '杂志', terminal: '编程', cyber: '赛博朋克', island: '岛屿生活', wilds: '旷野冒险', persona: '异闻录',
+  };
+  const themeMenu = document.querySelector<HTMLDetailsElement>('.theme-menu');
+  const themeSummary = themeMenu?.querySelector<HTMLElement>('summary');
+  const themeCurrent = themeMenu?.querySelector<HTMLElement>('.theme-current');
+  const themeSwatch = themeMenu?.querySelector<HTMLElement>('.theme-trigger-swatch');
+  const themeButtons = [...(themeMenu?.querySelectorAll<HTMLButtonElement>('[data-theme-value]') ?? [])];
 
-  if (picker) {
-    const activeTheme = document.documentElement.dataset.theme ?? 'minimal';
-    picker.value = themes.includes(activeTheme) ? activeTheme : 'minimal';
+  const p5TitleSelector = '.intro h1, .page-header h1, .entry-header h1, .about-page h1, .home-section-header h2, .site-name';
+  const p5Punctuation = [' ', ',', '，', '.', '。', '!', '！', '?', '？'];
 
-    picker.addEventListener('change', () => {
-      const theme = themes.includes(picker.value) ? picker.value : 'minimal';
-      document.documentElement.dataset.theme = theme;
-      try {
-        localStorage.setItem('site-theme', theme);
-      } catch {
-        // The theme still applies for this page when storage is unavailable.
-      }
+  function titleOriginal(el: HTMLElement) {
+    return el.dataset.titleOriginal ?? el.textContent ?? '';
+  }
+
+  function p5InvertIndex(content: string) {
+    const selected: Record<number, true> = {};
+    if (content.length > 1 && !p5Punctuation.includes(content[1])) selected[1] = true;
+    for (let i = 2; i < content.length; i++) {
+      if (!p5Punctuation.includes(content[i]) && p5Punctuation.includes(content[i - 2])) selected[i] = true;
+    }
+    return selected;
+  }
+
+  function wrapP5Titles() {
+    document.querySelectorAll<HTMLElement>(p5TitleSelector).forEach((el) => {
+      if (el.dataset.p5Wrapped === '1') return;
+      const original = titleOriginal(el);
+      el.dataset.titleOriginal = original;
+      const invert = p5InvertIndex(original);
+      el.replaceChildren();
+      [...original].forEach((ch, idx) => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        const deg = (Math.random() < 0.5 ? 1 : -1) * Math.random() * 10;
+        span.style.setProperty('--r', `${deg}deg`);
+        if (invert[idx]) span.classList.add('is-cut');
+        el.appendChild(span);
+      });
+      el.classList.add('p5-title');
+      el.dataset.p5Wrapped = '1';
     });
   }
+
+  function unwrapP5Titles() {
+    document.querySelectorAll<HTMLElement>('[data-p5-wrapped="1"]').forEach((el) => {
+      el.textContent = el.dataset.titleOriginal ?? '';
+      el.classList.remove('p5-title');
+      delete el.dataset.p5Wrapped;
+    });
+  }
+
+  function syncTheme(theme: string) {
+    const safeTheme = themeNames[theme] ? theme : 'minimal';
+    document.documentElement.dataset.theme = safeTheme;
+    if (themeCurrent) themeCurrent.textContent = themeNames[safeTheme];
+    if (themeSwatch) themeSwatch.className = `theme-preview theme-preview--${safeTheme} theme-trigger-swatch`;
+    themeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeValue === safeTheme)));
+    unwrapP5Titles();
+    if (safeTheme === 'persona') wrapP5Titles();
+  }
+
+  syncTheme(document.documentElement.dataset.theme ?? 'minimal');
+
+  themeButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const theme = button.dataset.themeValue ?? 'minimal';
+      syncTheme(theme);
+      try { localStorage.setItem('site-theme', theme); } catch { /* Keep the in-page choice. */ }
+      if (themeMenu) themeMenu.open = false;
+      themeSummary?.focus();
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (themeMenu?.open && !themeMenu.contains(event.target as Node)) themeMenu.open = false;
+  });
+
+  themeMenu?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      themeMenu.open = false;
+      themeSummary?.focus();
+    }
+  });
 </script>
