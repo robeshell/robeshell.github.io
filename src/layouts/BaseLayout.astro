@@ -1,0 +1,38 @@
+---
+import Header from '../components/Header.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = '写作、笔记、旅行、照片与音乐。',
+} = Astro.props;
+const pageTitle = title ? `${title} · W.` : 'W.';
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#content">跳到正文</a>
+    <Header />
+    <main id="content">
+      <slot />
+    </main>
+    <footer>
+      <span>© {new Date().getFullYear()} W.</span>
+      <span>写作与生活记录</span>
+    </footer>
+  </body>
+</html>

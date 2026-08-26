@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import EntryList from '../../components/EntryList.astro';
+import { sections, type SectionKey } from '../../lib/sections';
+
+export function getStaticPaths() {
+  return Object.entries(sections).map(([key, section]) => ({
+    params: { section: key },
+    props: { sectionKey: key, section },
+  }));
+}
+
+interface Props {
+  sectionKey: SectionKey;
+  section: (typeof sections)[SectionKey];
+}
+
+const { sectionKey, section } = Astro.props;
+const entries = (await getCollection('entries', ({ data }) => !data.draft && data.section === sectionKey))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title={section.label} description={section.description}>
+  <header class="page-header">
+    <h1>{section.label}</h1>
+    <p>{section.description}</p>
+  </header>
+  <EntryList entries={entries} />
+</BaseLayout>

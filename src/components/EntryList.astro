@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { sections } from '../lib/sections';
+
+interface Props {
+  entries: CollectionEntry<'entries'>[];
+  showSection?: boolean;
+}
+
+const { entries, showSection = false } = Astro.props;
+---
+
+<ol class="entry-list">
+  {entries.map((entry) => (
+    <li>
+      <a href={`/${entry.data.section}/${entry.id}/`}>
+        <div>
+          <h2>{entry.data.title}</h2>
+          <p>{entry.data.description}</p>
+        </div>
+        <div class="list-meta">
+          {showSection && <span>{sections[entry.data.section].label}</span>}
+          <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
+          </time>
+        </div>
+      </a>
+    </li>
+  ))}
+</ol>

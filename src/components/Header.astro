@@ -1,0 +1,20 @@
+---
+const pathname = Astro.url.pathname;
+const nav = [
+  ['文章', '/writing/'],
+  ['笔记', '/notes/'],
+  ['游记', '/journeys/'],
+  ['照片', '/photos/'],
+  ['音乐', '/music/'],
+];
+---
+
+<header class="site-header">
+  <a class="site-name" href="/">W.</a>
+  <nav aria-label="主导航">
+    {nav.map(([label, href]) => (
+      <a href={href} aria-current={pathname.startsWith(href) ? 'page' : undefined}>{label}</a>
+    ))}
+  </nav>
+  <a class="about" href="/about/" aria-current={pathname === '/about/' ? 'page' : undefined}>关于</a>
+</header>

@@ -1,0 +1,24 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import EntryList from '../components/EntryList.astro';
+
+const entries = (await getCollection('entries', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const latest = entries.slice(0, 6);
+---
+
+<BaseLayout>
+  <section class="intro">
+    <h1>写下一些值得留下的事。</h1>
+    <p>这里存放我的文章、学习笔记、旅行、照片和音乐。没有固定主题，只记录持续关心的东西。</p>
+  </section>
+
+  <section class="home-section">
+    <div class="home-section-header">
+      <h2>最近更新</h2>
+      <a href="/writing/">浏览全部</a>
+    </div>
+    <EntryList entries={latest} showSection />
+  </section>
+</BaseLayout>
