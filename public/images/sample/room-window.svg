@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 960" role="img" aria-labelledby="title desc">
+  <title id="title">雨后的房间</title>
+  <desc id="desc">一扇被暖光照亮的窗和窗边的绿植</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d9d0bd"/>
+      <stop offset="1" stop-color="#8b948b"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8fb8c1"/>
+      <stop offset="1" stop-color="#294c55"/>
+    </linearGradient>
+    <linearGradient id="light" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f9e6a0" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#f3b866" stop-opacity=".05"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="960" fill="url(#wall)"/>
+  <rect x="170" y="90" width="910" height="650" rx="16" fill="#282e31"/>
+  <rect x="205" y="125" width="840" height="580" fill="url(#glass)"/>
+  <path d="M625 125v580M205 415h840" stroke="#e9e1ce" stroke-width="20" opacity=".7"/>
+  <path d="M260 210c190 60 280 40 420 130s250 65 330 170" fill="none" stroke="#d3edf0" stroke-width="18" opacity=".35"/>
+  <path d="M215 740h900v54H215z" fill="#3a3028"/>
+  <path d="M1110 740c80 30 170 45 280 35v185h-300z" fill="#645648"/>
+  <path d="M1260 790c-35-100-15-196 40-260 64 62 75 158 22 260z" fill="#365744"/>
+  <path d="M1280 770c5-125 72-202 137-223 20 93-31 182-137 223z" fill="#436d52"/>
+  <path d="M1190 850c145-40 260-29 410 30v80h-410z" fill="url(#light)"/>
+  <circle cx="1335" cy="138" r="5" fill="#f6e4a0" opacity=".8"/>
+  <circle cx="1480" cy="264" r="4" fill="#f6e4a0" opacity=".5"/>
+</svg>

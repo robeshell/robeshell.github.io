@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">窗上的下午光</title>
+  <desc id="desc">墙面上被窗框切开的长条光影</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f0e7d3"/><stop offset="1" stop-color="#b59a77"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#wall)"/>
+  <path d="M190 0h590v900H190z" fill="#f9f4e5" opacity=".82"/>
+  <path d="M430 0h65v900h-65zM190 360h590v62H190z" fill="#85684e" opacity=".68"/>
+  <path d="M780 0h390v900H780z" fill="#594b42" opacity=".68"/>
+  <path d="M0 695c190-68 285-34 414 18s264 28 398-38 255-57 388-22v247H0z" fill="#2e4238" opacity=".76"/>
+  <circle cx="1015" cy="160" r="78" fill="#f5ce78" opacity=".52"/>
+  <text x="56" y="833" fill="#f7f0df" font-family="Arial, sans-serif" font-size="25" letter-spacing="5">SUNDAY / 16:20</text>
+</svg>

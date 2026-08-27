@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" role="img" aria-labelledby="title desc">
+  <title id="title">夜间播放唱片封面</title>
+  <desc id="desc">深绿色背景上的异步波形圆环</desc>
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0" stop-color="#1b5c4f"/>
+      <stop offset="1" stop-color="#071b18"/>
+    </radialGradient>
+    <filter id="glow"><feGaussianBlur stdDeviation="8" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1000" height="1000" fill="url(#bg)"/>
+  <g fill="none" stroke="#a5e5bd" filter="url(#glow)" opacity=".85">
+    <circle cx="500" cy="460" r="280" stroke-width="2"/>
+    <circle cx="500" cy="460" r="218" stroke-width="18" stroke-dasharray="8 20"/>
+    <circle cx="500" cy="460" r="150" stroke-width="3" stroke-dasharray="2 12"/>
+  </g>
+  <path d="M210 465h72l30-105 43 240 38-160 28 25h68l28-89 32 178 43-94 35 0 31 65 34-132 36 179 38-107 55 0 34 48 40-89 32 141h86" fill="none" stroke="#f2d26f" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="70" y="105" fill="#d8f4d9" font-family="monospace" font-size="34" letter-spacing="7">ASYNC</text>
+  <text x="72" y="930" fill="#a5e5bd" font-family="Arial, sans-serif" font-size="22" letter-spacing="5">A ROOM FOR SLOW SOUND</text>
+</svg>

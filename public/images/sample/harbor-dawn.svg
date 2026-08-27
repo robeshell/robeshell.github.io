@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">港口的清晨</title>
+  <desc id="desc">清晨的海面、旧楼和一只驶过的船</desc>
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f3bd7a"/><stop offset=".55" stop-color="#f8e7b7"/><stop offset="1" stop-color="#9cc7c4"/></linearGradient>
+    <linearGradient id="water" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#305e6a"/><stop offset="1" stop-color="#8dc3bc"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#sky)"/>
+  <circle cx="880" cy="200" r="90" fill="#fff1c9" opacity=".82"/>
+  <path d="M0 510h1200v390H0z" fill="url(#water)"/>
+  <path d="M0 520 120 438l130 58 138-134 164 101 136-79 170 113 128-92 114 72v124H0z" fill="#35474b"/>
+  <path d="M0 634c190-40 330 55 520 2s345-23 680 25" fill="none" stroke="#d3f1df" stroke-width="11" opacity=".55"/>
+  <path d="M0 714c240-50 380 50 645 0s350-27 555 20" fill="none" stroke="#d3f1df" stroke-width="5" opacity=".35"/>
+  <path d="M495 585h185l-34 46H525z" fill="#e8dfc8"/>
+  <path d="M547 550h76v35h-76z" fill="#b7473d"/>
+  <path d="M585 516v34h62l-62-34z" fill="#f4e8cc"/>
+  <text x="56" y="835" fill="#e9f2df" font-family="Arial, sans-serif" font-size="25" letter-spacing="6">06:12 / SOUTH PIER</text>
+</svg>

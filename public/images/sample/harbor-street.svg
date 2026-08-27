@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">旧城的窄巷</title>
+  <desc id="desc">两侧是旧墙和晾衣杆的清晨巷道</desc>
+  <defs>
+    <linearGradient id="road" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8b09a"/><stop offset="1" stop-color="#6e5b52"/></linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="#d6d0bd"/>
+  <path d="M0 0h390l115 900H0z" fill="#6f7770"/>
+  <path d="M1200 0H780L630 900h570z" fill="#a35f4f"/>
+  <path d="M390 0h420L630 900H505z" fill="url(#road)"/>
+  <path d="M430 0h340M390 90h420M360 190h480" stroke="#efe5c9" stroke-width="8" opacity=".5"/>
+  <path d="M102 245h705" stroke="#2c3c3e" stroke-width="7"/>
+  <path d="M220 246v82m122-82v82m150-82v82m118-82v82" stroke="#2c3c3e" stroke-width="4"/>
+  <path d="M155 250h110v66H155zm146 0h124v54H301z" fill="#e6ba63" opacity=".8"/>
+  <circle cx="1030" cy="130" r="34" fill="#f2dd9f" opacity=".8"/>
+  <path d="M555 708h92l-17 55h-62z" fill="#263b42"/>
+  <text x="64" y="832" fill="#f6ead3" font-family="Arial, sans-serif" font-size="25" letter-spacing="5">WEST STREET / 06:44</text>
+</svg>
