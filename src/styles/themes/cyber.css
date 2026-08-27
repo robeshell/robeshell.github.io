@@ -12,6 +12,7 @@
   --accent-highlight: #00f0ff;
   --cyber-yellow: #fcee0a;
   --cyber-cyan: #00f0ff;
+  --aether-cyber-dots-image: none;
   --cyber-cut: .7rem;
   --page: min(72rem, calc(100% - 2rem));
   --measure: min(52rem, calc(100% - 2rem));
@@ -24,7 +25,7 @@
 :root[data-theme="cyber"] body::before {
   opacity: .86;
   background-image:
-    url('/assets/cyber/dots-yellow.png'),
+    var(--aether-cyber-dots-image),
     linear-gradient(rgb(252 238 10 / .055) 1px, transparent 1px),
     linear-gradient(90deg, rgb(0 240 255 / .045) 1px, transparent 1px),
     repeating-linear-gradient(135deg, transparent 0 72px, rgb(0 240 255 / .035) 73px, transparent 74px),

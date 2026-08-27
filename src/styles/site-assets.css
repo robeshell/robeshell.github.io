@@ -1,0 +1,16 @@
+/*
+ * W.Site-owned asset choices. Aether keeps these image slots optional so the
+ * public theme package can be reused without redistributing external artwork.
+ */
+
+:root[data-theme="cyber"] {
+  --aether-cyber-dots-image: url('/assets/cyber/dots-yellow.png');
+}
+
+:root[data-theme="terminal"] {
+  --aether-terminal-rain-image: url('/assets/terminal/matrix-rain.svg');
+}
+
+:root[data-theme="wilds"] {
+  --aether-wilds-header-image: url('/images/wilds-header.png');
+}

@@ -12,6 +12,7 @@
   --body-font: "SFMono-Regular", Consolas, "Liberation Mono", "PingFang SC", monospace;
   --display-font: var(--body-font);
   --menu-shadow: 0 0 0 1px oklch(1 0 0 / 0.12);
+  --aether-terminal-rain-image: none;
   color-scheme: dark;
 }
 :root[data-theme="terminal"] body::before {
@@ -85,7 +86,7 @@
   opacity: .52;
   background-image:
     linear-gradient(to bottom, transparent 0%, oklch(.86 .29 145 / .16) 48%, transparent 100%),
-    url('/assets/terminal/matrix-rain.svg'),
+    var(--aether-terminal-rain-image),
     repeating-linear-gradient(to bottom, transparent 0 3px, oklch(.86 .29 145 / .05) 4px),
     linear-gradient(90deg, transparent 0 7px, oklch(.22 .09 145 / .1) 8px, transparent 9px);
   background-size: 7rem 30rem, 900px 700px, auto, 16px 16px;

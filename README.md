@@ -44,6 +44,16 @@ section: writing
 
 公共基础和组件样式位于 `src/styles/global.css`，每个主题的颜色、字体和版式规则分别位于 `src/styles/themes/` 下的同名文件，切换控件位于 `src/components/ThemePicker.astro`。新增主题时，在 `ThemePicker.astro`、`BaseLayout.astro` 和 `src/styles/themes/` 中增加同名选项与规则即可。
 
+### Aether 开源边界
+
+主题系统的源文件已同步到独立的 Aether 包中（本地目录：`../aether-site`）。个人站保留一份可独立构建的 CSS 快照，避免在 Aether 正式发布前让 GitHub Pages 依赖本地路径。Aether 更新后，在两个目录并列的情况下运行：
+
+```bash
+npm run sync:aether
+```
+
+主题包只负责基础层和视觉规则；文章、路由、图片和站点文案仍由 W.Site 维护。站点自己的背景图通过 `src/styles/site-assets.css` 注入，不会进入 Aether 包。
+
 ## 发布
 
 提交并推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。

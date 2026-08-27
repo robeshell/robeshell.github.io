@@ -18,6 +18,7 @@
   --wilds-panel: rgb(16 11 7 / 0.82);
   --wilds-ease: cubic-bezier(0.2, 0.65, 0.25, 1);
   --wilds-duration: 0.3s;
+  --aether-wilds-header-image: none;
   --page: clamp(64rem, 82vw, 96rem);
   --measure: clamp(48rem, 70vw, 76rem);
   --display-font: Palatino, "Palatino Linotype", "Hiragino Mincho ProN", "Songti SC", "STSong", serif;
@@ -620,7 +621,7 @@
   background-image:
     linear-gradient(90deg, rgb(7 5 2 / .7) 0%, rgb(7 5 2 / .34) 48%, rgb(7 5 2 / .58) 100%),
     linear-gradient(180deg, rgb(5 4 3 / .04), rgb(5 4 3 / .52)),
-    url('/images/wilds-header.png');
+    var(--aether-wilds-header-image);
   background-position: center, center, center 46%;
   background-size: cover, cover, cover;
   background-blend-mode: normal;
