@@ -3060,7 +3060,7 @@ footer {
 
 :root[data-theme="cyber"] .entry-list {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem;
   margin-top: 1.35rem;
 }
 
@@ -3076,7 +3076,7 @@ footer {
   background:
     linear-gradient(#0b0e12, #0b0e12) padding-box,
     linear-gradient(var(--cyber-yellow), var(--cyber-yellow)) border-box;
-  clip-path: polygon(1.35rem 0, 100% 0, 100% calc(100% - 1.35rem), calc(100% - 1.35rem) 100%, 0 100%, 0 1.35rem);
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.35rem), calc(100% - 1.35rem) 100%, 0 100%);
   box-shadow: none;
   transition-property: background-color, border-color, box-shadow, transform, color;
   transition-duration: 180ms;
@@ -3272,10 +3272,10 @@ footer {
   :root[data-theme="cyber"] .intro p { margin-top: 2.1rem; font-size: .98rem; }
   :root[data-theme="cyber"] .page-header { padding-block: 4rem 2rem; }
   :root[data-theme="cyber"] .page-header h1 { font-size: clamp(2rem, 10vw, 3.4rem); }
-  :root[data-theme="cyber"] .entry-list { gap: .9rem; margin-top: 1.2rem; }
+  :root[data-theme="cyber"] .entry-list { gap: 1.05rem; margin-top: 1.2rem; }
   :root[data-theme="cyber"] .entry-list a {
     padding: 1.25rem 3rem 1.2rem 1rem;
-    clip-path: polygon(1rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%, 0 1rem);
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%);
   }
   :root[data-theme="cyber"] .entry-list p { font-size: .88rem; }
   :root[data-theme="cyber"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: .95rem; }
