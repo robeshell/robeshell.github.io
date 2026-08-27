@@ -8,7 +8,7 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "check": "astro check",
-    "generate:aether": "node ../aether-site/tools/generate-theme-css.mjs --config aether.config.mjs --output src/styles/aether-themes.css --source local",
+    "generate:aether": "node ../aether-themes/tools/generate-theme-css.mjs --config aether.config.mjs --output src/styles/aether-themes.css --source local",
     "sync:aether": "node scripts/sync-aether.mjs"
   },
   "dependencies": {

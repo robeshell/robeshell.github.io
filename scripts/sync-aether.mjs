@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 
 const siteRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const aetherRoot = resolve(siteRoot, '../aether-site');
+const aetherRoot = resolve(siteRoot, '../aether-themes');
 const aetherStyles = resolve(aetherRoot, 'styles');
 const siteStyles = resolve(siteRoot, 'src/styles');
 
@@ -17,7 +17,7 @@ try {
   await access(aetherStyles);
 } catch {
   console.error(`找不到 Aether：${aetherRoot}`);
-  console.error('请将 aether-site 放在 W.Site 同级目录后重试。');
+  console.error('请将 aether-themes 放在 W.Site 同级目录后重试。');
   process.exitCode = 1;
 }
 
