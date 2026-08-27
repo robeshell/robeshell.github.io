@@ -4224,6 +4224,8 @@ footer .theme-menu .theme-panel {
   --type-prose-measure: 42rem;
   --type-description-measure: 38rem;
   --type-body-leading: 1.78;
+  --page: 52rem;
+  --measure: 42rem;
 }
 
 :root[data-theme="magazine"] {
@@ -4234,6 +4236,8 @@ footer .theme-menu .theme-panel {
   --type-description-measure: 38rem;
   --type-body-leading: 1.86;
   --type-paragraph-gap: 1.6rem;
+  --page: 60rem;
+  --measure: 46rem;
 }
 
 :root[data-theme="terminal"] {
@@ -4244,6 +4248,8 @@ footer .theme-menu .theme-panel {
   --type-prose-measure: 44rem;
   --type-description-measure: 38rem;
   --type-body-leading: 1.82;
+  --page: 62rem;
+  --measure: 46rem;
 }
 
 :root[data-theme="cyber"] {
@@ -4253,6 +4259,8 @@ footer .theme-menu .theme-panel {
   --type-prose-measure: 47rem;
   --type-description-measure: 40rem;
   --type-body-leading: 1.78;
+  --page: 68rem;
+  --measure: 50rem;
 }
 
 :root[data-theme="island"] {
@@ -4262,6 +4270,8 @@ footer .theme-menu .theme-panel {
   --type-prose-measure: 50rem;
   --type-description-measure: 38rem;
   --type-body-leading: 1.82;
+  --page: 64rem;
+  --measure: 54rem;
 }
 
 :root[data-theme="wilds"] {
@@ -4272,6 +4282,8 @@ footer .theme-menu .theme-panel {
   --type-description-measure: 40rem;
   --type-body-leading: 1.86;
   --type-paragraph-gap: 1.6rem;
+  --page: 68rem;
+  --measure: 56rem;
 }
 
 :root[data-theme="persona"] {
@@ -4281,6 +4293,8 @@ footer .theme-menu .theme-panel {
   --type-prose-measure: 46rem;
   --type-description-measure: 38rem;
   --type-body-leading: 1.78;
+  --page: 66rem;
+  --measure: 54rem;
 }
 
 body { font-family: var(--font-body); }
