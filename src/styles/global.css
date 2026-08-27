@@ -3070,15 +3070,14 @@ footer {
 
 :root[data-theme="cyber"] .entry-list a {
   position: relative;
+  isolation: isolate;
   overflow: visible;
   margin: 0;
   padding: 1.5rem 3.75rem 1.4rem 1.4rem;
-  border: 1px solid transparent;
+  --cyber-card-cut: 1.35rem;
+  border: 0;
   border-radius: 0;
-  background:
-    linear-gradient(#0b0e12, #0b0e12) padding-box,
-    linear-gradient(var(--cyber-yellow), var(--cyber-yellow)) border-box;
-  clip-path: polygon(1.35rem 0, 100% 0, 100% calc(100% - 1.35rem), calc(100% - 1.35rem) 100%, 0 100%, 0 1.35rem);
+  background: transparent;
   box-shadow: none;
   transition-property: background-color, border-color, box-shadow, transform, color;
   transition-duration: 180ms;
@@ -3087,19 +3086,38 @@ footer {
 
 :root[data-theme="cyber"] .entry-list a::before,
 :root[data-theme="cyber"] .entry-list a::after {
-  content: none;
-  display: none;
+  content: "";
+  position: absolute;
+  display: block;
+  pointer-events: none;
+  clip-path: polygon(var(--cyber-card-cut) 0, 100% 0, 100% calc(100% - var(--cyber-card-cut)), calc(100% - var(--cyber-card-cut)) 100%, 0 100%, 0 var(--cyber-card-cut));
+}
+
+:root[data-theme="cyber"] .entry-list a::before {
+  inset: 0;
+  z-index: 0;
+  background: var(--cyber-yellow);
+}
+
+:root[data-theme="cyber"] .entry-list a::after {
+  inset: 1px;
+  z-index: 0;
+  background: #0b0e12;
+}
+
+:root[data-theme="cyber"] .entry-list a > :not(.entry-card-shell) {
+  position: relative;
+  z-index: 1;
 }
 
 :root[data-theme="cyber"] .entry-list a:hover {
-  border-color: transparent;
-  background:
-    linear-gradient(var(--cyber-yellow), var(--cyber-yellow)) padding-box,
-    linear-gradient(var(--cyber-yellow), var(--cyber-yellow)) border-box;
+  background: transparent;
   box-shadow: 4px 4px 0 var(--cyber-cyan);
   color: #07090c;
   transform: translateY(-2px);
 }
+
+:root[data-theme="cyber"] .entry-list a:hover::after { background: var(--cyber-yellow); }
 
 :root[data-theme="cyber"] .entry-list a:hover h2,
 :root[data-theme="cyber"] .entry-list a:hover p,
@@ -3276,8 +3294,8 @@ footer {
   :root[data-theme="cyber"] .page-header h1 { font-size: clamp(2rem, 10vw, 3.4rem); }
   :root[data-theme="cyber"] .entry-list { gap: 1.05rem; margin-top: 1.2rem; }
   :root[data-theme="cyber"] .entry-list a {
+    --cyber-card-cut: 1rem;
     padding: 1.25rem 3rem 1.2rem 1rem;
-    clip-path: polygon(1rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%, 0 1rem);
   }
   :root[data-theme="cyber"] .entry-list p { font-size: .88rem; }
   :root[data-theme="cyber"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: .95rem; }
