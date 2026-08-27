@@ -2,15 +2,9 @@
 import Header from '../components/Header.astro';
 import Divider from '../components/Divider.astro';
 import ThemePicker from '../components/ThemePicker.astro';
-import '../styles/global.css';
-import '../styles/themes/minimal.css';
-import '../styles/themes/magazine.css';
-import '../styles/themes/terminal.css';
-import '../styles/themes/cyber.css';
-import '../styles/themes/island.css';
-import '../styles/themes/wilds.css';
-import '../styles/themes/persona.css';
+import '../styles/aether-themes.css';
 import '../styles/site-assets.css';
+import aetherConfig from '../../aether.config.mjs';
 
 interface Props {
   title?: string;
@@ -23,10 +17,14 @@ const {
 } = Astro.props;
 const pageTitle = title ? `${title} · W.` : 'W.';
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const enabledThemes = aetherConfig.themes;
+const defaultTheme = enabledThemes.includes(aetherConfig.defaultTheme)
+  ? aetherConfig.defaultTheme
+  : enabledThemes[0];
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-theme="minimal">
+<html lang="zh-CN" data-theme={defaultTheme} data-theme-values={JSON.stringify(enabledThemes)}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -41,7 +39,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="canonical" href={canonical} />
     <script is:inline>
       (() => {
-        const themes = ['minimal', 'magazine', 'terminal', 'cyber', 'island', 'wilds', 'persona'];
+        const themes = JSON.parse(document.documentElement.dataset.themeValues ?? '[]');
         try {
           const saved = localStorage.getItem('site-theme');
           if (saved && themes.includes(saved)) document.documentElement.dataset.theme = saved;

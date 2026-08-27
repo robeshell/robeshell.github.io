@@ -56,6 +56,23 @@ npm run sync:aether
 
 Aether 正式发布后，再把站点切换到版本化包依赖；在此之前不要把 `file:../aether-site` 写进站点依赖，否则 GitHub Pages 在单仓库检出时无法安装。
 
+### 只启用需要的主题
+
+在根目录的 `aether.config.mjs` 中维护 `themes` 数组。主题选择器和样式导入都会使用这份配置：
+
+```js
+export default {
+  themes: ['minimal', 'persona'],
+  defaultTheme: 'minimal',
+  themeMeta: {
+    minimal: { label: '留白', description: '极简与秩序' },
+    persona: { label: '预告信', description: '红黑与斜切' },
+  },
+};
+```
+
+修改后运行 `npm run generate:aether`，就只会打包并加载选中的主题。`defaultTheme` 必须属于 `themes`。
+
 ## 发布
 
 提交并推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。

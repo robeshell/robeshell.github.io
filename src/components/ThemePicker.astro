@@ -1,16 +1,14 @@
 ---
-const themes = [
-  ['minimal', '留白', '极简与秩序'],
-  ['magazine', '编辑部', '纸张与版式'],
-  ['terminal', '终端', '黑屏与命令'],
-  ['cyber', '夜之城', '黄黑与霓虹'],
-  ['island', '岛屿', '晴空与草地'],
-  ['wilds', '旷野', '风沙与遗迹'],
-  ['persona', '预告信', '红黑与斜切'],
-];
+import aetherConfig from '../../aether.config.mjs';
+
+const themeMeta = aetherConfig.themeMeta as Record<string, { label: string; description: string }>;
+const themes = aetherConfig.themes.map((value) => {
+  const meta = themeMeta[value];
+  return [value, meta?.label ?? value, meta?.description ?? 'Aether theme'];
+});
 ---
 
-<details class="theme-menu">
+<details class="theme-menu" data-theme-labels={JSON.stringify(Object.fromEntries(themes.map(([value, label]) => [value, label])))}>
   <summary aria-label="切换网站主题">
     <span class="theme-preview theme-preview--minimal theme-trigger-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
     <span class="theme-current">留白</span>
@@ -30,10 +28,8 @@ const themes = [
 </details>
 
 <script>
-  const themeNames: Record<string, string> = {
-    minimal: '留白', magazine: '编辑部', terminal: '终端', cyber: '夜之城', island: '岛屿', wilds: '旷野', persona: '预告信',
-  };
   const themeMenu = document.querySelector<HTMLDetailsElement>('.theme-menu');
+  const themeNames: Record<string, string> = JSON.parse(themeMenu?.dataset.themeLabels ?? '{}');
   const themeSummary = themeMenu?.querySelector<HTMLElement>('summary');
   const themeCurrent = themeMenu?.querySelector<HTMLElement>('.theme-current');
   const themeSwatch = themeMenu?.querySelector<HTMLElement>('.theme-trigger-swatch');
