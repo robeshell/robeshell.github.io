@@ -39,7 +39,7 @@ const themes = [
   const themeSwatch = themeMenu?.querySelector<HTMLElement>('.theme-trigger-swatch');
   const themeButtons = [...(themeMenu?.querySelectorAll<HTMLButtonElement>('[data-theme-value]') ?? [])];
 
-  const p5TitleSelector = '.intro h1, .page-header h1, .entry-header h1, .about-page h1, .home-section-header h2, .site-name';
+  const p5TitleSelector = '.intro h1, .page-header h1, .entry-header h1, .about-page h1, .home-section-header h2, .prose h2, .site-name';
   const p5Punctuation = [' ', ',', '，', '.', '。', '!', '！', '?', '？'];
 
   function titleOriginal(el: HTMLElement) {
