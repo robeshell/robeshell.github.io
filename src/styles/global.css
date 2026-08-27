@@ -3644,6 +3644,14 @@ footer {
   --measure: min(46rem, calc(100% - 2rem));
 }
 
+@media (min-width: 43rem) {
+  :root[data-theme="terminal"] .site-header,
+  :root[data-theme="terminal"] main,
+  :root[data-theme="terminal"] footer {
+    width: min(var(--page), calc(100% - 5rem));
+  }
+}
+
 :root[data-theme="terminal"] body::before {
   opacity: .52;
   background-image:
