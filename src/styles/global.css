@@ -1999,6 +1999,7 @@ footer {
 :root[data-theme="persona"] footer {
   border-top: 0;
   position: relative;
+  margin-block-start: clamp(1.5rem, 3vw, 2.5rem);
   padding-block-start: 2.5rem;
 }
 :root[data-theme="persona"] footer::before {
