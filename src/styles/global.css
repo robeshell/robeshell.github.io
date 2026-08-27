@@ -3138,7 +3138,7 @@ footer .theme-menu .theme-panel {
   position: absolute;
   display: block;
   pointer-events: none;
-  clip-path: polygon(var(--cyber-card-cut) 0, 100% 0, 100% calc(100% - var(--cyber-card-cut)), calc(100% - var(--cyber-card-cut)) 100%, 0 100%, 0 var(--cyber-card-cut));
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cyber-card-cut)), calc(100% - var(--cyber-card-cut)) 100%, 0 100%);
 }
 
 :root[data-theme="cyber"] .entry-list a::before {
