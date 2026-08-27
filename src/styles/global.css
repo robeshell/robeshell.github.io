@@ -4405,3 +4405,87 @@ h1, h2, h3 { font-family: var(--font-display); }
   :root[data-theme="wilds"] .intro h1 { font-size: clamp(2.3rem, 9.5vw, 3.3rem); }
   :root[data-theme="persona"] .intro h1.p5-title { font-size: clamp(2.25rem, 9.5vw, 3.6rem); }
 }
+
+/* Final title scale: keep the masthead present without letting it swallow the page. */
+.intro h1,
+.page-header h1,
+.entry-header h1 {
+  text-wrap: balance;
+}
+
+:root[data-theme="minimal"] .intro h1 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  line-height: 1.12;
+}
+:root[data-theme="minimal"] .page-header h1 { font-size: clamp(1.8rem, 4.2vw, 2.9rem); }
+:root[data-theme="minimal"] .entry-header h1 { font-size: clamp(1.8rem, 4.2vw, 2.8rem); }
+
+:root[data-theme="magazine"] .intro h1 {
+  font-size: clamp(2rem, 4.2vw, 3.4rem);
+  line-height: 1.02;
+}
+:root[data-theme="magazine"] .page-header h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+:root[data-theme="magazine"] .entry-header h1 { font-size: clamp(1.9rem, 4.3vw, 3.2rem); }
+
+:root[data-theme="terminal"] .intro h1 {
+  font-size: clamp(1.95rem, 4.3vw, 3.3rem);
+  line-height: 1.08;
+}
+:root[data-theme="terminal"] .page-header h1 { font-size: clamp(1.85rem, 4.3vw, 3.1rem); }
+:root[data-theme="terminal"] .entry-header h1 { font-size: clamp(1.75rem, 4.1vw, 2.9rem); }
+
+:root[data-theme="cyber"] .intro h1 {
+  font-size: clamp(2.05rem, 4.5vw, 3.8rem);
+  line-height: 1.04;
+}
+:root[data-theme="cyber"] .page-header h1 { font-size: clamp(1.95rem, 4.8vw, 3.5rem); }
+:root[data-theme="cyber"] .entry-header h1 { font-size: clamp(1.8rem, 4.4vw, 3.3rem); }
+
+:root[data-theme="island"] .intro h1 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  line-height: 1.16;
+}
+:root[data-theme="island"] .page-header h1 { font-size: clamp(1.65rem, 4vw, 2.5rem); }
+:root[data-theme="island"] .entry-header h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); }
+
+:root[data-theme="wilds"] .intro h1 {
+  font-size: clamp(2rem, 4.4vw, 3.6rem);
+  line-height: 1.12;
+}
+:root[data-theme="wilds"] .page-header h1 { font-size: clamp(1.9rem, 4.4vw, 3.2rem); }
+:root[data-theme="wilds"] .entry-header h1 { font-size: clamp(1.75rem, 4.2vw, 2.9rem); }
+
+:root[data-theme="persona"] .intro h1.p5-title {
+  font-size: clamp(2.05rem, 4.6vw, 3.8rem);
+  line-height: 1.1;
+}
+:root[data-theme="persona"] .page-header h1.p5-title { font-size: clamp(1.9rem, 4.6vw, 3.2rem); }
+:root[data-theme="persona"] .entry-header h1.p5-title { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+
+@media (max-width: 42rem) {
+  :root[data-theme="minimal"] .intro h1,
+  :root[data-theme="magazine"] .intro h1,
+  :root[data-theme="terminal"] .intro h1,
+  :root[data-theme="cyber"] .intro h1,
+  :root[data-theme="island"] .intro h1,
+  :root[data-theme="wilds"] .intro h1,
+  :root[data-theme="persona"] .intro h1.p5-title {
+    font-size: clamp(1.5rem, 6.3vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -.025em;
+  }
+
+  :root[data-theme="persona"] .intro h1.p5-title {
+    font-size: clamp(1.4rem, 5.9vw, 1.9rem);
+  }
+
+  :root[data-theme="minimal"] .page-header h1,
+  :root[data-theme="magazine"] .page-header h1,
+  :root[data-theme="terminal"] .page-header h1,
+  :root[data-theme="cyber"] .page-header h1,
+  :root[data-theme="island"] .page-header h1,
+  :root[data-theme="wilds"] .page-header h1,
+  :root[data-theme="persona"] .page-header h1.p5-title {
+    font-size: clamp(1.65rem, 7vw, 2.4rem);
+  }
+}
