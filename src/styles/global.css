@@ -1633,12 +1633,12 @@ footer {
   border-bottom: 1px solid rgb(196 155 82 / .35);
   background-color: #050403;
   background-image:
-    linear-gradient(90deg, rgb(5 4 3 / .9) 0%, rgb(5 4 3 / .62) 48%, rgb(5 4 3 / .8) 100%),
-    linear-gradient(180deg, rgb(5 4 3 / .18), rgb(5 4 3 / .88)),
+    linear-gradient(90deg, rgb(7 5 2 / .7) 0%, rgb(7 5 2 / .34) 48%, rgb(7 5 2 / .58) 100%),
+    linear-gradient(180deg, rgb(5 4 3 / .04), rgb(5 4 3 / .52)),
     url('/images/wilds-header.jpg');
   background-position: center, center, center 46%;
   background-size: cover, cover, cover;
-  background-blend-mode: normal, normal, multiply;
+  background-blend-mode: normal;
 }
 
 :root[data-theme="wilds"] .intro h1 {
