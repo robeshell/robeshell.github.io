@@ -54,10 +54,12 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <footer>
       <div class="footer-meta">
         <span>© {new Date().getFullYear()} W.</span>
-        <span>写作与生活记录</span>
-      </div>
-      <div class="footer-settings">
-        <ThemePicker />
+        <div class="footer-meta-end">
+          <span>记录生活的美好</span>
+          <div class="footer-settings">
+            <ThemePicker />
+          </div>
+        </div>
       </div>
     </footer>
   </body>

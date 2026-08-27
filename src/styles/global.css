@@ -516,10 +516,16 @@ footer {
   gap: 1rem;
 }
 
+.footer-meta-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
 .footer-settings {
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
 }
 
 footer .theme-menu .theme-panel {
