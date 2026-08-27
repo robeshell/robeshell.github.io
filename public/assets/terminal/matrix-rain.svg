@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700" aria-hidden="true">
+  <rect width="900" height="700" fill="#020603"/>
+  <g fill="#00ff41" font-family="SFMono-Regular,Consolas,monospace" font-size="14" text-anchor="middle">
+    <g opacity=".22">
+      <text x="34" y="54">0<tspan x="34" dy="18">1</tspan><tspan x="34" dy="18">ﾊ</tspan><tspan x="34" dy="18">7</tspan><tspan x="34" dy="18">0</tspan><tspan x="34" dy="18">ア</tspan><tspan x="34" dy="18">1</tspan><tspan x="34" dy="18">8</tspan><tspan x="34" dy="18">0</tspan></text>
+      <text x="144" y="-16">1<tspan x="144" dy="18">0</tspan><tspan x="144" dy="18">カ</tspan><tspan x="144" dy="18">1</tspan><tspan x="144" dy="18">0</tspan><tspan x="144" dy="18">ﾐ</tspan><tspan x="144" dy="18">0</tspan><tspan x="144" dy="18">1</tspan><tspan x="144" dy="18">0</tspan><tspan x="144" dy="18">7</tspan></text>
+      <text x="256" y="104">0<tspan x="256" dy="18">1</tspan><tspan x="256" dy="18">0</tspan><tspan x="256" dy="18">ﾈ</tspan><tspan x="256" dy="18">1</tspan><tspan x="256" dy="18">0</tspan><tspan x="256" dy="18">0</tspan><tspan x="256" dy="18">5</tspan></text>
+      <text x="368" y="12">ア<tspan x="368" dy="18">0</tspan><tspan x="368" dy="18">1</tspan><tspan x="368" dy="18">7</tspan><tspan x="368" dy="18">ﾘ</tspan><tspan x="368" dy="18">0</tspan><tspan x="368" dy="18">0</tspan><tspan x="368" dy="18">1</tspan><tspan x="368" dy="18">0</tspan></text>
+      <text x="482" y="180">1<tspan x="482" dy="18">0</tspan><tspan x="482" dy="18">ﾊ</tspan><tspan x="482" dy="18">0</tspan><tspan x="482" dy="18">1</tspan><tspan x="482" dy="18">0</tspan><tspan x="482" dy="18">ｺ</tspan><tspan x="482" dy="18">1</tspan></text>
+      <text x="596" y="-30">0<tspan x="596" dy="18">1</tspan><tspan x="596" dy="18">0</tspan><tspan x="596" dy="18">ｷ</tspan><tspan x="596" dy="18">1</tspan><tspan x="596" dy="18">0</tspan><tspan x="596" dy="18">1</tspan><tspan x="596" dy="18">0</tspan><tspan x="596" dy="18">0</tspan><tspan x="596" dy="18">1</tspan></text>
+      <text x="710" y="84">0<tspan x="710" dy="18">ﾒ</tspan><tspan x="710" dy="18">1</tspan><tspan x="710" dy="18">0</tspan><tspan x="710" dy="18">0</tspan><tspan x="710" dy="18">7</tspan><tspan x="710" dy="18">1</tspan><tspan x="710" dy="18">0</tspan></text>
+      <text x="824" y="-24">1<tspan x="824" dy="18">0</tspan><tspan x="824" dy="18">ｼ</tspan><tspan x="824" dy="18">0</tspan><tspan x="824" dy="18">1</tspan><tspan x="824" dy="18">0</tspan><tspan x="824" dy="18">7</tspan><tspan x="824" dy="18">0</tspan><tspan x="824" dy="18">1</tspan></text>
+    </g>
+    <g opacity=".48">
+      <text x="84" y="322">1<tspan x="84" dy="18">0</tspan><tspan x="84" dy="18">1</tspan><tspan x="84" dy="18">ﾈ</tspan><tspan x="84" dy="18">0</tspan><tspan x="84" dy="18">1</tspan><tspan x="84" dy="18">0</tspan></text>
+      <text x="310" y="380">0<tspan x="310" dy="18">1</tspan><tspan x="310" dy="18">ｱ</tspan><tspan x="310" dy="18">0</tspan><tspan x="310" dy="18">1</tspan><tspan x="310" dy="18">0</tspan><tspan x="310" dy="18">0</tspan></text>
+      <text x="538" y="290">1<tspan x="538" dy="18">0</tspan><tspan x="538" dy="18">0</tspan><tspan x="538" dy="18">ﾘ</tspan><tspan x="538" dy="18">1</tspan><tspan x="538" dy="18">0</tspan><tspan x="538" dy="18">1</tspan></text>
+      <text x="766" y="430">0<tspan x="766" dy="18">1</tspan><tspan x="766" dy="18">ﾐ</tspan><tspan x="766" dy="18">0</tspan><tspan x="766" dy="18">1</tspan><tspan x="766" dy="18">0</tspan><tspan x="766" dy="18">7</tspan></text>
+    </g>
+    <g fill="#b6ffc6" opacity=".86" font-size="16">
+      <text x="144" y="-16">1</text>
+      <text x="368" y="12">ア</text>
+      <text x="596" y="-30">0</text>
+      <text x="824" y="-24">1</text>
+    </g>
+  </g>
+</svg>

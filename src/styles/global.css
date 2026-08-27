@@ -35,13 +35,13 @@
 }
 
 :root[data-theme="terminal"] {
-  --background: oklch(0.09 0.022 145);
-  --surface: oklch(0.14 0.045 145);
-  --text: oklch(0.86 0.18 145);
-  --muted: oklch(0.62 0.12 145);
-  --line: oklch(0.28 0.09 145);
-  --accent: oklch(0.866 0.295 142.5);
-  --accent-soft: oklch(0.866 0.295 142.5 / 0.14);
+  --background: oklch(0.035 0.018 145);
+  --surface: oklch(0.075 0.035 145);
+  --text: oklch(0.82 0.22 145);
+  --muted: oklch(0.54 0.14 145);
+  --line: oklch(0.22 0.09 145);
+  --accent: oklch(0.86 0.29 145);
+  --accent-soft: oklch(0.86 0.29 145 / 0.12);
   --measure: 46rem;
   --body-font: "SFMono-Regular", Consolas, "Liberation Mono", "PingFang SC", monospace;
   --display-font: var(--body-font);
@@ -154,7 +154,7 @@ h1, h2 { font-family: var(--display-font); text-wrap: balance; }
 
 :root[data-theme="terminal"] body::before {
   opacity: 0.42;
-  background: repeating-linear-gradient(to bottom, transparent 0 3px, oklch(0.866 0.295 142.5 / 0.06) 4px);
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, oklch(0.86 0.29 145 / 0.05) 4px);
 }
 
 :root[data-theme="cyber"] body::before {
@@ -2794,6 +2794,7 @@ footer {
     animation: none !important;
   }
   :root[data-theme="terminal"] .intro h1::after { animation: none !important; opacity: 0; }
+  :root[data-theme="terminal"] body::before { animation: none !important; }
   :root[data-theme="island"] .theme-panel { animation: none; }
   :root[data-theme="wilds"] .theme-panel { animation: none; }
   :root[data-theme="persona"] .p5-title:hover::before,
@@ -2845,6 +2846,11 @@ footer {
 @keyframes terminal-caret {
   0%, 45% { opacity: 1; }
   46%, 100% { opacity: 0; }
+}
+
+@keyframes terminal-rain {
+  from { background-position: 0 -15rem, 0 0, 0 0, 0 0; }
+  to { background-position: 0 15rem, 0 350px, 0 6px, 0 0; }
 }
 
 /* Cyberpunk reference direction: black field, hazard yellow, cyan diagnostics, and hard panels. */
@@ -3639,11 +3645,16 @@ footer {
 }
 
 :root[data-theme="terminal"] body::before {
-  opacity: .58;
-  background:
-    repeating-linear-gradient(to bottom, transparent 0 3px, oklch(.866 .295 142.5 / .07) 4px),
-    linear-gradient(90deg, transparent 0 7px, oklch(.28 .09 145 / .1) 8px, transparent 9px);
-  background-size: auto, 16px 16px;
+  opacity: .52;
+  background-image:
+    linear-gradient(to bottom, transparent 0%, oklch(.86 .29 145 / .16) 48%, transparent 100%),
+    url('/assets/terminal/matrix-rain.svg'),
+    repeating-linear-gradient(to bottom, transparent 0 3px, oklch(.86 .29 145 / .05) 4px),
+    linear-gradient(90deg, transparent 0 7px, oklch(.22 .09 145 / .1) 8px, transparent 9px);
+  background-size: 7rem 30rem, 900px 700px, auto, 16px 16px;
+  background-position: 0 -15rem, 0 0, 0 0, 0 0;
+  background-repeat: repeat, repeat, repeat, repeat;
+  animation: terminal-rain 18s linear infinite;
 }
 
 :root[data-theme="terminal"] .site-header {
@@ -3729,6 +3740,7 @@ footer {
   font-weight: 600;
   line-height: 1;
   letter-spacing: -.08em;
+  text-shadow: 0 0 1.25rem oklch(.86 .29 145 / .2);
   animation: terminal-type 1.35s steps(13, end) both;
 }
 
