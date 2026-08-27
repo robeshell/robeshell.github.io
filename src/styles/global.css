@@ -2552,23 +2552,18 @@ footer {
   border: .42rem solid var(--persona-red);
   background: var(--persona-black);
   box-shadow: 5px 6px 0 var(--persona-black);
-  clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
+  clip-path: polygon(1% 4%, 99% 0, 100% 96%, 0 100%);
 }
 
 :root[data-theme="persona"] .entry-list a::before,
 :root[data-theme="persona"] .entry-list a::after { display: none; }
 
 :root[data-theme="persona"] .entry-list li:nth-child(odd) a {
-  clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
+  clip-path: polygon(1% 7%, 98% 0, 100% 92%, 0 100%);
 }
 
 :root[data-theme="persona"] .entry-list li:nth-child(even) a {
-  clip-path: polygon(4% 0, 92% 5%, 100% 16%, 98% 94%, 84% 100%, 7% 96%, 0 79%, 2% 12%);
-}
-
-:root[data-theme="persona"] .entry-list li:nth-child(even) a::before,
-:root[data-theme="persona"] .entry-list li:nth-child(even) a::after {
-  clip-path: polygon(4% 0, 92% 5%, 100% 16%, 98% 94%, 84% 100%, 7% 96%, 0 79%, 2% 12%);
+  clip-path: polygon(0 0, 100% 8%, 98% 100%, 2% 93%);
 }
 
 :root[data-theme="persona"] .entry-list h2,
