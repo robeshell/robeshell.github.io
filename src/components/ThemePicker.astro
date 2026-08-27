@@ -48,9 +48,30 @@ const themes = [
 
   function p5InvertIndex(content: string) {
     const selected: Record<number, true> = {};
-    if (content.length > 1 && !p5Punctuation.includes(content[1])) selected[1] = true;
-    for (let i = 2; i < content.length; i++) {
-      if (!p5Punctuation.includes(content[i]) && p5Punctuation.includes(content[i - 2])) selected[i] = true;
+    const candidates = [...content]
+      .map((ch, idx) => ({ ch, idx }))
+      .filter(({ ch, idx }) => idx > 0 && !p5Punctuation.includes(ch));
+    if (!candidates.length) return selected;
+
+    // Keep the cut letters stable between renders, while giving each title its own rhythm.
+    let hash = 2166136261;
+    for (const ch of content) {
+      hash ^= ch.charCodeAt(0);
+      hash = Math.imul(hash, 16777619);
+    }
+    const first = candidates[(hash >>> 0) % candidates.length].idx;
+    selected[first] = true;
+
+    const shouldAddSecond = candidates.length >= 10 || (candidates.length >= 6 && (hash >>> 5) % 4 === 0);
+    if (shouldAddSecond && candidates.length > 1) {
+      const start = (hash >>> 8) % candidates.length;
+      for (let step = 0; step < candidates.length; step++) {
+        const candidate = candidates[(start + step) % candidates.length].idx;
+        if (Math.abs(candidate - first) >= 3) {
+          selected[candidate] = true;
+          break;
+        }
+      }
     }
     return selected;
   }
