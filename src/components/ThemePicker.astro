@@ -61,12 +61,12 @@ const themes = [
       const original = titleOriginal(el);
       el.dataset.titleOriginal = original;
       const invert = p5InvertIndex(original);
+      const tiltPattern = [0, -2, 1, -1, 2, -1, 0, 1, -2, 1];
       el.replaceChildren();
       [...original].forEach((ch, idx) => {
         const span = document.createElement('span');
         span.textContent = ch;
-        const deg = (Math.random() < 0.5 ? 1 : -1) * Math.random() * 10;
-        span.style.setProperty('--r', `${deg}deg`);
+        span.style.setProperty('--r', `${tiltPattern[idx % tiltPattern.length]}deg`);
         if (invert[idx]) span.classList.add('is-cut');
         el.appendChild(span);
       });

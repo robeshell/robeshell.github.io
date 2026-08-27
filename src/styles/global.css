@@ -182,12 +182,10 @@ h1, h2 { font-family: var(--display-font); text-wrap: balance; }
 }
 
 :root[data-theme="persona"] body::before {
-  opacity: .95;
+  opacity: .72;
   background:
-    radial-gradient(ellipse at 86% 4%, rgb(255 23 63 / .18), transparent 32rem),
-    repeating-linear-gradient(-18deg, transparent 0 26px, rgb(255 23 63 / .13) 27px 28px),
-    repeating-linear-gradient(72deg, transparent 0 74px, rgb(255 255 255 / .025) 75px 76px);
-  background-size: auto, auto, auto;
+    radial-gradient(ellipse at 86% 0%, rgb(255 23 63 / .12), transparent 30rem),
+    repeating-linear-gradient(-18deg, transparent 0 34px, rgb(255 23 63 / .075) 35px 36px);
 }
 
 .skip-link {
@@ -2342,6 +2340,86 @@ footer {
 :root[data-theme="persona"] .prose h3 { color: var(--persona-red); }
 :root[data-theme="persona"] .prose blockquote { border-inline-start-color: var(--persona-red); }
 :root[data-theme="persona"] footer::before { background: var(--persona-red); }
+
+/* Persona 5 UI cleanup: keep the signature red/black/white language without stacking every effect at once. */
+:root[data-theme="persona"] .site-header nav a,
+:root[data-theme="persona"] .site-header .about {
+  border: 1px solid rgb(255 255 255 / .14);
+  box-shadow: none;
+  transform: skewX(-.8deg);
+}
+
+:root[data-theme="persona"] .site-header nav a:nth-child(n),
+:root[data-theme="persona"] .site-header .about { transform: skewX(-.8deg); }
+
+:root[data-theme="persona"] .site-header nav a:hover,
+:root[data-theme="persona"] .site-header .about:hover {
+  box-shadow: 3px 3px 0 var(--persona-red);
+  transform: translate(-1px, -1px) skewX(-.8deg);
+}
+
+:root[data-theme="persona"] .site-header [aria-current="page"] {
+  border-color: var(--text);
+  box-shadow: 3px 3px 0 var(--persona-red);
+}
+
+:root[data-theme="persona"] .theme-menu summary { box-shadow: 3px 3px 0 var(--persona-red); }
+:root[data-theme="persona"] .theme-menu summary:hover,
+:root[data-theme="persona"] .theme-menu[open] summary { box-shadow: 3px 3px 0 var(--text); }
+:root[data-theme="persona"] .theme-panel { box-shadow: 5px 5px 0 var(--persona-red); }
+:root[data-theme="persona"] .theme-menu summary:hover::before { background: none; animation: none; }
+
+:root[data-theme="persona"] .p5-title span { padding-inline: 1px; }
+:root[data-theme="persona"] .p5-title:hover::before,
+:root[data-theme="persona"] .p5-title:hover::after {
+  content: none;
+  animation: none;
+}
+
+:root[data-theme="persona"] .intro h1.p5-title:hover::after {
+  content: "";
+  position: absolute;
+  inset-inline-start: -.02em;
+  inset-block-end: -.12em;
+  z-index: -1;
+  width: min(100%, 14em);
+  height: .15em;
+  background: var(--persona-red);
+  transform: skewX(-14deg);
+}
+
+:root[data-theme="persona"] .home-section-header::after {
+  height: 3px;
+  border-radius: 0;
+  transform: none;
+}
+
+:root[data-theme="persona"] .entry-list a {
+  min-height: 8.8rem;
+  border-inline-start: 1px solid rgb(255 255 255 / .24);
+  box-shadow: 4px 4px 0 var(--persona-red);
+}
+
+:root[data-theme="persona"] .entry-list a::before { display: none; }
+:root[data-theme="persona"] .entry-list a::after { inset: 5px; border-color: rgb(255 255 255 / .14); }
+:root[data-theme="persona"] .entry-list li:nth-child(odd) a { transform: skewX(-.45deg); }
+:root[data-theme="persona"] .entry-list li:nth-child(even) a { transform: skewX(.45deg); }
+
+:root[data-theme="persona"] .entry-list a:hover {
+  box-shadow: 4px 4px 0 var(--persona-red);
+  transform: translateY(-2px) skewX(-.45deg);
+}
+
+:root[data-theme="persona"] .entry-list li:nth-child(even) a:hover { transform: translateY(-2px) skewX(.45deg); }
+:root[data-theme="persona"] .entry-list a:hover::after { border-color: var(--persona-red); }
+
+:root[data-theme="persona"] .entry,
+:root[data-theme="persona"] .about-page {
+  border-inline-start: 1px solid rgb(255 255 255 / .2);
+  box-shadow: 5px 5px 0 var(--persona-red);
+}
+
+:root[data-theme="persona"] .entry-header { padding-bottom: 2.25rem; border-bottom-width: 3px; }
 
 @keyframes persona-bg-gray {
   0% { top: 6%; transform: skew(-10deg, -2deg) scale(0.9); }
