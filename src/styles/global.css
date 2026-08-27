@@ -2541,10 +2541,9 @@ footer {
 /* Persona inner-page frame contract: entries and about share one complete shell. */
 :root[data-theme="persona"] .entry,
 :root[data-theme="persona"] .about-page {
-  border: 2px solid rgb(255 255 255 / .24);
-  border-inline-start: 5px solid var(--persona-red);
+  border: 1px solid rgb(255 255 255 / .2);
   background: var(--persona-black);
-  box-shadow: 6px 6px 0 var(--persona-red);
+  box-shadow: 5px 5px 0 rgb(255 23 63 / .88);
 }
 
 /* The header rule is the only inner-page separator in Persona; the generic Divider stays hidden. */
