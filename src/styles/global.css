@@ -61,6 +61,7 @@
   --accent-highlight: #00f0ff;
   --cyber-yellow: #fcee0a;
   --cyber-cyan: #00f0ff;
+  --cyber-cut: .7rem;
   --page: min(72rem, calc(100% - 2rem));
   --measure: min(52rem, calc(100% - 2rem));
   --body-font: "Arial Narrow", "Avenir Next Condensed", "PingFang SC", "Microsoft YaHei", sans-serif;
@@ -2865,14 +2866,14 @@ footer {
 :root[data-theme="cyber"] .site-header .about {
   position: relative;
   padding: .64rem .8rem;
-  border: 1px solid rgb(252 238 10 / .5);
-  background: #0b0e12;
-  color: var(--muted);
+  border: 0;
+  background: #050506;
+  color: var(--cyber-yellow);
   font-size: .82rem;
   font-weight: 600;
   letter-spacing: .04em;
-  clip-path: polygon(.45rem 0, 100% 0, calc(100% - .45rem) 100%, 0 100%);
-  box-shadow: none;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
   transition-property: background-color, color, border-color, box-shadow, transform;
   transition-duration: 160ms;
   transition-timing-function: ease-out;
@@ -2881,26 +2882,27 @@ footer {
 :root[data-theme="cyber"] .site-header nav a:hover,
 :root[data-theme="cyber"] .site-header .about:hover,
 :root[data-theme="cyber"] .site-header [aria-current="page"] {
-  border-color: var(--cyber-yellow);
-  background: var(--cyber-yellow);
-  color: #07090c;
-  box-shadow: 3px 3px 0 var(--cyber-cyan);
+  border-color: transparent;
+  background: #050506;
+  color: var(--cyber-yellow);
+  box-shadow: 4px 4px 0 var(--cyber-cyan);
   transform: translate(-1px, -1px);
 }
 
 :root[data-theme="cyber"] .theme-menu summary {
-  border: 1px solid var(--cyber-yellow);
-  background: var(--surface);
-  box-shadow: 3px 3px 0 var(--cyber-cyan);
-  color: var(--text);
-  clip-path: polygon(.35rem 0, 100% 0, calc(100% - .35rem) 100%, 0 100%);
+  border: 0;
+  background: #050506;
+  box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
+  color: var(--cyber-yellow);
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
 }
 
 :root[data-theme="cyber"] .theme-menu summary:hover,
 :root[data-theme="cyber"] .theme-menu[open] summary {
-  border-color: var(--cyber-cyan);
-  box-shadow: 3px 3px 0 var(--cyber-yellow);
-  color: var(--text);
+  border-color: transparent;
+  background: #050506;
+  box-shadow: 4px 4px 0 var(--cyber-cyan);
+  color: var(--cyber-yellow);
 }
 
 :root[data-theme="cyber"] .theme-panel {
@@ -2912,8 +2914,14 @@ footer {
 
 :root[data-theme="cyber"] .theme-option:hover,
 :root[data-theme="cyber"] .theme-option[aria-pressed="true"] {
-  background: var(--accent-soft);
-  color: var(--text);
+  background: var(--cyber-yellow);
+  color: #07090c;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - .55rem) 100%, 0 100%);
+}
+
+:root[data-theme="cyber"] .theme-option {
+  border-radius: 0;
+  color: var(--cyber-yellow);
 }
 
 :root[data-theme="cyber"] .theme-option:active { transform: scale(.96); }
@@ -3033,13 +3041,20 @@ footer {
 }
 
 :root[data-theme="cyber"] .home-section-header a {
-  color: var(--cyber-cyan);
+  padding: .58rem .8rem;
+  background: #050506;
+  color: var(--cyber-yellow);
   font-size: .8rem;
   font-weight: 600;
+  text-decoration: none;
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
 }
 
 :root[data-theme="cyber"] .home-section-header a:hover {
   color: var(--cyber-yellow);
+  background: #050506;
+  box-shadow: 4px 4px 0 var(--cyber-cyan);
   text-decoration: none;
 }
 
@@ -3183,12 +3198,12 @@ footer {
 :root[data-theme="cyber"] .back-link {
   display: inline-flex;
   padding: .55rem .85rem;
-  border: 1px solid var(--cyber-yellow);
-  background: #0b0e12;
+  border: 0;
+  background: #050506;
   color: var(--cyber-yellow);
   text-decoration: none;
-  clip-path: polygon(.45rem 0, 100% 0, calc(100% - .45rem) 100%, 0 100%);
-  box-shadow: 3px 3px 0 var(--cyber-cyan);
+  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
 }
 
 :root[data-theme="cyber"] .back-link:hover {
