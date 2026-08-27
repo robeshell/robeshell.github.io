@@ -821,6 +821,8 @@ footer {
   transition: color .18s ease, transform .18s ease;
 }
 
+:root[data-theme="island"] .entry-arrow--wilds { display: none; }
+
 :root[data-theme="island"] .entry-arrow svg {
   display: block;
   width: 100%;
