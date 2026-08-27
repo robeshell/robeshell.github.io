@@ -112,13 +112,13 @@
   --background: #0a090b;
   --surface: #111115;
   --text: #fff;
-  --muted: #929298;
+  --muted: #b6b6bd;
   --line: #ff173f;
   --accent: #ff173f;
   --accent-soft: rgb(255 23 63 / .16);
   --persona-red: #ff173f;
   --persona-black: #050506;
-  --persona-gray: #929298;
+  --persona-gray: #b6b6bd;
   --persona-cyan: #1cfeff;
   --page: clamp(56rem, 84vw, 80rem);
   --measure: clamp(44rem, 70vw, 66rem);
