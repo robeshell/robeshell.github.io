@@ -1,19 +1,19 @@
 ---
 const themes = [
-  ['minimal', '极简', '留白与秩序'],
-  ['magazine', '杂志', '编辑感排版'],
-  ['terminal', '编程', '终端与代码'],
-  ['cyber', '赛博朋克', '霓虹夜色'],
-  ['island', '岛屿生活', '晴空与草地'],
-  ['wilds', '旷野冒险', '原野与遗迹'],
-  ['persona', '异闻录', '红黑与斜切'],
+  ['minimal', '留白', '极简与秩序'],
+  ['magazine', '编辑部', '纸张与版式'],
+  ['terminal', '终端', '黑屏与命令'],
+  ['cyber', '夜之城', '黄黑与霓虹'],
+  ['island', '岛屿', '晴空与草地'],
+  ['wilds', '旷野', '风沙与遗迹'],
+  ['persona', '预告信', '红黑与斜切'],
 ];
 ---
 
 <details class="theme-menu">
   <summary aria-label="切换网站主题">
     <span class="theme-preview theme-preview--minimal theme-trigger-swatch" aria-hidden="true"><i></i><i></i><i></i></span>
-    <span class="theme-current">极简</span>
+    <span class="theme-current">留白</span>
   </summary>
 
   <div class="theme-panel">
@@ -31,7 +31,7 @@ const themes = [
 
 <script>
   const themeNames: Record<string, string> = {
-    minimal: '极简', magazine: '杂志', terminal: '编程', cyber: '赛博朋克', island: '岛屿生活', wilds: '旷野冒险', persona: '异闻录',
+    minimal: '留白', magazine: '编辑部', terminal: '终端', cyber: '夜之城', island: '岛屿', wilds: '旷野', persona: '预告信',
   };
   const themeMenu = document.querySelector<HTMLDetailsElement>('.theme-menu');
   const themeSummary = themeMenu?.querySelector<HTMLElement>('summary');

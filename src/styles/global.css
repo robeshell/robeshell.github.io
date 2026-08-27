@@ -376,21 +376,21 @@ html:not([data-theme="minimal"]) .theme-menu[open] summary {
 .theme-preview--magazine i:nth-child(1) { background: oklch(0.952 0.008 78); }
 .theme-preview--magazine i:nth-child(2) { background: oklch(0.448 0.152 22); }
 .theme-preview--magazine i:nth-child(3) { background: oklch(0.925 0.012 75); }
-.theme-preview--terminal i:nth-child(1) { background: var(--background); }
-.theme-preview--terminal i:nth-child(2) { background: var(--accent); }
-.theme-preview--terminal i:nth-child(3) { background: var(--surface); }
-.theme-preview--cyber i:nth-child(1) { background: oklch(0.118 0.042 255); }
-.theme-preview--cyber i:nth-child(2) { background: oklch(0.828 0.158 195); }
-.theme-preview--cyber i:nth-child(3) { background: oklch(0.348 0.088 255); }
+.theme-preview--terminal i:nth-child(1) { background: oklch(0.035 0.018 145); }
+.theme-preview--terminal i:nth-child(2) { background: oklch(0.86 0.29 145); }
+.theme-preview--terminal i:nth-child(3) { background: oklch(0.075 0.035 145); }
+.theme-preview--cyber i:nth-child(1) { background: #07090c; }
+.theme-preview--cyber i:nth-child(2) { background: #fcee0a; }
+.theme-preview--cyber i:nth-child(3) { background: #00f0ff; }
 .theme-preview--island i:nth-child(1) { background: oklch(0.977 0.011 106.6); }
 .theme-preview--island i:nth-child(2) { background: oklch(0.75 0.129 185.2); }
 .theme-preview--island i:nth-child(3) { background: oklch(0.962 0.027 97.6); }
-.theme-preview--wilds i:nth-child(1) { background: oklch(0.503 0.011 93.7); }
-.theme-preview--wilds i:nth-child(2) { background: oklch(0.807 0.134 220.7); }
-.theme-preview--wilds i:nth-child(3) { background: oklch(0.847 0.171 87.3); }
-.theme-preview--persona i:nth-child(1) { background: oklch(0 0 0); }
-.theme-preview--persona i:nth-child(2) { background: oklch(0.628 0.258 29.2); }
-.theme-preview--persona i:nth-child(3) { background: oklch(0.894 0.154 195.4); }
+.theme-preview--wilds i:nth-child(1) { background: #1a1510; }
+.theme-preview--wilds i:nth-child(2) { background: #c49b52; }
+.theme-preview--wilds i:nth-child(3) { background: #e0bd77; }
+.theme-preview--persona i:nth-child(1) { background: #0a090b; }
+.theme-preview--persona i:nth-child(2) { background: #ff173f; }
+.theme-preview--persona i:nth-child(3) { background: #1cfeff; }
 
 .visually-hidden {
   position: absolute;
