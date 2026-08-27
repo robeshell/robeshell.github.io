@@ -35,13 +35,13 @@
 }
 
 :root[data-theme="terminal"] {
-  --background: oklch(0.138 0.018 148);
-  --surface: oklch(0.188 0.028 148);
-  --text: oklch(0.918 0.042 142);
-  --muted: oklch(0.708 0.062 142);
-  --line: oklch(0.328 0.062 148);
-  --accent: oklch(0.808 0.162 142);
-  --accent-soft: oklch(0.228 0.058 145);
+  --background: oklch(0.12 0.025 150);
+  --surface: oklch(0.17 0.04 150);
+  --text: oklch(0.93 0.105 151);
+  --muted: oklch(0.67 0.085 155);
+  --line: oklch(0.31 0.085 153);
+  --accent: oklch(0.869 0.278 144.5);
+  --accent-soft: oklch(0.869 0.278 144.5 / 0.14);
   --measure: 46rem;
   --body-font: "SFMono-Regular", Consolas, "Liberation Mono", "PingFang SC", monospace;
   --display-font: var(--body-font);
@@ -154,7 +154,7 @@ h1, h2 { font-family: var(--display-font); text-wrap: balance; }
 
 :root[data-theme="terminal"] body::before {
   opacity: 0.42;
-  background: repeating-linear-gradient(to bottom, transparent 0 3px, oklch(0.808 0.162 142 / 0.045) 4px);
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, oklch(0.869 0.278 144.5 / 0.06) 4px);
 }
 
 :root[data-theme="cyber"] body::before {
@@ -376,9 +376,9 @@ html:not([data-theme="minimal"]) .theme-menu[open] summary {
 .theme-preview--magazine i:nth-child(1) { background: oklch(0.952 0.008 78); }
 .theme-preview--magazine i:nth-child(2) { background: oklch(0.448 0.152 22); }
 .theme-preview--magazine i:nth-child(3) { background: oklch(0.925 0.012 75); }
-.theme-preview--terminal i:nth-child(1) { background: oklch(0.138 0.018 148); }
-.theme-preview--terminal i:nth-child(2) { background: oklch(0.808 0.162 142); }
-.theme-preview--terminal i:nth-child(3) { background: oklch(0.188 0.028 148); }
+.theme-preview--terminal i:nth-child(1) { background: var(--background); }
+.theme-preview--terminal i:nth-child(2) { background: var(--accent); }
+.theme-preview--terminal i:nth-child(3) { background: var(--surface); }
 .theme-preview--cyber i:nth-child(1) { background: oklch(0.118 0.042 255); }
 .theme-preview--cyber i:nth-child(2) { background: oklch(0.828 0.158 195); }
 .theme-preview--cyber i:nth-child(3) { background: oklch(0.348 0.088 255); }
@@ -3635,8 +3635,8 @@ footer {
 :root[data-theme="terminal"] body::before {
   opacity: .58;
   background:
-    repeating-linear-gradient(to bottom, transparent 0 3px, oklch(.808 .162 142 / .055) 4px),
-    linear-gradient(90deg, transparent 0 7px, oklch(.328 .062 148 / .08) 8px, transparent 9px);
+    repeating-linear-gradient(to bottom, transparent 0 3px, oklch(.869 .278 144.5 / .07) 4px),
+    linear-gradient(90deg, transparent 0 7px, oklch(.31 .085 153 / .1) 8px, transparent 9px);
   background-size: auto, 16px 16px;
 }
 
@@ -3645,7 +3645,7 @@ footer {
   margin-block-start: .65rem;
   padding: .65rem .8rem .75rem;
   border-block: 1px solid var(--line);
-  background: rgb(19 32 25 / .72);
+  background: rgb(8 24 13 / .78);
   box-shadow: 0 8px 18px rgb(0 0 0 / .16);
 }
 
@@ -3864,8 +3864,8 @@ footer {
   padding: 2.25rem 2.4rem 4.5rem;
   border: 1px solid var(--line);
   border-inline-start: 2px solid var(--accent);
-  background: rgb(19 32 25 / .68);
-  box-shadow: inset 0 0 0 1px rgb(149 255 106 / .04);
+  background: rgb(6 20 10 / .82);
+  box-shadow: inset 0 0 0 1px rgb(0 255 65 / .07);
 }
 
 :root[data-theme="terminal"] .entry-header {
@@ -3906,7 +3906,7 @@ footer {
 :root[data-theme="terminal"] .prose h2::before { content: "## "; color: var(--muted); }
 :root[data-theme="terminal"] .prose h3 { color: var(--accent); }
 :root[data-theme="terminal"] .prose blockquote { border-inline-start-color: var(--accent); background: var(--accent-soft); }
-:root[data-theme="terminal"] .prose pre { border: 1px solid var(--line); border-top: 2px solid var(--accent); background: #122019; }
+:root[data-theme="terminal"] .prose pre { border: 1px solid var(--line); border-top: 2px solid var(--accent); background: #0d2114; }
 
 :root[data-theme="terminal"] footer {
   margin-block-start: 0;
