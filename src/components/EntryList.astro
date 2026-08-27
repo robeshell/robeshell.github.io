@@ -15,6 +15,11 @@ const { entries, showSection = false } = Astro.props;
     <li>
       <a href={`/${entry.data.section}/${entry.id}/`}>
         <h2>{entry.data.title}</h2>
+        <span class="entry-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d="M4 20 20 4M10 4h10v10" />
+          </svg>
+        </span>
         <div class="list-meta">
           {showSection && <span>{sections[entry.data.section].label}</span>}
           <time datetime={entry.data.date.toISOString()}>

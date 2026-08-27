@@ -432,6 +432,7 @@ html:not([data-theme="minimal"]) .theme-menu[open] summary {
 .entry-list h2 { margin: 0; font-size: 1.15rem; font-weight: 550; line-height: 1.45; }
 .entry-list p { max-width: 36rem; margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.65; }
 .entry-list a:hover h2 { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .22em; }
+.entry-arrow { display: none; }
 .list-meta {
   display: flex;
   flex-wrap: wrap;
@@ -798,30 +799,31 @@ footer {
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
 }
 
-:root[data-theme="island"] .entry-list a::before {
-  content: "";
+:root[data-theme="island"] .entry-arrow {
   position: absolute;
-  inset-block-start: 1.2rem;
-  inset-inline-end: 1.25rem;
-  width: .86rem;
-  height: 2px;
-  border-radius: 999px;
-  background: var(--accent);
-  transform: rotate(-45deg);
-  transform-origin: 100% 50%;
-  transition: transform .18s ease, background-color .18s ease;
+  inset-block-start: .85rem;
+  inset-inline-end: 1rem;
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--accent);
+  pointer-events: none;
+  transition: color .18s ease, transform .18s ease;
 }
 
-:root[data-theme="island"] .entry-list a::after {
-  content: "";
-  position: absolute;
-  inset-block-start: .78rem;
-  inset-inline-end: 1.2rem;
-  width: .62rem;
-  height: .62rem;
-  border-top: 2px solid var(--accent);
-  border-right: 2px solid var(--accent);
-  transition: transform .18s ease, border-color .18s ease;
+:root[data-theme="island"] .entry-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+:root[data-theme="island"] .entry-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25;
 }
 
 :root[data-theme="island"] .entry-list a:hover {
@@ -831,13 +833,8 @@ footer {
   box-shadow: 0 6px 0 var(--accent-soft);
 }
 
-:root[data-theme="island"] .entry-list a:hover::before {
-  background: var(--accent-deep);
-  transform: translate(.1rem, -.1rem) rotate(-45deg);
-}
-
-:root[data-theme="island"] .entry-list a:hover::after {
-  border-color: var(--accent-deep);
+:root[data-theme="island"] .entry-list a:hover .entry-arrow {
+  color: var(--accent-deep);
   transform: translate(.1rem, -.1rem);
 }
 
