@@ -124,7 +124,8 @@ const themes = [
       syncTheme(theme);
       try { localStorage.setItem('site-theme', theme); } catch { /* Keep the in-page choice. */ }
       if (themeMenu) themeMenu.open = false;
-      themeSummary?.focus();
+      themeSummary?.focus({ preventScroll: true });
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
     });
   });
 
