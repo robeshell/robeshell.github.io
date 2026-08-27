@@ -2546,39 +2546,53 @@ footer {
   font-size: clamp(2rem, 5vw, 3rem);
 }
 
-/* Calling-card frame: a black quadrilateral with a thick paper-white edge. */
+/* Calling-card frame: a black quadrilateral with a complete red outer frame. */
 :root[data-theme="persona"] .entry-list a {
   overflow: visible;
   padding-block-start: 2.15rem;
-  border: .42rem solid var(--text);
-  background: var(--persona-black);
-  box-shadow: 5px 6px 0 var(--persona-red);
-  clip-path: polygon(1% 4%, 99% 0, 100% 96%, 0 100%);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-:root[data-theme="persona"] .entry-list a::before {
+:root[data-theme="persona"] .entry-list a::before,
+:root[data-theme="persona"] .entry-list a::after { display: none; }
+
+:root[data-theme="persona"] .entry-list .entry-card-shell {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: block;
+  background: var(--persona-red);
+  clip-path: polygon(1% 4%, 99% 0, 100% 96%, 0 100%);
+  filter: drop-shadow(5px 6px 0 var(--persona-black));
+  pointer-events: none;
+}
+
+:root[data-theme="persona"] .entry-list .entry-card-shell::before {
   content: "";
   position: absolute;
   display: block;
-  inset-block-start: .35rem;
-  inset-inline-start: 1.1rem;
-  width: clamp(5.5rem, 22%, 11rem);
-  height: 1.65rem;
-  z-index: 3;
-  background: var(--text);
-  border: 3px solid var(--persona-black);
-  clip-path: polygon(0 16%, 92% 0, 100% 78%, 19% 100%, 0 82%);
+  inset: .42rem;
+  z-index: 1;
+  background: var(--persona-black);
+  clip-path: polygon(1% 4%, 99% 0, 100% 96%, 0 100%);
   pointer-events: none;
-  transform: rotate(-4deg);
 }
 
-:root[data-theme="persona"] .entry-list a::after { display: none; }
-
 :root[data-theme="persona"] .entry-list li:nth-child(odd) a {
-  clip-path: polygon(1% 7%, 98% 0, 100% 92%, 0 100%);
+  transform: skewX(-.45deg);
 }
 
 :root[data-theme="persona"] .entry-list li:nth-child(even) a {
+  transform: skewX(.45deg);
+}
+
+:root[data-theme="persona"] .entry-list li:nth-child(even) .entry-card-shell {
+  clip-path: polygon(0 0, 100% 8%, 98% 100%, 2% 93%);
+}
+
+:root[data-theme="persona"] .entry-list li:nth-child(even) .entry-card-shell::before {
   clip-path: polygon(0 0, 100% 8%, 98% 100%, 2% 93%);
 }
 
@@ -2591,12 +2605,13 @@ footer {
 }
 
 :root[data-theme="persona"] .entry-list a:hover {
-  border: .42rem solid var(--text);
-  background: var(--text);
-  box-shadow: 5px 6px 0 var(--persona-red);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-:root[data-theme="persona"] .entry-list a:hover::before { background: var(--persona-red); }
+:root[data-theme="persona"] .entry-list a:hover .entry-card-shell { background: var(--persona-red); }
+:root[data-theme="persona"] .entry-list a:hover .entry-card-shell::before { background: var(--text); }
 
 @keyframes persona-bg-gray {
   0% { top: 6%; transform: skew(-10deg, -2deg) scale(0.9); }
@@ -2761,8 +2776,9 @@ footer {
   :root[data-theme="persona"] .entry-list a {
     min-height: 8.3rem;
     padding: 1.85rem 3rem 1.3rem 1.1rem;
-    box-shadow: 4px 5px 0 var(--persona-red);
+    box-shadow: none;
   }
+  :root[data-theme="persona"] .entry-list .entry-card-shell { filter: drop-shadow(4px 5px 0 var(--persona-black)); }
   :root[data-theme="persona"] .entry-list h2 { font-size: 1.08rem; }
   :root[data-theme="persona"] .entry-list p { font-size: .85rem; }
   :root[data-theme="persona"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: 1rem; }
