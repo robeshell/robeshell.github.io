@@ -1761,7 +1761,7 @@ footer {
 
 :root[data-theme="wilds"] .entry-header {
   padding-bottom: 2rem;
-  border-bottom: 1px solid rgb(196 155 82 / .5);
+  border-bottom: 0;
 }
 
 :root[data-theme="wilds"] .entry-header h1,
