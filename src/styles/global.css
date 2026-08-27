@@ -160,12 +160,14 @@ h1, h2 { font-family: var(--display-font); text-wrap: balance; }
 :root[data-theme="cyber"] body::before {
   opacity: .86;
   background-image:
+    url('/assets/cyber/dots-yellow.png'),
     linear-gradient(rgb(252 238 10 / .055) 1px, transparent 1px),
     linear-gradient(90deg, rgb(0 240 255 / .045) 1px, transparent 1px),
     repeating-linear-gradient(135deg, transparent 0 72px, rgb(0 240 255 / .035) 73px, transparent 74px),
     radial-gradient(circle at 78% 15%, rgb(0 240 255 / .12), transparent 19rem),
     radial-gradient(circle at 14% 82%, rgb(252 238 10 / .07), transparent 24rem);
-  background-size: 48px 48px, 48px 48px, auto, auto, auto;
+  background-size: 80px 979px, 48px 48px, 48px 48px, auto, auto, auto;
+  background-repeat: repeat, repeat, repeat, repeat, no-repeat, no-repeat;
 }
 
 :root[data-theme="island"] body::before {
@@ -2872,7 +2874,7 @@ footer {
   font-size: .82rem;
   font-weight: 600;
   letter-spacing: .04em;
-  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  clip-path: polygon(var(--cyber-cut) 0, 100% 0, 100% calc(100% - var(--cyber-cut)), calc(100% - var(--cyber-cut)) 100%, 0 100%, 0 var(--cyber-cut));
   box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
   transition-property: background-color, color, border-color, box-shadow, transform;
   transition-duration: 160ms;
@@ -2894,7 +2896,7 @@ footer {
   background: #050506;
   box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
   color: var(--cyber-yellow);
-  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  clip-path: polygon(var(--cyber-cut) 0, 100% 0, 100% calc(100% - var(--cyber-cut)), calc(100% - var(--cyber-cut)) 100%, 0 100%, 0 var(--cyber-cut));
 }
 
 :root[data-theme="cyber"] .theme-menu summary:hover,
@@ -2916,7 +2918,7 @@ footer {
 :root[data-theme="cyber"] .theme-option[aria-pressed="true"] {
   background: var(--cyber-yellow);
   color: #07090c;
-  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - .55rem) 100%, 0 100%);
+  clip-path: polygon(.55rem 0, 100% 0, 100% calc(100% - .55rem), calc(100% - .55rem) 100%, 0 100%, 0 .55rem);
 }
 
 :root[data-theme="cyber"] .theme-option {
@@ -3047,7 +3049,7 @@ footer {
   font-size: .8rem;
   font-weight: 600;
   text-decoration: none;
-  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  clip-path: polygon(var(--cyber-cut) 0, 100% 0, 100% calc(100% - var(--cyber-cut)), calc(100% - var(--cyber-cut)) 100%, 0 100%, 0 var(--cyber-cut));
   box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
 }
 
@@ -3076,7 +3078,7 @@ footer {
   background:
     linear-gradient(#0b0e12, #0b0e12) padding-box,
     linear-gradient(var(--cyber-yellow), var(--cyber-yellow)) border-box;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.35rem), calc(100% - 1.35rem) 100%, 0 100%);
+  clip-path: polygon(1.35rem 0, 100% 0, 100% calc(100% - 1.35rem), calc(100% - 1.35rem) 100%, 0 100%, 0 1.35rem);
   box-shadow: none;
   transition-property: background-color, border-color, box-shadow, transform, color;
   transition-duration: 180ms;
@@ -3202,7 +3204,7 @@ footer {
   background: #050506;
   color: var(--cyber-yellow);
   text-decoration: none;
-  clip-path: polygon(0 0, 100% 0, 100% 68%, calc(100% - var(--cyber-cut)) 100%, 0 100%);
+  clip-path: polygon(var(--cyber-cut) 0, 100% 0, 100% calc(100% - var(--cyber-cut)), calc(100% - var(--cyber-cut)) 100%, 0 100%, 0 var(--cyber-cut));
   box-shadow: 3px 3px 0 rgb(252 238 10 / .35);
 }
 
@@ -3275,7 +3277,7 @@ footer {
   :root[data-theme="cyber"] .entry-list { gap: 1.05rem; margin-top: 1.2rem; }
   :root[data-theme="cyber"] .entry-list a {
     padding: 1.25rem 3rem 1.2rem 1rem;
-    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%);
+    clip-path: polygon(1rem 0, 100% 0, 100% calc(100% - 1rem), calc(100% - 1rem) 100%, 0 100%, 0 1rem);
   }
   :root[data-theme="cyber"] .entry-list p { font-size: .88rem; }
   :root[data-theme="cyber"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: .95rem; }
