@@ -2413,14 +2413,6 @@ footer {
 :root[data-theme="persona"] .entry-list li:nth-child(even) a:hover { transform: translateY(-2px) skewX(.45deg); }
 :root[data-theme="persona"] .entry-list a:hover::after { border-color: var(--persona-red); }
 
-:root[data-theme="persona"] .entry,
-:root[data-theme="persona"] .about-page {
-  border-inline-start: 1px solid rgb(255 255 255 / .2);
-  box-shadow: 5px 5px 0 var(--persona-red);
-}
-
-:root[data-theme="persona"] .entry-header { padding-bottom: 2.25rem; border-bottom-width: 3px; }
-
 /* Calling-card headings: each character is a small, paper-edged card. */
 :root[data-theme="persona"] .intro h1.p5-title,
 :root[data-theme="persona"] .page-header h1.p5-title,
@@ -2544,6 +2536,22 @@ footer {
 :root[data-theme="persona"] .about-page h1.p5-title {
   margin-bottom: 1.25rem;
   font-size: clamp(2rem, 5vw, 3rem);
+}
+
+/* Persona inner-page frame contract: entries and about share one complete shell. */
+:root[data-theme="persona"] .entry,
+:root[data-theme="persona"] .about-page {
+  border: 2px solid rgb(255 255 255 / .24);
+  border-inline-start: 5px solid var(--persona-red);
+  background: var(--persona-black);
+  box-shadow: 6px 6px 0 var(--persona-red);
+}
+
+/* The header rule is the only inner-page separator in Persona; the generic Divider stays hidden. */
+:root[data-theme="persona"] .entry > .island-divider { display: none; }
+:root[data-theme="persona"] .entry-header {
+  padding-bottom: 2.25rem;
+  border-bottom: 3px solid var(--persona-red);
 }
 
 /* Calling-card frame: a black quadrilateral with a complete red outer frame. */
