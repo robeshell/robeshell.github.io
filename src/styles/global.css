@@ -2549,29 +2549,14 @@ footer {
 /* Irregular calling-card frame: black paper with a thick red edge. */
 :root[data-theme="persona"] .entry-list a {
   overflow: visible;
-  border: 0;
-  background: var(--persona-red);
+  border: .42rem solid var(--persona-red);
+  background: var(--persona-black);
   box-shadow: 5px 6px 0 var(--persona-black);
   clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
 }
 
-:root[data-theme="persona"] .entry-list a::before {
-  content: "";
-  position: absolute;
-  display: block;
-  inset: .42rem;
-  z-index: 0;
-  background: var(--persona-black);
-  clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
-  transform: none;
-}
-
-:root[data-theme="persona"] .entry-list a::after {
-  inset: .72rem;
-  z-index: 1;
-  border: 1px solid rgb(255 255 255 / .2);
-  clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
-}
+:root[data-theme="persona"] .entry-list a::before,
+:root[data-theme="persona"] .entry-list a::after { display: none; }
 
 :root[data-theme="persona"] .entry-list li:nth-child(odd) a {
   clip-path: polygon(0 12%, 7% 3%, 44% 0, 100% 7%, 97% 86%, 90% 100%, 13% 97%, 0 88%);
@@ -2595,13 +2580,13 @@ footer {
 }
 
 :root[data-theme="persona"] .entry-list a:hover {
-  border: 0;
-  background: var(--persona-red);
+  border: .42rem solid var(--persona-red);
+  background: var(--text);
   box-shadow: 5px 6px 0 var(--persona-black);
 }
 
-:root[data-theme="persona"] .entry-list a:hover::before { background: var(--text); }
-:root[data-theme="persona"] .entry-list a:hover::after { border-color: var(--persona-black); }
+:root[data-theme="persona"] .entry-list a:hover::before,
+:root[data-theme="persona"] .entry-list a:hover::after { display: none; }
 
 @keyframes persona-bg-gray {
   0% { top: 6%; transform: skew(-10deg, -2deg) scale(0.9); }
