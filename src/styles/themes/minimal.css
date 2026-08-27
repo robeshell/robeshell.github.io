@@ -1,0 +1,51 @@
+/* minimal theme rules. Loaded after the shared foundation so the data-theme contract stays intact. */
+
+.theme-preview--minimal i:nth-child(1) { background: oklch(1 0 0); }
+.theme-preview--minimal i:nth-child(2) { background: oklch(0.18 0 0); }
+.theme-preview--minimal i:nth-child(3) { background: oklch(0.89 0 0); }
+
+:root[data-theme="minimal"] {
+  --font-display: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-ui: var(--font-body);
+  --type-prose-measure: 42rem;
+  --type-description-measure: 38rem;
+  --type-body-leading: 1.78;
+  --page: 52rem;
+  --measure: 42rem;
+}
+:root[data-theme="minimal"] .intro h1 { font-size: clamp(2.25rem, 5.4vw, 4rem); }
+:root[data-theme="minimal"] .page-header h1 { font-size: clamp(1.9rem, 4.8vw, 3.15rem); }
+:root[data-theme="minimal"] .entry-header h1 { font-size: clamp(1.9rem, 4.8vw, 3rem); line-height: 1.16; }
+:root[data-theme="minimal"] .entry-list h2 { font-size: 1.15rem; }
+:root[data-theme="minimal"] .prose h2 { font-size: 1.42rem; font-weight: 600; }
+
+:root[data-theme="minimal"] .intro h1 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  line-height: 1.12;
+}
+:root[data-theme="minimal"] .page-header h1 { font-size: clamp(1.8rem, 4.2vw, 2.9rem); }
+:root[data-theme="minimal"] .entry-header h1 { font-size: clamp(1.8rem, 4.2vw, 2.8rem); }
+
+@media (max-width: 42rem) {
+  :root[data-theme="minimal"] .intro h1,
+  :root[data-theme="magazine"] .intro h1,
+  :root[data-theme="terminal"] .intro h1,
+  :root[data-theme="cyber"] .intro h1,
+  :root[data-theme="island"] .intro h1,
+  :root[data-theme="wilds"] .intro h1,
+  :root[data-theme="persona"] .intro h1.p5-title {
+    font-size: clamp(1.5rem, 6.3vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -.025em;
+  }
+
+  :root[data-theme="minimal"] .page-header h1,
+  :root[data-theme="magazine"] .page-header h1,
+  :root[data-theme="terminal"] .page-header h1,
+  :root[data-theme="cyber"] .page-header h1,
+  :root[data-theme="island"] .page-header h1,
+  :root[data-theme="wilds"] .page-header h1,
+  :root[data-theme="persona"] .page-header h1.p5-title {
+    font-size: clamp(1.65rem, 7vw, 2.4rem);
+  }}

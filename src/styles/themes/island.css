@@ -1,0 +1,609 @@
+/* island theme rules. Loaded after the shared foundation so the data-theme contract stays intact. */
+
+:root[data-theme="island"] {
+  --background: oklch(0.965 0.028 102);
+  --surface: oklch(0.99 0.018 101);
+  --text: oklch(0.31 0.058 72);
+  --muted: oklch(0.49 0.05 75);
+  --line: oklch(0.79 0.065 87);
+  --accent: oklch(0.6 0.14 168);
+  --accent-soft: oklch(0.91 0.075 168);
+  --accent-deep: oklch(0.43 0.1 164);
+  --accent-highlight: oklch(0.84 0.14 95);
+  --page: clamp(70rem, 78vw, 100rem);
+  --measure: clamp(62rem, 66vw, 84rem);
+  --body-font: Nunito, "Noto Sans SC", "Hiragino Maru Gothic ProN", "Yu Gothic", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --display-font: var(--body-font);
+  --control-radius: 1.25rem;
+  --menu-shadow: 0 3px 10px 0 oklch(0.35 0.03 70 / 0.1);
+}
+:root[data-theme="island"] body::before {
+  opacity: 1;
+  background:
+    radial-gradient(circle at 84% 4%, oklch(0.84 0.14 95 / 0.42) 0 4.5rem, transparent 12rem),
+    radial-gradient(circle at 5% 18%, oklch(0.91 0.075 168 / 0.6) 0 5rem, transparent 18rem),
+    radial-gradient(circle at 20% 72%, oklch(0.91 0.075 168 / 0.32) 0 0.18rem, transparent 0.22rem),
+    radial-gradient(circle at 20% 72%, oklch(0.91 0.075 168 / 0.18) 0 0.18rem, transparent 0.22rem),
+    linear-gradient(to bottom, oklch(0.91 0.075 168 / 0.55), transparent 40%);
+  background-size: auto, auto, 1.2rem 1.2rem, 1.2rem 1.2rem, auto;
+  background-position: center, center, 0 0, .6rem .6rem, center;
+}
+.theme-preview--island i:nth-child(1) { background: oklch(0.977 0.011 106.6); }
+.theme-preview--island i:nth-child(2) { background: oklch(0.75 0.129 185.2); }
+.theme-preview--island i:nth-child(3) { background: oklch(0.962 0.027 97.6); }
+
+:root[data-theme="island"] :focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+:root[data-theme="island"] .site-header {
+  margin-block-start: 1rem;
+  min-height: 4.25rem;
+  padding: .55rem .85rem;
+  border: 2px solid var(--line);
+  border-radius: 1.35rem;
+  background: linear-gradient(180deg, oklch(1 0 0 / .78), var(--surface));
+  box-shadow: 0 4px 0 var(--line), 0 12px 24px oklch(.42 .04 80 / .08);
+}
+
+:root[data-theme="island"] .site-name {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  color: var(--accent-deep);
+  font-size: 1.15rem;
+  font-weight: 800;
+  letter-spacing: .03em;
+}
+
+:root[data-theme="island"] .site-name::before {
+  content: "✦";
+  color: var(--accent-highlight);
+  font-size: .9em;
+}
+
+:root[data-theme="island"] .site-header nav,
+:root[data-theme="island"] .header-tools { gap: .3rem; }
+
+:root[data-theme="island"] .site-header nav a,
+:root[data-theme="island"] .site-header .about {
+  padding: .58rem .75rem;
+  border-radius: 999px;
+  color: var(--muted);
+  font-weight: 600;
+  transition: background-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+:root[data-theme="island"] .site-header nav a:hover,
+:root[data-theme="island"] .site-header .about:hover {
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  transform: translateY(-1px);
+}
+
+:root[data-theme="island"] .site-header nav a:active,
+:root[data-theme="island"] .site-header .about:active { transform: translateY(1px); }
+
+:root[data-theme="island"] .site-header [aria-current="page"] {
+  color: var(--surface);
+  background: var(--accent);
+  box-shadow: 0 3px 0 var(--accent-deep);
+}
+
+:root[data-theme="island"] .theme-menu summary {
+  min-height: 2.75rem;
+  padding-inline: .4rem .75rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-deep);
+  background: var(--surface);
+  font-weight: 700;
+  letter-spacing: .01em;
+  box-shadow: 0 3px 0 var(--line);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+:root[data-theme="island"] .theme-menu summary:hover,
+:root[data-theme="island"] .theme-menu[open] summary {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--accent-soft);
+}
+
+:root[data-theme="island"] .theme-menu summary:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+:root[data-theme="island"] .theme-panel {
+  width: min(20rem, calc(100vw - 2rem));
+  padding: .55rem;
+  border: 2px solid var(--line);
+  border-radius: 1.25rem;
+  background: var(--surface);
+  box-shadow: 0 6px 0 var(--line), 0 16px 26px oklch(.42 .04 80 / .14);
+  animation: island-menu-in .22s cubic-bezier(.16, 1, .3, 1);
+}
+
+:root[data-theme="island"] .theme-panel::before {
+  content: "选择主题";
+  display: block;
+  padding: .25rem .55rem .55rem;
+  border-bottom: 2px dotted var(--line);
+  color: var(--muted);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+}
+
+:root[data-theme="island"] .theme-options { gap: .25rem; padding-top: .35rem; }
+
+:root[data-theme="island"] .theme-option {
+  min-height: 3.1rem;
+  border: 1px solid transparent;
+  border-radius: .85rem;
+  transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+}
+
+:root[data-theme="island"] .theme-option:hover,
+:root[data-theme="island"] .theme-option[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+}
+
+:root[data-theme="island"] .theme-option:hover { transform: translateY(-1px); }
+:root[data-theme="island"] .theme-option:active { transform: translateY(1px) scale(.98); }
+:root[data-theme="island"] .theme-option-copy strong { font-weight: 800; }
+:root[data-theme="island"] .theme-option-copy small { color: var(--muted); }
+:root[data-theme="island"] .theme-check { border-color: var(--accent-deep); }
+:root[data-theme="island"] .theme-preview { border-radius: .55rem; }
+
+:root[data-theme="island"] .intro {
+  margin-block: 1.5rem 4.25rem;
+  padding: clamp(2rem, 5vw, 3.5rem) clamp(1.35rem, 5vw, 3rem) clamp(2.25rem, 5vw, 3.75rem);
+  border: 2px solid var(--line);
+  border-radius: 2rem 2rem 1rem 2rem;
+  background: var(--surface);
+  box-shadow: 0 6px 0 var(--line), 0 16px 30px oklch(.42 .04 80 / .08);
+}
+
+:root[data-theme="island"] .intro h1 {
+  color: var(--accent-deep);
+  font-size: clamp(1.25rem, 5.4vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+:root[data-theme="island"] .intro p {
+  max-width: 37rem;
+  margin-top: 1.25rem;
+  color: var(--muted);
+}
+
+:root[data-theme="island"] .page-header {
+  padding-block: clamp(3rem, 8vw, 5rem) 2rem;
+  border-bottom: 0;
+}
+
+:root[data-theme="island"] .page-header h1,
+:root[data-theme="island"] .about-page h1 {
+  display: inline-flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0;
+  padding: .25rem .85rem .35rem;
+  border-radius: .85rem;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-size: clamp(1.7rem, 5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+}
+
+:root[data-theme="island"] .page-header h1::before,
+:root[data-theme="island"] .about-page h1::before {
+  content: "✦";
+  color: var(--accent);
+  font-size: .65em;
+}
+
+:root[data-theme="island"] .page-header p { max-width: 36rem; margin-top: 1rem; }
+
+:root[data-theme="island"] .home-section { padding-block-end: 5.5rem; }
+
+:root[data-theme="island"] .home-section-header {
+  align-items: center;
+  gap: 1rem;
+  padding-block: .45rem 1rem;
+  border-bottom: 2px dotted var(--line);
+}
+
+:root[data-theme="island"] .home-section-header h2 {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  color: var(--accent-deep);
+  font-size: 1.1rem;
+  font-weight: 800;
+}
+
+:root[data-theme="island"] .home-section-header h2::before {
+  content: "✦";
+  color: var(--accent-highlight);
+  font-size: .8em;
+}
+
+:root[data-theme="island"] .home-section-header > a,
+:root[data-theme="island"] .about-page a {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  min-height: 2.75rem;
+  padding-inline: 1rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-deep);
+  background: var(--surface);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 3px 0 var(--line);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+:root[data-theme="island"] .home-section-header > a::after,
+:root[data-theme="island"] .about-page a::after { content: "→"; }
+
+:root[data-theme="island"] .home-section-header > a:hover,
+:root[data-theme="island"] .about-page a:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--accent-soft);
+}
+
+:root[data-theme="island"] .home-section-header > a:active,
+:root[data-theme="island"] .about-page a:active {
+  transform: translateY(1px);
+  box-shadow: 0 1px 0 var(--line);
+}
+
+:root[data-theme="island"] .entry-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem;
+  margin-top: 1.15rem;
+}
+
+:root[data-theme="island"] .entry-list li { min-width: 0; }
+
+:root[data-theme="island"] .entry-list a {
+  position: relative;
+  min-height: 13rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: .45rem;
+  padding: 1.3rem 1.2rem 1.25rem;
+  border: 2px solid var(--line);
+  border-radius: 1.25rem .8rem 1.25rem .8rem;
+  background: var(--surface);
+  box-shadow: 0 4px 0 var(--line);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
+}
+
+:root[data-theme="island"] .entry-arrow {
+  position: absolute;
+  inset-block-start: .85rem;
+  inset-inline-end: 1rem;
+  display: block;
+  width: 1.35rem;
+  height: 1.35rem;
+  color: var(--accent);
+  pointer-events: none;
+  transition: color .18s ease, transform .18s ease;
+}
+
+:root[data-theme="island"] .entry-arrow--wilds { display: none; }
+
+:root[data-theme="island"] .entry-arrow svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+:root[data-theme="island"] .entry-arrow path {
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25;
+}
+
+:root[data-theme="island"] .entry-list a:hover {
+  border-color: var(--accent);
+  background: oklch(1 0 0 / .7);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 var(--accent-soft);
+}
+
+:root[data-theme="island"] .entry-list a:hover .entry-arrow {
+  color: var(--accent-deep);
+  transform: translate(.1rem, -.1rem);
+}
+
+:root[data-theme="island"] .entry-list a:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 0 var(--line);
+}
+
+:root[data-theme="island"] .entry-list a:hover h2 {
+  color: var(--accent-deep);
+  text-decoration: none;
+}
+
+:root[data-theme="island"] .entry-list h2 {
+  grid-column: 1;
+  padding-inline-end: 2rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+:root[data-theme="island"] .entry-list p { grid-column: 1; }
+
+:root[data-theme="island"] .list-meta {
+  grid-column: 1;
+  grid-row: auto;
+  justify-self: start;
+  align-items: center;
+  gap: .35rem;
+}
+
+:root[data-theme="island"] .list-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.5rem;
+  padding-inline: .55rem;
+  border-radius: 999px;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  font-size: .7rem;
+  font-weight: 800;
+}
+
+:root[data-theme="island"] .list-meta span::after { content: none; }
+
+:root[data-theme="island"] .entry,
+:root[data-theme="island"] .about-page {
+  position: relative;
+  width: min(var(--measure), 100%);
+  margin-inline: auto;
+  margin-block: 2rem 4rem;
+  padding: clamp(1.45rem, 4vw, 2.35rem) clamp(1.2rem, 5vw, 2.75rem) clamp(2.2rem, 5vw, 3.25rem);
+  border: 2px solid var(--line);
+  border-radius: 2rem 1rem 2rem 1rem;
+  background: var(--surface);
+  box-shadow: 0 6px 0 var(--line), 0 16px 30px oklch(.42 .04 80 / .08);
+}
+
+:root[data-theme="island"] .entry-header {
+  padding-bottom: 2rem;
+  border-bottom: 0;
+}
+
+:root[data-theme="island"] .back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding-inline: .95rem;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  color: var(--accent-deep);
+  background: var(--accent-soft);
+  font-size: .82rem;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 3px 0 var(--line);
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+
+:root[data-theme="island"] .back-link:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 0 var(--accent-soft);
+}
+
+:root[data-theme="island"] .back-link:active { transform: translateY(1px); box-shadow: 0 1px 0 var(--line); }
+
+:root[data-theme="island"] .entry-header h1 {
+  margin-top: 1.7rem;
+  color: var(--accent-deep);
+  font-size: clamp(1.55rem, 5vw, 2.75rem);
+  font-weight: 800;
+  letter-spacing: -.025em;
+  line-height: 1.28;
+  white-space: normal;
+}
+
+:root[data-theme="island"] .entry-description { margin-top: 1rem; }
+:root[data-theme="island"] .entry-meta { flex-wrap: wrap; align-items: center; gap: .45rem; margin-top: 1.5rem; }
+
+:root[data-theme="island"] .entry-meta time,
+:root[data-theme="island"] .entry-meta span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.6rem;
+  padding-inline: .6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  background: oklch(1 0 0 / .55);
+  font-size: .72rem;
+  font-weight: 700;
+}
+
+:root[data-theme="island"] .entry-meta span { color: var(--accent-deep); background: var(--accent-soft); border-color: var(--accent-soft); }
+:root[data-theme="island"] .prose { padding-top: 2.25rem; }
+
+:root[data-theme="island"] .prose h2 {
+  position: relative;
+  padding-inline-start: 1rem;
+  color: var(--accent-deep);
+  font-weight: 800;
+}
+
+:root[data-theme="island"] .prose h2::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: .18em;
+  width: .3rem;
+  border-radius: 999px;
+  background: var(--accent);
+}
+
+:root[data-theme="island"] .prose blockquote {
+  padding: 1rem 1.15rem;
+  border-inline-start: 3px solid var(--accent);
+  border-radius: .75rem;
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+:root[data-theme="island"] .prose pre {
+  border: 2px solid var(--line);
+  border-radius: .9rem;
+  background: oklch(.96 .024 98);
+}
+
+:root[data-theme="island"] .prose img {
+  border: 2px solid var(--line);
+  border-radius: 1rem;
+  outline: 0;
+}
+
+:root[data-theme="island"] .about-page { padding-block: clamp(2rem, 5vw, 3.4rem) clamp(2.75rem, 6vw, 4.2rem); }
+:root[data-theme="island"] .about-page p { max-width: 38rem; }
+:root[data-theme="island"] footer { border-top: 0; margin-top: 0; }
+
+:root[data-theme="island"] .island-divider {
+  display: flex;
+  align-items: center;
+  width: min(var(--page), calc(100% - 2.5rem));
+  min-height: 14px;
+  margin-inline: auto;
+  color: var(--line);
+  overflow: hidden;
+}
+
+:root[data-theme="island"] .island-divider svg {
+  display: block;
+  width: 100%;
+  height: 14px;
+  overflow: visible;
+}
+
+:root[data-theme="island"] .island-divider--line-teal { color: var(--accent); }
+:root[data-theme="island"] .island-divider--line-yellow,
+:root[data-theme="island"] .island-divider--wave-yellow { color: var(--accent-highlight); }
+
+:root[data-theme="island"] .island-divider--dashed-brown {
+  min-height: 2px;
+  height: 2px;
+  background: linear-gradient(to right, var(--line) 50%, transparent 50%) center / 12px 2px repeat-x;
+}
+
+:root[data-theme="island"] .island-divider-dash { display: none; }
+
+:root[data-theme="island"] main + .island-divider {
+  margin-block: 3.5rem 1.35rem;
+}
+
+:root[data-theme="island"] .page-header + .island-divider {
+  margin-block: 1.5rem 1.1rem;
+}
+
+:root[data-theme="island"] .entry-header + .island-divider {
+  margin-block: .1rem 2rem;
+}
+
+:root[data-theme="island"] .entry > .island-divider { width: 100%; }
+
+@media (max-width: 42rem) {
+  :root[data-theme="island"] .site-header {
+    margin-block-start: 0.55rem;
+    padding-inline: 0.75rem;
+  }
+  :root[data-theme="island"] .theme-panel {
+    position: fixed;
+    inset-inline: 1rem;
+    inset-block-start: 7.75rem;
+    width: auto;
+    max-height: calc(100dvh - 8.75rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+  :root[data-theme="island"] .intro {
+    margin-block: 1rem 3.5rem;
+    padding-inline: 1.15rem;
+  }
+  :root[data-theme="island"] .entry-list {
+    grid-template-columns: 1fr;
+    gap: .7rem;
+  }
+  :root[data-theme="island"] .entry-list a { min-height: unset; }
+  :root[data-theme="island"] .entry,
+  :root[data-theme="island"] .about-page { padding: 2.25rem 1.15rem 3rem; }}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="island"] .theme-panel { animation: none; }}
+
+:root[data-theme="island"] {
+  --font-display: Nunito, "Noto Sans SC", "Hiragino Maru Gothic ProN", "Yu Gothic", "PingFang SC", sans-serif;
+  --font-body: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-ui: var(--font-display);
+  --type-prose-measure: 50rem;
+  --type-description-measure: 38rem;
+  --type-body-leading: 1.82;
+  --page: 64rem;
+  --measure: 54rem;
+}
+
+:root[data-theme="island"] .intro h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+:root[data-theme="island"] .page-header h1 { font-size: clamp(1.7rem, 4.7vw, 2.7rem); }
+:root[data-theme="island"] .entry-header h1 { font-size: clamp(1.65rem, 4.4vw, 2.8rem); line-height: 1.25; }
+:root[data-theme="island"] .entry-list h2 { font-size: 1.08rem; }
+:root[data-theme="island"] .prose h2 { font-size: 1.3rem; font-weight: 800; }
+:root[data-theme="island"] .prose h3 { font-size: 1.05rem; font-weight: 800; }
+
+:root[data-theme="island"] .intro h1 {
+  font-size: clamp(1.9rem, 4.2vw, 3rem);
+  line-height: 1.16;
+}
+:root[data-theme="island"] .page-header h1 { font-size: clamp(1.65rem, 4vw, 2.5rem); }
+:root[data-theme="island"] .entry-header h1 { font-size: clamp(1.6rem, 4vw, 2.6rem); }
+
+@media (max-width: 42rem) {
+  :root[data-theme="minimal"] .intro h1,
+  :root[data-theme="magazine"] .intro h1,
+  :root[data-theme="terminal"] .intro h1,
+  :root[data-theme="cyber"] .intro h1,
+  :root[data-theme="island"] .intro h1,
+  :root[data-theme="wilds"] .intro h1,
+  :root[data-theme="persona"] .intro h1.p5-title {
+    font-size: clamp(1.5rem, 6.3vw, 2.1rem);
+    line-height: 1.18;
+    letter-spacing: -.025em;
+  }
+
+  :root[data-theme="minimal"] .page-header h1,
+  :root[data-theme="magazine"] .page-header h1,
+  :root[data-theme="terminal"] .page-header h1,
+  :root[data-theme="cyber"] .page-header h1,
+  :root[data-theme="island"] .page-header h1,
+  :root[data-theme="wilds"] .page-header h1,
+  :root[data-theme="persona"] .page-header h1.p5-title {
+    font-size: clamp(1.65rem, 7vw, 2.4rem);
+  }}

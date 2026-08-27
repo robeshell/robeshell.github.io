@@ -40,9 +40,9 @@ section: writing
 
 ## 主题
 
-网站提供极简、杂志、编程、赛博朋克、岛屿生活和旷野冒险六种主题。主题只改变视觉，不影响内容。
+网站提供留白、编辑部、终端、夜之城、岛屿、旷野和预告信七种主题。主题只改变视觉，不影响内容。
 
-主题颜色、字体和版式变量集中在 `src/styles/global.css`，切换控件位于 `src/components/ThemePicker.astro`。新增主题时，在这两个文件中增加同名选项和 `data-theme` 变量即可。
+公共基础和组件样式位于 `src/styles/global.css`，每个主题的颜色、字体和版式规则分别位于 `src/styles/themes/` 下的同名文件，切换控件位于 `src/components/ThemePicker.astro`。新增主题时，在 `ThemePicker.astro`、`BaseLayout.astro` 和 `src/styles/themes/` 中增加同名选项与规则即可。
 
 ## 发布
 
