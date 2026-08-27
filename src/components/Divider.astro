@@ -1,0 +1,25 @@
+---
+type DividerVariant = 'line-brown' | 'line-teal' | 'line-yellow' | 'wave-yellow' | 'dashed-brown';
+
+interface Props {
+  variant?: DividerVariant;
+  class?: string;
+}
+
+const { variant = 'line-brown', class: className = '' } = Astro.props;
+const linePath = 'M20 10.42L33 11 28.002 0zM10 6.97L0 3l.858 9zM43 1l.613 11L53 5.585zm89 13l11-5.867L133.507 1zm67-3.58l13 .58-4.998-11zm-10-3.45L179 3l.858 9zM90.634 1L88 13l12-4.39zM155 13l12-2.4-8.47-9.6zM110 3l2.057 9L118 6.292zm-47 8.215L76 14 71.048 1zM222 1l.613 11L232 5.585zm47.634 0L267 13l12-4.39zM289 3l2.057 9L297 6.292zm-48 8.215L254 14l-4.952-13z';
+---
+
+<div class={`island-divider island-divider--${variant} ${className}`.trim()} role="presentation" aria-hidden="true">
+  {variant === 'dashed-brown' ? (
+    <span class="island-divider-dash"></span>
+  ) : variant === 'wave-yellow' ? (
+    <svg viewBox="0 0 375 10" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 7.8c4.2 0 6.3-1.8 8.2-3.4C9.9 3 11.4 1.7 14.4 1.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4" fill="none" stroke="currentColor" stroke-width="2.8" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 297 14" preserveAspectRatio="none" aria-hidden="true">
+      <path d={linePath} fill="currentColor" fill-rule="evenodd" />
+    </svg>
+  )}
+</div>

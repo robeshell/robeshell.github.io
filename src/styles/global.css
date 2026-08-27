@@ -74,6 +74,8 @@
   --accent-soft: oklch(0.91 0.075 168);
   --accent-deep: oklch(0.43 0.1 164);
   --accent-highlight: oklch(0.84 0.14 95);
+  --page: 70rem;
+  --measure: 62rem;
   --body-font: Nunito, "Noto Sans SC", "Hiragino Maru Gothic ProN", "Yu Gothic", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --display-font: var(--body-font);
   --control-radius: 1.25rem;
@@ -443,6 +445,8 @@ html:not([data-theme="minimal"]) .theme-menu[open] summary {
   margin-inline: .45rem;
 }
 
+.island-divider { display: none; }
+
 .entry { width: min(var(--measure), 100%); margin-inline: auto; padding-block: 5rem 7rem; }
 .entry-header { padding-bottom: 3rem; border-bottom: 1px solid var(--line); }
 .back-link { color: var(--muted); font-size: .8125rem; }
@@ -686,7 +690,7 @@ footer {
 
 :root[data-theme="island"] .page-header {
   padding-block: clamp(3rem, 8vw, 5rem) 2rem;
-  border-bottom: 2px dotted var(--line);
+  border-bottom: 0;
 }
 
 :root[data-theme="island"] .page-header h1,
@@ -781,11 +785,11 @@ footer {
 
 :root[data-theme="island"] .entry-list a {
   position: relative;
-  min-height: 10rem;
+  min-height: 13rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
-  gap: .65rem .85rem;
+  gap: .45rem;
   padding: 1.3rem 1.2rem 1.25rem;
   border: 2px solid var(--line);
   border-radius: 1.25rem .8rem 1.25rem .8rem;
@@ -794,14 +798,30 @@ footer {
   transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background-color .2s ease;
 }
 
+:root[data-theme="island"] .entry-list a::before {
+  content: "";
+  position: absolute;
+  inset-block-start: 1.2rem;
+  inset-inline-end: 1.25rem;
+  width: .86rem;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--accent);
+  transform: rotate(-45deg);
+  transform-origin: 100% 50%;
+  transition: transform .18s ease, background-color .18s ease;
+}
+
 :root[data-theme="island"] .entry-list a::after {
-  content: "↗";
-  grid-column: 2;
-  grid-row: 1;
-  align-self: start;
-  color: var(--accent);
-  font-size: 1.1rem;
-  font-weight: 800;
+  content: "";
+  position: absolute;
+  inset-block-start: .78rem;
+  inset-inline-end: 1.2rem;
+  width: .62rem;
+  height: .62rem;
+  border-top: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+  transition: transform .18s ease, border-color .18s ease;
 }
 
 :root[data-theme="island"] .entry-list a:hover {
@@ -809,6 +829,16 @@ footer {
   background: oklch(1 0 0 / .7);
   transform: translateY(-2px);
   box-shadow: 0 6px 0 var(--accent-soft);
+}
+
+:root[data-theme="island"] .entry-list a:hover::before {
+  background: var(--accent-deep);
+  transform: translate(.1rem, -.1rem) rotate(-45deg);
+}
+
+:root[data-theme="island"] .entry-list a:hover::after {
+  border-color: var(--accent-deep);
+  transform: translate(.1rem, -.1rem);
 }
 
 :root[data-theme="island"] .entry-list a:active {
@@ -823,17 +853,18 @@ footer {
 
 :root[data-theme="island"] .entry-list h2 {
   grid-column: 1;
+  padding-inline-end: 2rem;
   font-size: 1.05rem;
   font-weight: 800;
   line-height: 1.45;
 }
 
-:root[data-theme="island"] .entry-list p { grid-column: 1 / -1; }
+:root[data-theme="island"] .entry-list p { grid-column: 1; }
 
 :root[data-theme="island"] .list-meta {
-  grid-column: 2;
-  grid-row: 1;
-  justify-self: end;
+  grid-column: 1;
+  grid-row: auto;
+  justify-self: start;
   align-items: center;
   gap: .35rem;
 }
@@ -867,7 +898,7 @@ footer {
 
 :root[data-theme="island"] .entry-header {
   padding-bottom: 2rem;
-  border-bottom: 2px dotted var(--line);
+  border-bottom: 0;
 }
 
 :root[data-theme="island"] .back-link {
@@ -963,7 +994,50 @@ footer {
 
 :root[data-theme="island"] .about-page { padding-block: clamp(2rem, 5vw, 3.4rem) clamp(2.75rem, 6vw, 4.2rem); }
 :root[data-theme="island"] .about-page p { max-width: 38rem; }
-:root[data-theme="island"] footer { border-top: 2px dotted var(--line); }
+:root[data-theme="island"] footer { border-top: 0; margin-top: 0; }
+
+:root[data-theme="island"] .island-divider {
+  display: flex;
+  align-items: center;
+  width: min(var(--page), calc(100% - 2.5rem));
+  min-height: 14px;
+  margin-inline: auto;
+  color: var(--line);
+  overflow: hidden;
+}
+
+:root[data-theme="island"] .island-divider svg {
+  display: block;
+  width: 100%;
+  height: 14px;
+  overflow: visible;
+}
+
+:root[data-theme="island"] .island-divider--line-teal { color: var(--accent); }
+:root[data-theme="island"] .island-divider--line-yellow,
+:root[data-theme="island"] .island-divider--wave-yellow { color: var(--accent-highlight); }
+
+:root[data-theme="island"] .island-divider--dashed-brown {
+  min-height: 2px;
+  height: 2px;
+  background: linear-gradient(to right, var(--line) 50%, transparent 50%) center / 12px 2px repeat-x;
+}
+
+:root[data-theme="island"] .island-divider-dash { display: none; }
+
+:root[data-theme="island"] main + .island-divider {
+  margin-block: 3.5rem 1.35rem;
+}
+
+:root[data-theme="island"] .page-header + .island-divider {
+  margin-block: 1.5rem 1.1rem;
+}
+
+:root[data-theme="island"] .entry-header + .island-divider {
+  margin-block: .1rem 2rem;
+}
+
+:root[data-theme="island"] .entry > .island-divider { width: 100%; }
 
 @keyframes island-menu-in {
   from { opacity: 0; transform: translateY(-.35rem) scale(.98); }
