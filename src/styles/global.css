@@ -3100,7 +3100,7 @@ footer {
 }
 
 :root[data-theme="cyber"] .entry-list a::after {
-  inset: 1px;
+  inset: 2px;
   z-index: 0;
   background: #0b0e12;
 }
