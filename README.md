@@ -54,6 +54,8 @@ npm run sync:aether
 
 主题包只负责基础层和视觉规则；文章、路由、图片和站点文案仍由 W.Site 维护。站点自己的背景图通过 `src/styles/site-assets.css` 注入，不会进入 Aether 包。
 
+Aether 正式发布后，再把站点切换到版本化包依赖；在此之前不要把 `file:../aether-site` 写进站点依赖，否则 GitHub Pages 在单仓库检出时无法安装。
+
 ## 发布
 
 提交并推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。
