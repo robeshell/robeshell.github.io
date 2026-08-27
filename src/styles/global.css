@@ -3486,21 +3486,12 @@ footer {
 }
 
 :root[data-theme="magazine"] .entry-list li::before {
-  counter-increment: magazine-entry;
-  content: "0" counter(magazine-entry);
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 1.75rem;
-  color: var(--accent);
-  font-family: var(--body-font);
-  font-size: .68rem;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: .08em;
+  display: none;
 }
 
 :root[data-theme="magazine"] .entry-list a {
   position: relative;
-  padding: 1.7rem 2.25rem 1.8rem 3.2rem;
+  padding: 1.7rem 2.25rem 1.8rem 0;
   transition: background-color .2s ease, transform .2s ease;
 }
 
@@ -3545,8 +3536,8 @@ footer {
 :root[data-theme="magazine"] .entry-list a:hover {
   background: transparent;
   color: var(--text);
-  box-shadow: inset 2px 0 0 var(--accent);
-  transform: translateX(.2rem);
+  box-shadow: none;
+  transform: none;
 }
 
 :root[data-theme="magazine"] .entry-list a:hover h2 { color: var(--accent); text-decoration: none; }
@@ -3769,20 +3760,13 @@ footer {
 }
 
 :root[data-theme="terminal"] .entry-list li::before {
-  counter-increment: terminal-entry;
-  content: "0" counter(terminal-entry);
-  position: absolute;
-  inset-inline-start: 0;
-  inset-block-start: 1.35rem;
-  color: var(--accent);
-  font-size: .68rem;
-  font-variant-numeric: tabular-nums;
+  display: none;
 }
 
 :root[data-theme="terminal"] .entry-list a {
   position: relative;
   margin-inline: 0;
-  padding: 1.2rem 2.5rem 1.3rem 2.8rem;
+  padding: 1.2rem 2.5rem 1.3rem 0;
   transition: background-color .16s ease, color .16s ease, transform .16s ease;
 }
 
@@ -3825,8 +3809,8 @@ footer {
 :root[data-theme="terminal"] .entry-list a:hover {
   background: transparent;
   color: var(--text);
-  box-shadow: inset 2px 0 0 var(--accent);
-  transform: translateX(.2rem);
+  box-shadow: none;
+  transform: none;
 }
 
 :root[data-theme="terminal"] .entry-list a:hover h2,
@@ -3944,8 +3928,7 @@ footer {
   :root[data-theme="magazine"] .intro h1 { font-size: clamp(2.45rem, 11vw, 3.6rem); white-space: normal; }
   :root[data-theme="magazine"] .intro p { margin-top: 1.7rem; font-size: .98rem; }
   :root[data-theme="magazine"] .home-section { padding-block-end: 5.5rem; }
-  :root[data-theme="magazine"] .entry-list li::before { inset-block-start: 1.5rem; }
-  :root[data-theme="magazine"] .entry-list a { padding: 1.45rem 2rem 1.55rem 2.35rem; }
+  :root[data-theme="magazine"] .entry-list a { padding: 1.45rem 2rem 1.55rem 0; }
   :root[data-theme="magazine"] .entry-list p { font-size: .86rem; }
   :root[data-theme="magazine"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: .35rem; }
   :root[data-theme="magazine"] .entry { padding-block: 3.25rem 5.5rem; }
@@ -3956,8 +3939,7 @@ footer {
   :root[data-theme="terminal"] .intro h1 { font-size: clamp(2.25rem, 11vw, 3.5rem); white-space: normal; }
   :root[data-theme="terminal"] .intro p { margin-top: 1.45rem; font-size: .9rem; }
   :root[data-theme="terminal"] .home-section { padding-block-end: 5.25rem; }
-  :root[data-theme="terminal"] .entry-list li::before { inset-block-start: 1.25rem; }
-  :root[data-theme="terminal"] .entry-list a { padding: 1.15rem 2rem 1.25rem 2.25rem; }
+  :root[data-theme="terminal"] .entry-list a { padding: 1.15rem 2rem 1.25rem 0; }
   :root[data-theme="terminal"] .entry-list p { font-size: .82rem; }
   :root[data-theme="terminal"] .entry-list a .entry-arrow:not(.entry-arrow--wilds) { inset-inline-end: .35rem; }
   :root[data-theme="terminal"] .entry,
