@@ -182,10 +182,10 @@ h1, h2 { font-family: var(--display-font); text-wrap: balance; }
 }
 
 :root[data-theme="persona"] body::before {
-  opacity: .72;
+  opacity: .82;
   background:
-    radial-gradient(ellipse at 86% 0%, rgb(255 23 63 / .12), transparent 30rem),
-    repeating-linear-gradient(-18deg, transparent 0 34px, rgb(255 23 63 / .075) 35px 36px);
+    radial-gradient(circle at 50% 18%, transparent 0 7rem, rgb(255 23 63 / .56) 7rem 8.4rem, transparent 8.4rem 15rem, rgb(255 23 63 / .34) 15rem 16.4rem, transparent 16.4rem 24rem),
+    radial-gradient(circle at 50% 18%, rgb(255 23 63 / .08), transparent 26rem);
 }
 
 .skip-link {
@@ -2421,29 +2421,65 @@ footer {
 
 :root[data-theme="persona"] .entry-header { padding-bottom: 2.25rem; border-bottom-width: 3px; }
 
-/* Calling-card headings: one clear plate, one red offset, and restrained cut letters. */
+/* Calling-card headings: each character is a small, paper-edged card. */
 :root[data-theme="persona"] .intro h1.p5-title,
 :root[data-theme="persona"] .page-header h1.p5-title,
 :root[data-theme="persona"] .entry-header h1.p5-title,
 :root[data-theme="persona"] .home-section-header h2.p5-title,
 :root[data-theme="persona"] .about-page h1.p5-title {
   justify-self: start;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .08em;
   width: fit-content;
   max-width: 100%;
-  padding: .2em .42em .27em;
-  background: #f4f3ed;
-  color: var(--persona-black);
-  box-shadow: .16em .16em 0 var(--persona-red);
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+  box-shadow: none;
+}
+
+:root[data-theme="persona"] .p5-title:not(.site-name) span {
+  display: inline-grid;
+  min-width: .92em;
+  min-height: 1.08em;
+  place-items: center;
+  padding: .05em .06em .09em;
+  border: 2px solid var(--text);
+  background: var(--persona-black);
+  color: var(--text);
+  box-shadow: 2px 2px 0 rgb(0 0 0 / .72);
+  transform: rotate(var(--r, 0deg));
+}
+
+:root[data-theme="persona"] .p5-title:not(.site-name) span.is-cut {
+  background: var(--persona-red);
+  color: var(--text);
+}
+
+:root[data-theme="persona"] .p5-title:not(.site-name) span.is-punctuation {
+  min-width: .58em;
+  padding-inline: .06em;
+  background: #29292e;
+}
+
+:root[data-theme="persona"] .p5-title:not(.site-name) span.is-space {
+  min-width: .22em;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 :root[data-theme="persona"] .intro h1.p5-title::after { content: none; }
-:root[data-theme="persona"] .p5-title span.is-cut {
-  background: var(--persona-red);
-  color: var(--persona-black);
-}
-
+:root[data-theme="persona"] .intro h1.p5-title:hover::after { content: none; display: none; }
 :root[data-theme="persona"] .intro h1.p5-title {
-  letter-spacing: -.04em;
+  max-width: 100%;
+  font-size: clamp(2.2rem, 5.5vw, 4.75rem);
+  line-height: 1.15;
+  letter-spacing: -.02em;
 }
 
 :root[data-theme="persona"] .home-section-header h2.p5-title {
@@ -2461,9 +2497,9 @@ footer {
 :root[data-theme="persona"] .entry-header .back-link { margin-bottom: .2rem; }
 :root[data-theme="persona"] .entry-header h1.p5-title {
   margin: 0;
-  font-size: clamp(2rem, 3.6vw, 3rem);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
   line-height: 1.18;
-  letter-spacing: -.03em;
+  letter-spacing: -.01em;
 }
 
 :root[data-theme="persona"] .entry-description {
@@ -2491,16 +2527,15 @@ footer {
 }
 
 :root[data-theme="persona"] .prose h2.p5-title {
-  display: inline-block;
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .08em;
   width: fit-content;
   max-width: 100%;
   margin: 3rem 0 1.2rem;
-  padding: .28em .52em .34em;
-  background: #f4f3ed;
-  color: var(--persona-black);
   font-size: clamp(1.2rem, 2.4vw, 1.6rem);
   line-height: 1.2;
-  box-shadow: .2em .2em 0 var(--persona-red);
 }
 
 :root[data-theme="persona"] .prose h2.p5-title::before { content: none; }
@@ -2508,7 +2543,7 @@ footer {
 
 :root[data-theme="persona"] .about-page h1.p5-title {
   margin-bottom: 1.25rem;
-  font-size: clamp(2rem, 5vw, 3.75rem);
+  font-size: clamp(2rem, 5vw, 3rem);
 }
 
 @keyframes persona-bg-gray {
