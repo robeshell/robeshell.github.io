@@ -1635,7 +1635,7 @@ footer {
   background-image:
     linear-gradient(90deg, rgb(7 5 2 / .7) 0%, rgb(7 5 2 / .34) 48%, rgb(7 5 2 / .58) 100%),
     linear-gradient(180deg, rgb(5 4 3 / .04), rgb(5 4 3 / .52)),
-    url('/images/wilds-header.jpg');
+    url('/images/wilds-header.png');
   background-position: center, center, center 46%;
   background-size: cover, cover, cover;
   background-blend-mode: normal;
