@@ -74,8 +74,8 @@
   --accent-soft: oklch(0.91 0.075 168);
   --accent-deep: oklch(0.43 0.1 164);
   --accent-highlight: oklch(0.84 0.14 95);
-  --page: 70rem;
-  --measure: 62rem;
+  --page: clamp(70rem, 78vw, 100rem);
+  --measure: clamp(62rem, 66vw, 84rem);
   --body-font: Nunito, "Noto Sans SC", "Hiragino Maru Gothic ProN", "Yu Gothic", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
   --display-font: var(--body-font);
   --control-radius: 1.25rem;
@@ -1645,6 +1645,15 @@ footer {
   :root[data-theme="island"] .site-header {
     margin-block-start: 0.55rem;
     padding-inline: 0.75rem;
+  }
+  :root[data-theme="island"] .theme-panel {
+    position: fixed;
+    inset-inline: 1rem;
+    inset-block-start: 7.75rem;
+    width: auto;
+    max-height: calc(100dvh - 8.75rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
   :root[data-theme="island"] .intro {
     margin-block: 1rem 3.5rem;
