@@ -500,10 +500,16 @@ footer {
   min-height: 9rem;
   padding-block: 2rem 2.75rem;
   display: flex;
+  align-items: flex-start;
   justify-content: space-between;
   border-top: 1px solid var(--line);
   color: var(--muted);
   font-size: .75rem;
+}
+
+footer .theme-menu .theme-panel {
+  inset-block-start: auto !important;
+  inset-block-end: calc(100% + .65rem) !important;
 }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
@@ -4010,4 +4016,21 @@ footer {
   :root[data-theme="terminal"] .about-page { margin-block: 2rem 3.5rem; padding: 1.65rem 1.1rem 3.25rem; }
   :root[data-theme="terminal"] .entry-header h1 { font-size: clamp(1.8rem, 9vw, 2.8rem); }
   :root[data-theme="terminal"] .prose { padding-top: 2.2rem; }
+
+  footer .theme-menu .theme-panel {
+    position: absolute !important;
+    inset-inline-start: auto !important;
+    inset-inline-end: 0 !important;
+    inset-block-start: auto !important;
+    inset-block-end: calc(100% + .65rem) !important;
+    width: min(20rem, calc(100vw - 2rem)) !important;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+  }
+
+  footer .theme-menu {
+    align-self: stretch;
+    width: 100%;
+    text-align: end;
+  }
 }

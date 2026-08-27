@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Divider from '../components/Divider.astro';
+import ThemePicker from '../components/ThemePicker.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -53,6 +54,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <footer>
       <span>© {new Date().getFullYear()} W.</span>
       <span>写作与生活记录</span>
+      <ThemePicker />
     </footer>
   </body>
 </html>

@@ -1,6 +1,4 @@
 ---
-import ThemePicker from './ThemePicker.astro';
-
 const pathname = Astro.url.pathname;
 const nav = [
   ['文章', '/writing/'],
@@ -19,7 +17,6 @@ const nav = [
     ))}
   </nav>
   <div class="header-tools">
-    <ThemePicker />
     <a class="about" href="/about/" aria-current={pathname === '/about/' ? 'page' : undefined}>关于</a>
   </div>
 </header>
