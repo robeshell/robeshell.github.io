@@ -46,13 +46,13 @@ section: writing
 
 ### Aether 开源边界
 
-主题系统的源文件已同步到独立的 Aether 包中（本地目录：`../aether-themes`）。个人站保留一份可独立构建的 CSS 快照，避免在 Aether 正式发布前让 GitHub Pages 依赖本地路径。Aether 更新后，在两个目录并列的情况下运行：
+主题系统的源文件已同步到独立的 Aether 包中（本地目录：`../aether-themes`）。个人站保留一份可独立构建的 CSS 与运行时脚本快照，避免在 Aether 正式发布前让 GitHub Pages 依赖本地路径。Aether 更新后，在两个目录并列的情况下运行：
 
 ```bash
 npm run sync:aether
 ```
 
-主题包只负责基础层和视觉规则；文章、路由、图片和站点文案仍由 W.Site 维护。站点自己的背景图通过 `src/styles/site-assets.css` 注入，不会进入 Aether 包。
+主题包负责 CSS，以及预告信拆字、分割线和列表箭头的框架无关脚本；文章、路由、图片、站点文案和主题切换器仍由 W.Site 维护。站点自己的背景图通过 `src/styles/site-assets.css` 注入，不会进入 Aether 包。
 
 Aether 正式发布后，再把站点切换到版本化包依赖；在此之前不要把 `file:../aether-themes` 写进站点依赖，否则 GitHub Pages 在单仓库检出时无法安装。
 

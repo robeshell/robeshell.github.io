@@ -1,0 +1,66 @@
+/**
+ * Markup helpers for hooks that CSS cannot draw alone:
+ * `.island-divider`, `.entry-arrow`, `.entry-arrow--wilds`.
+ */
+
+export const DIVIDER_LINE_PATH =
+  'M20 10.42L33 11 28.002 0zM10 6.97L0 3l.858 9zM43 1l.613 11L53 5.585zm89 13l11-5.867L133.507 1zm67-3.58l13 .58-4.998-11zm-10-3.45L179 3l.858 9zM90.634 1L88 13l12-4.39zM155 13l12-2.4-8.47-9.6zM110 3l2.057 9L118 6.292zm-47 8.215L76 14 71.048 1zM222 1l.613 11L232 5.585zm47.634 0L267 13l12-4.39zM289 3l2.057 9L297 6.292zm-48 8.215L254 14l-4.952-13z';
+
+export const DIVIDER_WAVE_PATH =
+  'M0 7.8c4.2 0 6.3-1.8 8.2-3.4C9.9 3 11.4 1.7 14.4 1.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4s6.3-1.8 8.2-3.4c1.7-1.4 3.2-2.7 6.2-2.7s4.5 1.3 6.2 2.7c1.9 1.6 4 3.4 8.2 3.4';
+
+export const DIVIDER_ORNAMENT_PATH =
+  'M31.451 9.13059C30.8963 7.24598 29.2323 5.86136 27.2117 5.63059C27.0928 5.63059 26.974 5.51521 26.9343 5.39983C26.4589 2.20752 23.4874 -0.215561 20.0009 0.0152088C16.7521 0.245978 14.1372 2.89982 14.0183 6.09213C13.9391 8.09213 14.89 9.93829 16.3559 11.1306C16.554 11.2844 16.554 11.5921 16.3163 11.746L15.9993 11.9767C15.8408 12.0921 15.6824 12.0537 15.5635 11.8998C13.8599 9.55367 10.928 8.13059 7.71881 8.43829C3.91532 8.78444 0.389173 12.2844 0.0325957 15.9767C-0.44284 21.3614 4.35114 25.7844 9.93751 24.8998C13.8599 24.2844 17.1483 20.4383 17.1087 16.5921C17.1087 16.2075 17.069 15.7844 16.9898 15.3998C16.9502 15.246 17.0294 15.0537 17.1879 14.9768L20.3179 12.7844C20.516 12.6691 20.7141 12.5921 20.9122 12.5921C21.1499 12.5921 21.348 12.5537 21.5857 12.5152C21.7838 12.4767 21.9819 12.5921 22.0611 12.7844C22.8931 14.3614 24.5968 15.4383 26.5381 15.4383C28.4795 15.4383 30.1435 14.3998 30.9755 12.8614C31.0152 12.7844 31.134 12.7075 31.2133 12.7075L49.3194 12.1306C49.676 12.1306 49.9534 11.8614 49.9534 11.5152V10.4767C49.9534 10.1306 49.676 9.86136 49.3194 9.86136L31.7283 9.36136C31.6095 9.36136 31.4906 9.24598 31.451 9.13059ZM8.59044 20.8614C6.21326 20.8614 4.31152 19.0152 4.31152 16.7075C4.31152 14.3998 6.25288 12.5537 8.59044 12.5537C10.9676 12.5537 12.8694 14.4383 12.8694 16.7075C12.8694 18.9768 10.9676 20.8614 8.59044 20.8614ZM23.1705 6.89983C23.012 7.59213 22.5762 8.16906 21.9819 8.51521C21.5461 8.78444 21.0706 8.93829 20.516 8.93829C20.4763 8.93829 20.3971 8.93829 20.3575 8.93829C18.9312 8.86136 17.8218 7.70752 17.8218 6.3229C17.8218 4.86136 19.05 3.66906 20.5556 3.66906C22.0611 3.66906 23.2893 4.86136 23.2893 6.3229C23.2497 6.51521 23.2101 6.70752 23.1705 6.89983ZM26.6174 12.6306C25.6665 12.6306 24.8741 12.0537 24.5572 11.246C24.4779 11.0152 24.4383 10.7844 24.4383 10.5152C24.4383 9.36136 25.4288 8.39982 26.6174 8.39982H26.657C27.8456 8.39982 28.7965 9.36136 28.7965 10.5152C28.7965 11.6691 27.806 12.6306 26.6174 12.6306Z';
+
+export const ENTRY_ARROW_PATH = 'M4 20 20 4M10 4h10v10';
+
+export const ENTRY_ARROW_WILDS_PATH =
+  'M9.43536 10.3304L0.651995 17.9138C0.275566 18.1799 -0.100864 17.7808 0.0246125 17.3817L2.00173 12.7766C3.12324 10.1644 3.07997 7.19835 1.88273 4.61997L0.0246125 0.618326C0.0174314 0.595483 0.0118941 0.572641 0.00790677 0.549923C-0.057777 0.175692 0.297109 -0.164701 0.651995 0.0861556L9.43536 7.66958C10.1882 8.46783 10.1882 9.66521 9.43536 10.3304Z';
+
+function svg(viewBox, pathAttrs) {
+  const node = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  node.setAttribute('viewBox', viewBox);
+  node.setAttribute('aria-hidden', 'true');
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  for (const [key, value] of Object.entries(pathAttrs)) path.setAttribute(key, value);
+  node.appendChild(path);
+  return node;
+}
+
+export function createDivider(variant = 'line-brown', className = '') {
+  const root = document.createElement('div');
+  root.className = `island-divider island-divider--${variant} ${className}`.trim();
+  root.setAttribute('role', 'presentation');
+  root.setAttribute('aria-hidden', 'true');
+
+  if (variant === 'dashed-brown') {
+    const dash = document.createElement('span');
+    dash.className = 'island-divider-dash';
+    root.appendChild(dash);
+    return root;
+  }
+
+  if (variant === 'wave-yellow') {
+    const wave = svg('0 0 375 10', { d: DIVIDER_WAVE_PATH, fill: 'none', stroke: 'currentColor', 'stroke-width': '2.8' });
+    wave.setAttribute('preserveAspectRatio', 'none');
+    root.appendChild(wave);
+    return root;
+  }
+
+  const line = svg('0 0 297 14', { d: DIVIDER_LINE_PATH, fill: 'currentColor', 'fill-rule': 'evenodd' });
+  line.setAttribute('preserveAspectRatio', 'none');
+  root.appendChild(line);
+
+  if (variant === 'line-brown') {
+    const ornament = document.createElement('span');
+    ornament.className = 'island-divider-zelda-ornament';
+    ornament.appendChild(svg('0 0 49.95 25.01', { d: DIVIDER_ORNAMENT_PATH, fill: 'currentColor' }));
+    const mid = document.createElement('span');
+    mid.className = 'island-divider-zelda-ornament-line';
+    ornament.appendChild(mid);
+    ornament.appendChild(svg('0 0 49.95 25.01', { d: DIVIDER_ORNAMENT_PATH, fill: 'currentColor' }));
+    root.appendChild(ornament);
+  }
+
+  return root;
+}

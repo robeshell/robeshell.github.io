@@ -28,6 +28,8 @@ const themes = aetherConfig.themes.map((value) => {
 </details>
 
 <script>
+  import { applyThemeEnhancements } from '../scripts/aether-persona-titles.js';
+
   const themeMenu = document.querySelector<HTMLDetailsElement>('.theme-menu');
   const themeNames: Record<string, string> = JSON.parse(themeMenu?.dataset.themeLabels ?? '{}');
   const themeSummary = themeMenu?.querySelector<HTMLElement>('summary');
@@ -35,81 +37,13 @@ const themes = aetherConfig.themes.map((value) => {
   const themeSwatch = themeMenu?.querySelector<HTMLElement>('.theme-trigger-swatch');
   const themeButtons = [...(themeMenu?.querySelectorAll<HTMLButtonElement>('[data-theme-value]') ?? [])];
 
-  const p5TitleSelector = '.intro h1, .page-header h1, .entry-header h1, .about-page h1, .home-section-header h2, .prose h2, .site-name';
-  const p5Punctuation = [' ', ',', '，', '.', '。', '!', '！', '?', '？'];
-
-  function titleOriginal(el: HTMLElement) {
-    return el.dataset.titleOriginal ?? el.textContent ?? '';
-  }
-
-  function p5InvertIndex(content: string) {
-    const selected: Record<number, true> = {};
-    const candidates = [...content]
-      .map((ch, idx) => ({ ch, idx }))
-      .filter(({ ch, idx }) => idx > 0 && !p5Punctuation.includes(ch));
-    if (!candidates.length) return selected;
-
-    // Keep the cut letters stable between renders, while giving each title its own rhythm.
-    let hash = 2166136261;
-    for (const ch of content) {
-      hash ^= ch.charCodeAt(0);
-      hash = Math.imul(hash, 16777619);
-    }
-    const first = candidates[(hash >>> 0) % candidates.length].idx;
-    selected[first] = true;
-
-    const shouldAddSecond = candidates.length >= 10 || (candidates.length >= 6 && (hash >>> 5) % 4 === 0);
-    if (shouldAddSecond && candidates.length > 1) {
-      const start = (hash >>> 8) % candidates.length;
-      for (let step = 0; step < candidates.length; step++) {
-        const candidate = candidates[(start + step) % candidates.length].idx;
-        if (Math.abs(candidate - first) >= 3) {
-          selected[candidate] = true;
-          break;
-        }
-      }
-    }
-    return selected;
-  }
-
-  function wrapP5Titles() {
-    document.querySelectorAll<HTMLElement>(p5TitleSelector).forEach((el) => {
-      if (el.dataset.p5Wrapped === '1') return;
-      const original = titleOriginal(el);
-      el.dataset.titleOriginal = original;
-      const invert = p5InvertIndex(original);
-      const tiltPattern = [-5, 2, -3, 4, -2, 5, -4, 2, -1, 4, -3, 3];
-      el.replaceChildren();
-      [...original].forEach((ch, idx) => {
-        const span = document.createElement('span');
-        span.textContent = ch;
-        span.style.setProperty('--r', `${tiltPattern[idx % tiltPattern.length]}deg`);
-        if (ch === ' ') span.classList.add('is-space');
-        else if (p5Punctuation.includes(ch)) span.classList.add('is-punctuation');
-        if (invert[idx]) span.classList.add('is-cut');
-        el.appendChild(span);
-      });
-      el.classList.add('p5-title');
-      el.dataset.p5Wrapped = '1';
-    });
-  }
-
-  function unwrapP5Titles() {
-    document.querySelectorAll<HTMLElement>('[data-p5-wrapped="1"]').forEach((el) => {
-      el.textContent = el.dataset.titleOriginal ?? '';
-      el.classList.remove('p5-title');
-      delete el.dataset.p5Wrapped;
-    });
-  }
-
   function syncTheme(theme: string) {
     const safeTheme = themeNames[theme] ? theme : 'minimal';
     document.documentElement.dataset.theme = safeTheme;
     if (themeCurrent) themeCurrent.textContent = themeNames[safeTheme];
     if (themeSwatch) themeSwatch.className = `theme-preview theme-preview--${safeTheme} theme-trigger-swatch`;
     themeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeValue === safeTheme)));
-    unwrapP5Titles();
-    if (safeTheme === 'persona') wrapP5Titles();
+    applyThemeEnhancements(safeTheme);
   }
 
   syncTheme(document.documentElement.dataset.theme ?? 'minimal');
