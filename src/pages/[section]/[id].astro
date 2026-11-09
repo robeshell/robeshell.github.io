@@ -1,9 +1,10 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { render } from 'astro:content';
+import { getEntries } from '../../lib/content';
 import EntryLayout from '../../layouts/EntryLayout.astro';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('entries', ({ data }) => !data.draft);
+  const entries = await getEntries();
   return entries.map((entry) => ({
     params: { section: entry.data.section, id: entry.id },
     props: { entry },

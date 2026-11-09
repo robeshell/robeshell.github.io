@@ -473,3 +473,243 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: read as a real shell session rather than a green skin.
+ * tmux status bar header, prompt + block cursor intro, `ls -l` listing,
+ * and a terminal window with a vim status line around entries.
+ * ------------------------------------------------------------------ */
+:root[data-theme="terminal"] {
+  --term-bar: oklch(0.86 0.29 145);
+  --term-bar-text: oklch(0.12 0.03 145);
+  --term-window: oklch(0.06 0.025 145 / 0.94);
+  --term-chrome: oklch(0.16 0.02 145);
+}
+
+:root[data-theme="terminal"] ::selection { background: var(--accent); color: var(--background); }
+
+/* CRT vignette sits under the content, above the rain. */
+:root[data-theme="terminal"] body {
+  background:
+    radial-gradient(ellipse 120% 90% at 50% 40%, transparent 55%, oklch(0 0 0 / .55) 100%),
+    var(--background);
+}
+
+/* tmux status bar: full-bleed green bar, numbered windows, current one marked with * */
+:root[data-theme="terminal"] .site-header {
+  min-height: 2.1rem;
+  margin-block-start: 0;
+  padding: 0 .1rem;
+  border: 0;
+  background: var(--term-bar);
+  box-shadow: 0 0 0 100vmax var(--term-bar);
+  clip-path: inset(0 -100vmax);
+  color: var(--term-bar-text);
+  counter-reset: tmux-window -1;
+}
+
+:root[data-theme="terminal"] .site-name,
+:root[data-theme="terminal"] .site-name:hover {
+  color: var(--term-bar-text);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+:root[data-theme="terminal"] .site-name::before { content: "["; color: inherit; }
+:root[data-theme="terminal"] .site-name::after { content: "]"; }
+
+:root[data-theme="terminal"] .site-header nav { gap: 0; }
+
+:root[data-theme="terminal"] .site-header nav a,
+:root[data-theme="terminal"] .site-header .about {
+  padding: .45rem .55rem;
+  border: 0;
+  background: transparent;
+  color: var(--term-bar-text);
+  font-size: .78rem;
+  line-height: 1.2;
+}
+
+:root[data-theme="terminal"] .site-header nav a::before {
+  counter-increment: tmux-window;
+  content: counter(tmux-window) ":";
+}
+:root[data-theme="terminal"] .site-header nav a::after { content: "-"; opacity: 0; }
+:root[data-theme="terminal"] .site-header nav a[aria-current="page"]::after { content: "*"; opacity: 1; }
+
+:root[data-theme="terminal"] .site-header .about::before { content: "\""; }
+:root[data-theme="terminal"] .site-header .about::after { content: "\""; }
+
+:root[data-theme="terminal"] .site-header nav a:hover,
+:root[data-theme="terminal"] .site-header .about:hover,
+:root[data-theme="terminal"] .site-header [aria-current="page"] {
+  border: 0;
+  background: var(--term-bar-text);
+  color: var(--term-bar);
+}
+
+/* Intro: a prompt, the motd it prints, then a fresh prompt with a block cursor. */
+:root[data-theme="terminal"] .intro { padding-block: clamp(3.5rem, 7vw, 5.5rem) 4.25rem; }
+
+:root[data-theme="terminal"] .intro::before,
+:root[data-theme="terminal"] .intro::after {
+  display: block;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .82rem;
+  white-space: pre;
+}
+:root[data-theme="terminal"] .intro::before { content: "w@robeshell:~$ cat motd"; margin-block-end: 1.35rem; }
+:root[data-theme="terminal"] .intro::after {
+  content: "w@robeshell:~$ ";
+  width: fit-content;
+  margin-block-start: 2rem;
+  padding-inline-end: .7em;
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat right center / .6em 1.15em;
+  animation: terminal-block-caret 1.05s steps(1, end) infinite;
+}
+
+/* The heading stays readable even when animations never run (crawlers, link previews). */
+:root[data-theme="terminal"] .intro h1 { clip-path: none; }
+:root[data-theme="terminal"] .intro h1::before,
+:root[data-theme="terminal"] .intro h1::after { content: none; }
+
+:root[data-theme="terminal"] .intro p {
+  margin-top: 1.4rem;
+  padding-inline-start: 0;
+  border: 0;
+}
+
+@keyframes terminal-block-caret {
+  0%, 49% { background-size: .6em 1.15em; }
+  50%, 100% { background-size: 0 0; }
+}
+
+/* Section header reads as the listing command. */
+:root[data-theme="terminal"] .home-section-header { border-top: 0; }
+:root[data-theme="terminal"] .home-section-header h2 { color: var(--muted); letter-spacing: 0; }
+:root[data-theme="terminal"] .home-section-header h2::before { content: "$ ls -lt ~/"; color: var(--muted); }
+:root[data-theme="terminal"] .home-section-header h2::after { content: "/"; }
+
+/* Entries as `ls -l` rows: mode bits and date first, the name, then a comment line. */
+:root[data-theme="terminal"] .entry-list li { border-bottom-style: solid; border-bottom-color: oklch(.22 .09 145 / .55); }
+:root[data-theme="terminal"] .entry-list a { gap: .3rem; padding-block: 1rem 1.1rem; }
+:root[data-theme="terminal"] .entry-list .list-meta { order: -1; letter-spacing: 0; }
+:root[data-theme="terminal"] .entry-list .list-meta::before {
+  content: "-rw-r--r--  1 w  staff  ";
+  white-space: pre;
+}
+:root[data-theme="terminal"] .entry-list .list-meta span::after { content: "  "; margin: 0; white-space: pre; }
+:root[data-theme="terminal"] .entry-list p::before { content: "# "; }
+:root[data-theme="terminal"] .entry-list a:hover h2 { text-decoration: underline; text-decoration-style: dotted; }
+
+/* Entries and the about page live inside a terminal window running vim. */
+:root[data-theme="terminal"] .entry,
+:root[data-theme="terminal"] .about-page {
+  position: relative;
+  padding: 0 2.4rem 4.75rem;
+  overflow: hidden;
+  border: 1px solid oklch(.3 .06 145 / .8);
+  border-radius: .6rem;
+  background: var(--term-window);
+  box-shadow:
+    0 0 0 1px oklch(0 0 0 / .6),
+    0 24px 60px oklch(0 0 0 / .55),
+    0 0 2.5rem oklch(.86 .29 145 / .06);
+}
+
+:root[data-theme="terminal"] .entry::before,
+:root[data-theme="terminal"] .about-page::before {
+  content: "w — vim " attr(data-path) " — 80×24";
+  display: block;
+  margin-inline: -2.4rem;
+  margin-block-end: 2.25rem;
+  padding: .55rem 5rem;
+  overflow: hidden;
+  border-bottom: 1px solid oklch(0 0 0 / .5);
+  background:
+    radial-gradient(circle at .95rem 50%, #ff5f57 .3rem, transparent .32rem),
+    radial-gradient(circle at 1.85rem 50%, #febc2e .3rem, transparent .32rem),
+    radial-gradient(circle at 2.75rem 50%, #28c840 .3rem, transparent .32rem),
+    var(--term-chrome);
+  color: oklch(.72 .03 145);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+:root[data-theme="terminal"] .entry::after,
+:root[data-theme="terminal"] .about-page::after {
+  content: " NORMAL  " attr(data-path) "  [RO]";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-end: 0;
+  padding: .3rem .6rem;
+  overflow: hidden;
+  background: linear-gradient(90deg, var(--accent) 0 5.4em, var(--term-chrome) 5.4em);
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+
+:root[data-theme="terminal"] .entry-header { border-bottom: 0; padding-bottom: 1.25rem; }
+:root[data-theme="terminal"] .entry > .island-divider { display: none; }
+:root[data-theme="terminal"] .back-link::before { content: ":e "; color: var(--muted); }
+
+:root[data-theme="terminal"] .prose ul { padding-inline-start: 1.6em; }
+:root[data-theme="terminal"] .prose ul li::marker { content: "- "; color: var(--muted); }
+:root[data-theme="terminal"] .prose a { color: var(--accent); text-decoration-style: dotted; }
+:root[data-theme="terminal"] .prose blockquote { padding-block: .1rem; padding-inline-start: 1rem; background: none; }
+:root[data-theme="terminal"] .prose strong { color: var(--accent); }
+
+@media (max-width: 42rem) {
+  :root[data-theme="terminal"] .site-header { padding-block: .15rem 0; }
+  :root[data-theme="terminal"] .site-header nav { padding-block: 0 .1rem; }
+  :root[data-theme="terminal"] .site-header nav a,
+  :root[data-theme="terminal"] .site-header .about { padding-inline: .45rem; font-size: .72rem; }
+  :root[data-theme="terminal"] .theme-panel { inset-block-start: 5.5rem; }
+  :root[data-theme="terminal"] .entry-list .list-meta::before { content: "-rw-r--r--  "; }
+  :root[data-theme="terminal"] .entry,
+  :root[data-theme="terminal"] .about-page { padding: 0 1.1rem 3.75rem; }
+  :root[data-theme="terminal"] .entry::before,
+  :root[data-theme="terminal"] .about-page::before {
+    content: attr(data-path);
+    margin-inline: -1.1rem;
+    padding-inline: 3.75rem 1rem;
+    text-align: start;
+  }}
+
+@media (prefers-reduced-motion: reduce) {
+  :root[data-theme="terminal"] .intro::after { animation: none; }}
+:root[data-theme="terminal"] .back-arrow { display: none; }
+:root[data-theme="terminal"] .back-link::after { content: "/"; }
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="terminal"] {
+  --display-font: var(--ff-mono);
+  --body-font: var(--ff-sans);
+  --font-display: var(--ff-mono);
+  --font-body: var(--ff-sans);
+  --font-ui: var(--ff-mono);
+  --font-mono: var(--ff-mono);
+}
+
+/* Topics: directories in ls, checkboxes in the outline. */
+:root[data-theme="terminal"] .entry-list--topics .list-meta::before { content: "drwxr-xr-x  2 w  staff  "; }
+:root[data-theme="terminal"] .topic-outline > li { border-bottom-style: dashed; }
+:root[data-theme="terminal"] .topic-pager { border-top-style: dashed; }
+:root[data-theme="terminal"] .topic-badge__label { color: var(--background); }
+:root[data-theme="terminal"] .topic-badge__label::before { content: "#"; }
+:root[data-theme="terminal"] .topic-pager__home::before { content: "cd "; color: var(--muted); }
+:root[data-theme="terminal"] .topic-outline__state { font-family: var(--font-mono); }
+:root[data-theme="terminal"] .topic-outline .is-planned .topic-outline__state::before { content: "[ ] "; }
+:root[data-theme="terminal"] .topic-outline .is-written .topic-outline__state::before { content: "[x] "; }
+@media (max-width: 42rem) {
+  :root[data-theme="terminal"] .entry-list--topics .list-meta::before { content: "drwxr-xr-x  "; }}
+:root[data-theme="terminal"] .prose table { font-family: var(--font-mono); }
+:root[data-theme="terminal"] .prose td,
+:root[data-theme="terminal"] .prose tbody th { border-bottom-style: dashed; }

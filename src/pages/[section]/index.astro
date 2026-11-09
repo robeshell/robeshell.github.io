@@ -1,9 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Divider from '../../components/Divider.astro';
 import EntryList from '../../components/EntryList.astro';
 import { sections, type SectionKey } from '../../lib/sections';
+import { getEntries } from '../../lib/content';
 
 export function getStaticPaths() {
   return Object.entries(sections).map(([key, section]) => ({
@@ -18,8 +18,7 @@ interface Props {
 }
 
 const { sectionKey, section } = Astro.props;
-const entries = (await getCollection('entries', ({ data }) => !data.draft && data.section === sectionKey))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const entries = await getEntries((entry) => entry.data.section === sectionKey && !entry.data.draft);
 ---
 
 <BaseLayout title={section.label} description={section.description}>

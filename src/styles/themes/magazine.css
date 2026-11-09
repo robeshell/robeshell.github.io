@@ -27,7 +27,7 @@
 :root[data-theme="magazine"] .home-section-header h2 {
   font-family: var(--display-font);
   font-size: 1.05rem;
-  font-style: italic;
+  font-style: normal;
   font-weight: 400;
 }
 :root[data-theme="magazine"] .entry-list li { border-bottom: 1px solid var(--line); }
@@ -341,7 +341,7 @@
 
 :root[data-theme="magazine"] .entry-meta span { color: var(--accent); }
 :root[data-theme="magazine"] .prose { padding-top: 3.2rem; color: var(--text); }
-:root[data-theme="magazine"] .prose h2 { color: var(--accent); font-style: italic; font-weight: 400; }
+:root[data-theme="magazine"] .prose h2 { color: var(--accent); font-style: normal; font-weight: 400; }
 :root[data-theme="magazine"] .prose blockquote { border-inline-start-color: var(--accent); background: rgb(151 45 29 / .05); }
 :root[data-theme="magazine"] .prose pre { border: 1px solid var(--line); background: #ece4d7; }
 
@@ -405,7 +405,7 @@
 :root[data-theme="magazine"] .page-header h1 { font-size: clamp(2.2rem, 5.5vw, 3.8rem); }
 :root[data-theme="magazine"] .entry-header h1 { font-size: clamp(2rem, 4.8vw, 3.6rem); line-height: 1.12; }
 :root[data-theme="magazine"] .entry-list h2 { font-size: clamp(1.2rem, 2vw, 1.45rem); line-height: 1.4; }
-:root[data-theme="magazine"] .prose h2 { font-size: 1.5rem; font-style: italic; font-weight: 400; }
+:root[data-theme="magazine"] .prose h2 { font-size: 1.5rem; font-style: normal; font-weight: 400; }
 :root[data-theme="magazine"] .prose h3 { font-size: 1.12rem; font-weight: 600; }
 
 @media (max-width: 42rem) {
@@ -440,3 +440,96 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: print conventions.
+ * Justified CJK body, a three-line drop cap, numbered section heads,
+ * centred pull quotes and an end-of-article mark.
+ * ------------------------------------------------------------------ */
+:root[data-theme="magazine"] ::selection { background: oklch(0.86 0.06 28); color: var(--text); }
+
+:root[data-theme="magazine"] .site-header { box-shadow: 0 -3px 0 var(--text) inset, 0 1px 0 var(--text), 0 4px 0 var(--line); }
+
+:root[data-theme="magazine"] .prose {
+  counter-reset: magazine-section;
+  text-align: justify;
+  text-justify: inter-character;
+}
+
+:root[data-theme="magazine"] .prose > p:first-of-type::first-letter {
+  float: left;
+  margin: .12em .14em 0 0;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 3.35em;
+  font-weight: 400;
+  line-height: .86;
+}
+
+:root[data-theme="magazine"] .prose h2 { counter-increment: magazine-section; }
+:root[data-theme="magazine"] .prose h2::before {
+  content: counter(magazine-section, decimal-leading-zero);
+  display: block;
+  margin-block-end: .55rem;
+  color: var(--accent);
+  font-family: var(--font-ui);
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .24em;
+}
+
+:root[data-theme="magazine"] .prose blockquote {
+  position: relative;
+  margin: 2.75rem auto;
+  padding: 1.6rem 1.5rem 1.4rem;
+  max-width: 34rem;
+  border: 0;
+  border-block: 1px solid var(--text);
+  background: none;
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 1.22em;
+  line-height: 1.65;
+  text-align: center;
+}
+:root[data-theme="magazine"] .prose blockquote::before {
+  content: "“";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: -.62em;
+  width: 1.2em;
+  margin-inline: auto;
+  background: var(--background);
+  color: var(--accent);
+  font-size: 2.2em;
+  line-height: 1;
+}
+
+:root[data-theme="magazine"] .prose > p:last-child::after {
+  content: "";
+  display: inline-block;
+  width: .62em;
+  height: .62em;
+  margin-inline-start: .4em;
+  background: var(--accent);
+  vertical-align: .02em;
+}
+
+:root[data-theme="magazine"] .prose a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: .25em; }
+:root[data-theme="magazine"] .entry-meta time { letter-spacing: .08em; }
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="magazine"] {
+  --display-font: var(--ff-serif);
+  --body-font: var(--ff-serif);
+  --font-display: var(--ff-serif);
+  --font-body: var(--ff-serif);
+  --font-ui: var(--ff-sans);
+  --font-mono: var(--ff-mono);
+}
+
+/* Topics: serif chapter titles with tracked numbers. */
+:root[data-theme="magazine"] .topic-outline h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.2rem; }
+:root[data-theme="magazine"] .topic-outline__number { font-family: var(--font-ui); letter-spacing: .14em; }
+:root[data-theme="magazine"] .prose table { border-top: 2px solid var(--text); }
+:root[data-theme="magazine"] .prose td { font-family: var(--font-body); }

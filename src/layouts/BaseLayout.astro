@@ -2,6 +2,17 @@
 import Header from '../components/Header.astro';
 import Divider from '../components/Divider.astro';
 import ThemePicker from '../components/ThemePicker.astro';
+// Self-hosted open-licensed fonts (OFL-1.1). The small Latin families ship in the main bundle;
+// each CJK family is ~30 KB of @font-face rules, so those load per theme (see the inline script below).
+import '@fontsource-variable/jetbrains-mono';
+import '@fontsource-variable/nunito';
+import '@fontsource-variable/cinzel';
+import '@fontsource/rajdhani/500.css';
+import '@fontsource/rajdhani/600.css';
+import '@fontsource/rajdhani/700.css';
+import cjkSansCss from '@fontsource-variable/noto-sans-sc/index.css?url';
+import cjkSerifCss from '@fontsource-variable/noto-serif-sc/index.css?url';
+import cjkRoundCss from '@chinese-fonts/mkwtyt/dist/MaoKenTangYuan/result.css?url';
 import '../styles/aether-themes.css';
 import '../styles/site-assets.css';
 import aetherConfig from '../../aether.config.mjs';
@@ -18,13 +29,27 @@ const {
 const pageTitle = title ? `${title} · W.` : 'W.';
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const enabledThemes = aetherConfig.themes;
+const cjkFontCss = { sans: cjkSansCss, serif: cjkSerifCss, round: cjkRoundCss };
+// Which CJK families each theme actually renders (mirrors the --ff-* stacks used in its CSS).
+const themeCjkFonts: Record<string, (keyof typeof cjkFontCss)[]> = {
+  minimal: ['sans'],
+  magazine: ['serif', 'sans'],
+  terminal: ['sans'],
+  cyber: ['sans'],
+  island: ['round'],
+  wilds: ['serif', 'sans'],
+  persona: ['sans', 'serif'],
+};
+const fontManifest = Object.fromEntries(
+  enabledThemes.map((theme) => [theme, (themeCjkFonts[theme] ?? ['sans']).map((key) => cjkFontCss[key])]),
+);
 const defaultTheme = enabledThemes.includes(aetherConfig.defaultTheme)
   ? aetherConfig.defaultTheme
   : enabledThemes[0];
 ---
 
 <!doctype html>
-<html lang="zh-CN" data-theme={defaultTheme} data-theme-values={JSON.stringify(enabledThemes)}>
+<html lang="zh-CN" data-theme={defaultTheme} data-theme-values={JSON.stringify(enabledThemes)} data-theme-fonts={JSON.stringify(fontManifest)}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -39,15 +64,32 @@ const defaultTheme = enabledThemes.includes(aetherConfig.defaultTheme)
     <link rel="canonical" href={canonical} />
     <script is:inline>
       (() => {
-        const themes = JSON.parse(document.documentElement.dataset.themeValues ?? '[]');
+        const root = document.documentElement;
+        const themes = JSON.parse(root.dataset.themeValues ?? '[]');
+        const fonts = JSON.parse(root.dataset.themeFonts ?? '{}');
         try {
           const saved = localStorage.getItem('site-theme');
-          if (saved && themes.includes(saved)) document.documentElement.dataset.theme = saved;
+          if (saved && themes.includes(saved)) root.dataset.theme = saved;
         } catch {
           // Keep the default theme when storage is unavailable.
         }
+        // Attach only the CJK font stylesheets the theme uses; the theme picker calls this again on switch.
+        window.__loadThemeFonts = (theme) => {
+          for (const href of fonts[theme] ?? []) {
+            if (document.querySelector(`link[data-theme-font="${href}"]`)) continue;
+            const link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.href = href;
+            link.dataset.themeFont = href;
+            document.head.appendChild(link);
+          }
+        };
+        window.__loadThemeFonts(root.dataset.theme);
       })();
     </script>
+    <noscript>
+      {fontManifest[defaultTheme]?.map((href) => <link rel="stylesheet" href={href} />)}
+    </noscript>
     <title>{pageTitle}</title>
   </head>
   <body>

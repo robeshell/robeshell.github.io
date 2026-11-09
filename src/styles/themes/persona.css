@@ -968,3 +968,147 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: calling-card collage.
+ * Ransom-note letters vary paper, typeface and size like cut-out print;
+ * halftone dots fill the corners; inner pages carry a slanted card tag.
+ * ------------------------------------------------------------------ */
+:root[data-theme="persona"] {
+  --persona-serif: "Songti SC", "STSong", "Noto Serif CJK SC", "SimSun", serif;
+  --persona-heavy: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+:root[data-theme="persona"] ::selection { background: var(--persona-red); color: #fff; }
+
+/* Halftone dots bleed in from two corners, the way the game frames its menus. */
+:root[data-theme="persona"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgb(255 23 63 / .55) 1.6px, transparent 1.9px) 0 0 / 11px 11px,
+    radial-gradient(circle, rgb(255 255 255 / .16) 1.4px, transparent 1.7px) 5px 5px / 11px 11px;
+  -webkit-mask-image:
+    radial-gradient(ellipse 38% 46% at 100% 100%, #000 0, transparent 100%),
+    radial-gradient(ellipse 30% 34% at 0 0, #000 0, transparent 100%);
+  mask-image:
+    radial-gradient(ellipse 38% 46% at 100% 100%, #000 0, transparent 100%),
+    radial-gradient(ellipse 30% 34% at 0 0, #000 0, transparent 100%);
+}
+
+/* Ransom-note letters: rotate through paper stock, typeface and scale. */
+:root[data-theme="persona"] .p5-title:not(.site-name) span:nth-child(4n + 2):not(.is-cut):not(.is-punctuation):not(.is-space) {
+  border-color: var(--persona-black);
+  background: #f4f1ea;
+  color: var(--persona-black);
+  box-shadow: 0 0 0 2px #f4f1ea, 3px 3px 0 2px rgb(0 0 0 / .8);
+}
+
+:root[data-theme="persona"] .p5-title:not(.site-name) span:nth-child(5n + 3) { font-family: var(--persona-serif); font-weight: 900; }
+:root[data-theme="persona"] .p5-title:not(.site-name) span:nth-child(3n) { font-size: 1.1em; }
+:root[data-theme="persona"] .p5-title:not(.site-name) span:nth-child(7n + 1) { font-size: .88em; }
+:root[data-theme="persona"] .p5-title:not(.site-name) span:nth-child(6n + 4):not(.is-cut) {
+  border-width: 0;
+  background: transparent;
+  box-shadow: none;
+  font-family: var(--persona-heavy);
+  font-weight: 900;
+  -webkit-text-stroke: 1px var(--persona-black);
+  paint-order: stroke fill;
+  text-shadow: 2px 2px 0 var(--persona-red);
+}
+:root[data-theme="persona"] .p5-title:not(.site-name) span.is-cut {
+  border-color: var(--persona-black);
+  font-family: var(--persona-heavy);
+  font-weight: 900;
+  box-shadow: 0 0 0 2px #fff, 3px 3px 0 2px rgb(0 0 0 / .8);
+  transform: rotate(calc(var(--r, 0deg) * -1.6)) scale(1.08);
+}
+
+/* Inner pages: a slanted red tag names the page as a calling card. */
+:root[data-theme="persona"] .entry,
+:root[data-theme="persona"] .about-page {
+  position: relative;
+  margin-block-start: 4rem;
+}
+
+:root[data-theme="persona"] .entry::before,
+:root[data-theme="persona"] .about-page::before {
+  content: "予告状  CALLING CARD";
+  position: absolute;
+  inset-inline-start: -.75rem;
+  inset-block-start: -1.55rem;
+  z-index: 2;
+  padding: .45rem 1.4rem .45rem 1rem;
+  background: var(--persona-red);
+  color: #fff;
+  font-family: var(--persona-heavy);
+  font-size: .82rem;
+  font-weight: 900;
+  letter-spacing: .14em;
+  white-space: nowrap;
+  clip-path: polygon(0 8%, 100% 0, 96% 100%, 2% 92%);
+  box-shadow: none;
+  filter: drop-shadow(3px 3px 0 #000);
+  transform: rotate(-3deg);
+}
+
+/* Star burst in the far corner of every inner page. */
+:root[data-theme="persona"] .entry::after,
+:root[data-theme="persona"] .about-page::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -1.1rem;
+  inset-block-start: -1.1rem;
+  width: 2.6rem;
+  height: 2.6rem;
+  background: #fff;
+  clip-path: polygon(50% 0, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  filter: drop-shadow(2px 2px 0 var(--persona-red));
+  transform: rotate(14deg);
+}
+
+:root[data-theme="persona"] .back-link { transform: skewX(-8deg); }
+:root[data-theme="persona"] .entry-meta time { display: inline-block; padding: .15rem .5rem; background: #fff; color: #000; font-weight: 700; transform: skewX(-8deg); }
+
+:root[data-theme="persona"] .prose strong { padding-inline: .2em; background: #fff; color: #000; }
+:root[data-theme="persona"] .prose a { color: #fff; text-decoration-color: var(--persona-red); text-decoration-thickness: 3px; }
+:root[data-theme="persona"] .prose a:hover { background: var(--persona-red); text-decoration: none; }
+:root[data-theme="persona"] .prose ul li::marker { content: "★ "; color: var(--persona-red); }
+
+@media (max-width: 42rem) {
+  :root[data-theme="persona"] body::after {
+    -webkit-mask-image: radial-gradient(ellipse 60% 30% at 100% 100%, #000 0, transparent 100%);
+    mask-image: radial-gradient(ellipse 60% 30% at 100% 100%, #000 0, transparent 100%);
+  }
+  :root[data-theme="persona"] .entry::before,
+  :root[data-theme="persona"] .about-page::before { inset-inline-start: -.35rem; font-size: .72rem; }
+  :root[data-theme="persona"] .entry::after,
+  :root[data-theme="persona"] .about-page::after { inset-inline-end: -.4rem; width: 2rem; height: 2rem; }}
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="persona"] {
+  --display-font: var(--ff-sans);
+  --body-font: var(--ff-sans);
+  --font-display: var(--ff-sans);
+  --font-body: var(--ff-sans);
+  --font-ui: var(--ff-sans);
+  --font-mono: var(--ff-mono);
+  --persona-heavy: var(--ff-sans);
+  --persona-serif: var(--ff-serif);
+}
+
+/* Topics: skewed red and white labels. */
+:root[data-theme="persona"] { --meter-off: rgb(255 255 255 / .18); }
+:root[data-theme="persona"] .topic-badge__label { background: var(--persona-red); color: #fff; font-weight: 900; transform: skewX(-10deg); }
+:root[data-theme="persona"] .topic-outline > li { border-bottom-color: rgb(255 255 255 / .14); }
+:root[data-theme="persona"] .topic-outline__number { padding: 0 .3rem; background: #fff; color: #000; font-weight: 900; transform: skewX(-10deg); justify-self: start; }
+:root[data-theme="persona"] .topic-outline .is-planned .topic-outline__number { background: #3a3a40; color: #aaa; }
+:root[data-theme="persona"] .topic-pager { border-top: 3px solid var(--persona-red); }
+:root[data-theme="persona"] .topic-pager__home { border: 2px solid #fff; color: #fff; font-weight: 700; transform: skewX(-8deg); }
+:root[data-theme="persona"] .prose th,
+:root[data-theme="persona"] .prose td { border-bottom-color: rgb(255 255 255 / .14); }
+:root[data-theme="persona"] .prose thead th { border-bottom: 3px solid var(--persona-red); color: #fff; }

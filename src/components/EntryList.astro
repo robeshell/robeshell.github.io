@@ -1,40 +1,30 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { ENTRY_ARROW_PATH, ENTRY_ARROW_WILDS_PATH } from '../scripts/aether-markup.js';
+import CardList from './CardList.astro';
 import { sections } from '../lib/sections';
+import { getTopics, type Entry } from '../lib/content';
 
 interface Props {
-  entries: CollectionEntry<'entries'>[];
+  entries: Entry[];
   showSection?: boolean;
+  /** Hide the topic label, e.g. on the topic's own page. */
+  showTopic?: boolean;
+  emptyText?: string;
 }
 
-const { entries, showSection = false } = Astro.props;
+const { entries, showSection = false, showTopic = true, emptyText } = Astro.props;
+const topicTitles = new Map((await getTopics()).map((topic) => [topic.id, topic.data.title]));
+
+const items = entries.map((entry) => ({
+  href: `/${entry.data.section}/${entry.id}/`,
+  title: entry.data.title,
+  description: entry.data.description,
+  labels: [
+    ...(showSection ? [sections[entry.data.section].label] : []),
+    ...(showTopic && entry.data.topic ? [topicTitles.get(entry.data.topic.id) ?? entry.data.topic.id] : []),
+  ],
+  date: entry.data.date,
+  draft: entry.data.draft,
+}));
 ---
 
-<ol class="entry-list">
-  {entries.map((entry) => (
-    <li>
-      <a href={`/${entry.data.section}/${entry.id}/`}>
-        <span class="entry-card-shell" aria-hidden="true"></span>
-        <h2>{entry.data.title}</h2>
-        <span class="entry-arrow" aria-hidden="true">
-          <svg viewBox="0 0 24 24" focusable="false">
-            <path d={ENTRY_ARROW_PATH} />
-          </svg>
-        </span>
-        <span class="entry-arrow entry-arrow--wilds" aria-hidden="true">
-          <svg viewBox="0 0 10 18" focusable="false">
-            <path d={ENTRY_ARROW_WILDS_PATH} />
-          </svg>
-        </span>
-        <div class="list-meta">
-          {showSection && <span>{sections[entry.data.section].label}</span>}
-          <time datetime={entry.data.date.toISOString()}>
-            {entry.data.date.toLocaleDateString('zh-CN', { year: 'numeric', month: '2-digit', day: '2-digit' })}
-          </time>
-        </div>
-        <p>{entry.data.description}</p>
-      </a>
-    </li>
-  ))}
-</ol>
+<CardList items={items} emptyText={emptyText} />

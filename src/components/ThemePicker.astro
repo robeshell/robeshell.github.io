@@ -44,6 +44,7 @@ const themes = aetherConfig.themes.map((value) => {
     if (themeSwatch) themeSwatch.className = `theme-preview theme-preview--${safeTheme} theme-trigger-swatch`;
     themeButtons.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.themeValue === safeTheme)));
     applyThemeEnhancements(safeTheme);
+    (window as Window & { __loadThemeFonts?: (theme: string) => void }).__loadThemeFonts?.(safeTheme);
   }
 
   syncTheme(document.documentElement.dataset.theme ?? 'minimal');

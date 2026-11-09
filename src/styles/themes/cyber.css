@@ -564,3 +564,221 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: Night City HUD language.
+ * Condensed DIN-style labels, data-shard panels, numbered readouts,
+ * chromatic-aberration glitch on the headline, and a faint scanline layer.
+ * ------------------------------------------------------------------ */
+:root[data-theme="cyber"] {
+  --cyber-red: #ff003c;
+  --cyber-hud-font: "DIN Condensed", "Bahnschrift SemiCondensed", "Bahnschrift", "Arial Narrow", "PingFang SC", sans-serif;
+  --cyber-mono: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+  --font-display: "DIN Condensed", "Bahnschrift SemiCondensed", "Arial Narrow", "PingFang SC", "Microsoft YaHei", sans-serif;
+  --font-ui: var(--cyber-hud-font);
+}
+
+:root[data-theme="cyber"] ::selection { background: var(--cyber-yellow); color: #07090c; }
+
+/* Scanlines over everything, never intercepting input. */
+:root[data-theme="cyber"] body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(to bottom, rgb(255 255 255 / .022) 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse 130% 100% at 50% 45%, transparent 60%, rgb(0 0 0 / .45) 100%);
+}
+
+/* Header: selected item is a solid yellow chip, like the in-game menu. */
+:root[data-theme="cyber"] .site-name { font-family: var(--cyber-hud-font); letter-spacing: .12em; }
+:root[data-theme="cyber"] .site-header nav a,
+:root[data-theme="cyber"] .site-header .about { font-family: var(--cyber-hud-font); font-size: .9rem; letter-spacing: .08em; }
+
+:root[data-theme="cyber"] .site-header [aria-current="page"],
+:root[data-theme="cyber"] .site-header [aria-current="page"]:hover {
+  background: var(--cyber-yellow);
+  color: #07090c;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Intro: a system readout instead of a bare rule. */
+:root[data-theme="cyber"] .intro::before {
+  content: "NC.NET //  W.SITE  ::  LINK ESTABLISHED  ::  SIGNAL 98%";
+  inset-block-start: 1.6rem;
+  height: auto;
+  padding: .3rem .6rem .25rem;
+  background: none;
+  border-block-start: 1px solid var(--cyber-yellow);
+  color: var(--cyber-cyan);
+  font-family: var(--cyber-mono);
+  font-size: .66rem;
+  letter-spacing: .14em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+:root[data-theme="cyber"] .intro h1 {
+  font-family: var(--font-display);
+  text-shadow: -2px 0 0 rgb(255 0 60 / .75), 2px 0 0 rgb(0 240 255 / .75), 4px 4px 0 #000;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-theme="cyber"] .intro h1 { animation: cyber-glitch 6.5s steps(1, end) infinite; }
+}
+
+@keyframes cyber-glitch {
+  0%, 92%, 100% { clip-path: none; transform: none; }
+  93% { clip-path: inset(12% 0 58% 0); transform: translate(-6px, 0); }
+  94% { clip-path: inset(62% 0 8% 0); transform: translate(5px, 0); }
+  95% { clip-path: inset(30% 0 40% 0); transform: translate(-3px, 0) skewX(-8deg); }
+  96% { clip-path: none; transform: translate(2px, 0); }
+  97% { clip-path: none; transform: none; }
+}
+
+/* Section headings carry an index and a status tag. */
+:root[data-theme="cyber"] .home-section-header h2 {
+  font-family: var(--cyber-hud-font);
+  font-size: 1.1rem;
+  letter-spacing: .14em;
+}
+:root[data-theme="cyber"] .home-section-header h2::before {
+  content: "01 //";
+  margin-inline-end: .6em;
+  color: var(--cyber-cyan);
+  font-family: var(--cyber-mono);
+  font-size: .7rem;
+  letter-spacing: .05em;
+  vertical-align: .15em;
+}
+
+/* Cards: indexed data entries with a hex readout in the corner. */
+:root[data-theme="cyber"] .entry-list { counter-reset: cyber-entry; }
+:root[data-theme="cyber"] .entry-list li { counter-increment: cyber-entry; }
+:root[data-theme="cyber"] .entry-list .entry-card-shell {
+  display: block;
+  position: absolute;
+  inset-inline-end: 3.75rem;
+  inset-block-start: 1.15rem;
+  z-index: 1;
+  color: rgb(0 240 255 / .65);
+  font-family: var(--cyber-mono);
+  font-size: .62rem;
+  letter-spacing: .12em;
+}
+:root[data-theme="cyber"] .entry-list .entry-card-shell::before {
+  content: "DATA_0x" counter(cyber-entry, decimal-leading-zero);
+}
+:root[data-theme="cyber"] .entry-list a:hover .entry-card-shell { color: rgb(7 9 12 / .7); }
+:root[data-theme="cyber"] .entry-list h2 { font-family: var(--font-display); letter-spacing: .02em; }
+:root[data-theme="cyber"] .list-meta { font-family: var(--cyber-mono); }
+:root[data-theme="cyber"] .list-meta span { text-transform: uppercase; }
+
+/* Entries are data shards: a cut tab carries the shard path. */
+:root[data-theme="cyber"] .entry,
+:root[data-theme="cyber"] .about-page {
+  margin-block-start: clamp(3.25rem, 6vw, 5rem);
+  border-inline-start-width: 1px;
+  border-color: rgb(252 238 10 / .4);
+}
+
+:root[data-theme="cyber"] .entry::before,
+:root[data-theme="cyber"] .about-page::before {
+  content: "SHARD // " attr(data-path);
+  inset-inline-start: -1px;
+  inset-inline-end: auto;
+  inset-block-start: auto;
+  inset-block-end: 100%;
+  width: auto;
+  max-width: calc(100% + 2px);
+  height: auto;
+  padding: .35rem 1.6rem .3rem .7rem;
+  overflow: hidden;
+  background: var(--cyber-yellow);
+  color: #07090c;
+  font-family: var(--cyber-mono);
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  clip-path: polygon(0 0, calc(100% - .9rem) 0, 100% 100%, 0 100%);
+  transform: none;
+}
+
+/* Corner brackets on the shard panel. */
+:root[data-theme="cyber"] .entry::after,
+:root[data-theme="cyber"] .about-page::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: -1px;
+  inset-block-end: -1px;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-inline-end: 2px solid var(--cyber-cyan);
+  border-block-end: 2px solid var(--cyber-cyan);
+  pointer-events: none;
+}
+
+:root[data-theme="cyber"] .back-link { font-family: var(--cyber-hud-font); letter-spacing: .08em; }
+:root[data-theme="cyber"] .entry-meta { font-family: var(--cyber-mono); letter-spacing: .06em; }
+:root[data-theme="cyber"] .entry-meta time::before { content: "TIMESTAMP  "; color: rgb(0 240 255 / .7); white-space: pre; }
+
+:root[data-theme="cyber"] .prose h2 {
+  position: relative;
+  padding-inline-start: .9rem;
+  font-family: var(--font-display);
+  letter-spacing: .03em;
+}
+:root[data-theme="cyber"] .prose h2::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: .2em;
+  width: 4px;
+  background: var(--cyber-yellow);
+  box-shadow: 0 .55em 0 var(--cyber-cyan);
+  clip-path: inset(0 0 -.55em 0);
+}
+:root[data-theme="cyber"] .prose a { color: var(--cyber-cyan); text-decoration-color: rgb(0 240 255 / .45); }
+:root[data-theme="cyber"] .prose a:hover { background: var(--cyber-cyan); color: #07090c; text-decoration: none; }
+:root[data-theme="cyber"] .prose strong { color: var(--cyber-yellow); }
+:root[data-theme="cyber"] .prose ul li::marker { content: "▸ "; color: var(--cyber-yellow); }
+:root[data-theme="cyber"] .prose blockquote {
+  border-inline-start: 2px solid var(--cyber-cyan);
+  background: linear-gradient(90deg, rgb(0 240 255 / .07), transparent 70%);
+  color: #cfeff2;
+}
+
+@media (max-width: 42rem) {
+  :root[data-theme="cyber"] .intro::before { content: "NC.NET // W.SITE :: LINK OK"; }
+  :root[data-theme="cyber"] .entry-list .entry-card-shell { display: none; }
+  :root[data-theme="cyber"] .entry,
+  :root[data-theme="cyber"] .about-page { margin-block-start: 3rem; }}
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="cyber"] {
+  --display-font: var(--ff-hud);
+  --body-font: var(--ff-sans);
+  --font-display: var(--ff-hud);
+  --font-body: var(--ff-sans);
+  --font-ui: var(--ff-hud);
+  --font-mono: var(--ff-mono);
+  --cyber-hud-font: var(--ff-hud);
+  --cyber-mono: var(--ff-mono);
+}
+
+/* Topics: HUD labels and a gradient progress meter. */
+:root[data-theme="cyber"] {
+  --meter-off: rgb(255 255 255 / .12);
+}
+:root[data-theme="cyber"] .topic-stats dt { color: var(--cyber-yellow); font-family: var(--cyber-hud-font); letter-spacing: .16em; }
+:root[data-theme="cyber"] .topic-badge__label { background: var(--cyber-yellow); color: #07090c; font-family: var(--cyber-hud-font); letter-spacing: .1em; }
+:root[data-theme="cyber"] .topic-outline__number { color: var(--cyber-cyan); }
+:root[data-theme="cyber"] .topic-outline h3 { font-family: var(--font-display); letter-spacing: .03em; }
+:root[data-theme="cyber"] .card-progress i { background: linear-gradient(90deg, var(--cyber-yellow), var(--cyber-cyan)); }
+:root[data-theme="cyber"] .prose thead th { border-bottom-color: var(--cyber-yellow); color: var(--cyber-yellow); font-family: var(--cyber-hud-font); letter-spacing: .12em; }

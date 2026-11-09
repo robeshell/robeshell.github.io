@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divider from '../../components/Divider.astro';
+import CardList from '../../components/CardList.astro';
+import { buildTopicView, getEntries, getTopics, topicStatus } from '../../lib/content';
+
+const entries = await getEntries();
+const views = (await getTopics()).map((topic) => buildTopicView(topic, entries));
+const items = views.map(({ topic, progress, updated }) => ({
+  href: `/topics/${topic.id}/`,
+  title: topic.data.title,
+  description: topic.data.description,
+  labels: [topicStatus[topic.data.status], `${progress.written} / ${progress.total} 章`],
+  date: updated,
+  detail: '尚未开始',
+  progress: progress.total ? progress.written / progress.total : 0,
+}));
+---
+
+<BaseLayout title="专题" description="围绕一件事持续学习的记录。">
+  <header class="page-header">
+    <h1>专题</h1>
+    <p>围绕一门学问持续学习的记录：按大纲一章一章写下来。</p>
+  </header>
+  <Divider variant="line-brown" />
+  <CardList items={items} variant="topics" emptyText="还没有专题。" />
+</BaseLayout>

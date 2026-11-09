@@ -1,0 +1,59 @@
+---
+import { ENTRY_ARROW_PATH, ENTRY_ARROW_WILDS_PATH } from '../scripts/aether-markup.js';
+import { formatDate } from '../lib/content';
+
+export interface CardItem {
+  href: string;
+  title: string;
+  description: string;
+  /** Short labels shown before the date, e.g. section and topic. */
+  labels?: string[];
+  date?: Date;
+  /** Shown in place of a date, e.g. topic progress. */
+  detail?: string;
+  draft?: boolean;
+  /** 0–1, drawn as a thin progress bar under the description. */
+  progress?: number;
+}
+
+interface Props {
+  items: CardItem[];
+  emptyText?: string;
+  variant?: 'entries' | 'topics';
+}
+
+const { items, emptyText = '这里还没有内容。', variant = 'entries' } = Astro.props;
+---
+
+{items.length === 0 && <p class="entry-list-empty">{emptyText}</p>}
+
+<ol class={`entry-list entry-list--${variant}`}>
+  {items.map((item) => (
+    <li>
+      <a href={item.href}>
+        <span class="entry-card-shell" aria-hidden="true"></span>
+        <h2>{item.title}</h2>
+        <span class="entry-arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" focusable="false">
+            <path d={ENTRY_ARROW_PATH} />
+          </svg>
+        </span>
+        <span class="entry-arrow entry-arrow--wilds" aria-hidden="true">
+          <svg viewBox="0 0 10 18" focusable="false">
+            <path d={ENTRY_ARROW_WILDS_PATH} />
+          </svg>
+        </span>
+        <div class="list-meta">
+          {item.draft && <span class="list-meta-draft">草稿</span>}
+          {item.labels?.map((label) => <span>{label}</span>)}
+          {item.date && <time datetime={item.date.toISOString()}>{formatDate(item.date)}</time>}
+          {!item.date && item.detail && <span class="list-meta-detail">{item.detail}</span>}
+        </div>
+        <p>{item.description}</p>
+        {item.progress !== undefined && (
+          <span class="card-progress" style={`--progress: ${Math.round(item.progress * 100)}%`} aria-hidden="true"><i></i></span>
+        )}
+      </a>
+    </li>
+  ))}
+</ol>

@@ -49,3 +49,30 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* Refinement pass: quieter links, tighter display tracking, neutral selection. */
+:root[data-theme="minimal"] ::selection { background: oklch(.9 0 0); color: oklch(.12 0 0); }
+:root[data-theme="minimal"] .intro h1,
+:root[data-theme="minimal"] .entry-header h1,
+:root[data-theme="minimal"] .page-header h1 { font-weight: 600; letter-spacing: -.035em; }
+:root[data-theme="minimal"] .prose a {
+  text-decoration-color: oklch(.75 0 0);
+  text-decoration-thickness: 1px;
+  text-underline-offset: .28em;
+  transition: text-decoration-color .15s ease;
+}
+:root[data-theme="minimal"] .prose a:hover { text-decoration-color: currentColor; }
+:root[data-theme="minimal"] .prose blockquote { border-inline-start-width: 1px; font-style: normal; }
+:root[data-theme="minimal"] .prose pre { border: 1px solid var(--line); border-radius: .375rem; }
+:root[data-theme="minimal"] .prose :not(pre) > code { padding: .1em .35em; border-radius: .25rem; background: var(--surface); }
+:root[data-theme="minimal"] .entry-list a:hover h2 { text-decoration-color: oklch(.7 0 0); }
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="minimal"] {
+  --display-font: var(--ff-sans);
+  --body-font: var(--ff-sans);
+  --font-display: var(--ff-sans);
+  --font-body: var(--ff-sans);
+  --font-ui: var(--ff-sans);
+  --font-mono: var(--ff-mono);
+}

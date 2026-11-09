@@ -1,0 +1,79 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Divider from '../../components/Divider.astro';
+import EntryList from '../../components/EntryList.astro';
+import { buildTopicView, formatDate, getEntries, getTopics, topicStatus, type Topic } from '../../lib/content';
+
+export async function getStaticPaths() {
+  const topics = await getTopics();
+  return topics.map((topic) => ({ params: { id: topic.id }, props: { topic } }));
+}
+
+interface Props {
+  topic: Topic;
+}
+
+const { topic } = Astro.props;
+const view = buildTopicView(topic, await getEntries());
+const { Content } = await render(topic);
+const hasIntro = Boolean(topic.body?.trim());
+const pad = (value: number) => String(value).padStart(2, '0');
+const percent = view.progress.total ? Math.round((view.progress.written / view.progress.total) * 100) : 0;
+---
+
+<BaseLayout title={topic.data.title} description={topic.data.description}>
+  <header class="page-header topic-header">
+    <a class="back-link" href="/topics/"><span class="back-arrow" aria-hidden="true">← </span>专题</a>
+    <h1>{topic.data.title}</h1>
+    <p>{topic.data.description}</p>
+    <dl class="topic-stats">
+      <div><dt>状态</dt><dd>{topicStatus[topic.data.status]}</dd></div>
+      <div><dt>进度</dt><dd>{view.progress.written} / {view.progress.total} 章</dd></div>
+      {topic.data.started && <div><dt>开始</dt><dd>{formatDate(topic.data.started)}</dd></div>}
+      {view.updated && <div><dt>更新</dt><dd>{formatDate(view.updated)}</dd></div>}
+    </dl>
+    <span class="card-progress topic-header__progress" style={`--progress: ${percent}%`} aria-hidden="true"><i></i></span>
+  </header>
+  <Divider variant="line-brown" />
+
+  {hasIntro && (
+    <div class="prose topic-intro">
+      <Content />
+    </div>
+  )}
+
+  <section class="home-section topic-section">
+    <div class="home-section-header"><h2>学习大纲</h2></div>
+    <ol class="topic-outline">
+      {view.chapters.map((chapter) => (
+        <li class={chapter.entries.length ? 'is-written' : 'is-planned'}>
+          <div class="topic-outline__head">
+            <span class="topic-outline__number">{pad(chapter.number)}</span>
+            <h3>{chapter.title}</h3>
+            <span class="topic-outline__state">{chapter.entries.length ? `${chapter.entries.length} 篇` : '待写'}</span>
+          </div>
+          {chapter.summary && <p class="topic-outline__summary">{chapter.summary}</p>}
+          {chapter.entries.length > 0 && (
+            <ul class="topic-outline__entries">
+              {chapter.entries.map((entry) => (
+                <li>
+                  <a href={`/${entry.data.section}/${entry.id}/`}>{entry.data.title}</a>
+                  {entry.data.draft && <span class="list-meta-draft">草稿</span>}
+                  <time datetime={entry.data.date.toISOString()}>{formatDate(entry.data.date)}</time>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  {view.loose.length > 0 && (
+    <section class="home-section topic-section">
+      <div class="home-section-header"><h2>其他记录</h2></div>
+      <EntryList entries={view.loose} showSection showTopic={false} />
+    </section>
+  )}
+</BaseLayout>

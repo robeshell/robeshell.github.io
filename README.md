@@ -38,6 +38,31 @@ section: writing
 
 图片放在 `public/images/`，在 Markdown 中使用 `![说明](/images/文件名.jpg)`。
 
+## 专题
+
+专题是独立于栏目的一层，适合"咖啡豆""威士忌"这类需要系统学习的学问。每个专题是 `src/content/topics/` 下的一个 Markdown 文件，头部写标题、简介、状态和学习大纲，正文是专题简介：
+
+```md
+---
+title: 咖啡豆
+description: 一句话简介
+status: learning        # learning 学习中 / paused 暂停中 / done 已完成
+outline:
+  - key: processing     # 章节标识，文章用它归档
+    title: 处理法
+    summary: 这一章打算写什么
+---
+```
+
+文章仍然放在 `src/content/entries/`，头部多写两行就会归到专题和章节下，专题主页会自动更新进度，文章页会出现专题标记和专题内的上一篇、下一篇：
+
+```md
+topic: coffee
+chapter: processing
+```
+
+草稿（`draft: true`）不会出现在首页和栏目列表里，构建上线时也不会发布。本地 `npm run dev` 时可以从专题页或直接访问链接预览，页面上带"草稿"标记。
+
 ## 主题
 
 网站提供留白、编辑部、终端、夜之城、岛屿、旷野和预告信七种主题。主题只改变视觉，不影响内容。
@@ -72,6 +97,19 @@ export default {
 ```
 
 修改后运行 `npm run generate:aether`，就只会打包并加载选中的主题。`defaultTheme` 必须属于 `themes`。
+
+## 字体
+
+所有字体都随站点自托管，不依赖外部字体服务，许可证均为 SIL OFL 1.1：
+
+- 中文黑体：Noto Sans SC（`@fontsource-variable/noto-sans-sc`）
+- 中文宋体：Noto Serif SC（`@fontsource-variable/noto-serif-sc`）
+- 中文圆体：猫啃网糖圆体（`@chinese-fonts/mkwtyt`），汉字部分源自 Apache-2.0 的小杉圆体
+- 西文：JetBrains Mono、Nunito、Cinzel、Rajdhani（Fontsource）
+
+字体栈统一定义在 `src/styles/global.css` 顶部的 `--ff-*` 变量里，各主题文件末尾只引用这些变量。
+
+西文字体体积很小，直接打包进全站样式。三套中文字体各有约 30 KB 的切片声明，所以按主题异步加载：`src/layouts/BaseLayout.astro` 中的 `themeCjkFonts` 记录每个主题用到哪几套中文字体，页面只加载当前主题需要的那几份，切换主题时再补加载。新增主题或修改主题的 `--ff-*` 引用时，记得同步更新这份映射。
 
 ## 发布
 

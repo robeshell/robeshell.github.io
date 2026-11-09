@@ -901,3 +901,169 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: in-game Hyrule UI on top of the official-site look.
+ * Inventory selection brackets, controller button prompts, an adventure
+ * log label, and upright CJK text (synthetic italics distort Hanzi).
+ * ------------------------------------------------------------------ */
+:root[data-theme="wilds"] {
+  --wilds-cursor: #fff8e6;
+  --wilds-sheikah: #3cd3fc;
+}
+
+:root[data-theme="wilds"] ::selection { background: rgb(196 155 82 / .55); color: #fff; }
+
+:root[data-theme="wilds"] .prose,
+:root[data-theme="wilds"] .entry-list p,
+:root[data-theme="wilds"] .page-header p { font-style: normal; }
+
+/* Controller prompt glyph shared by the card hint and the back link. */
+:root[data-theme="wilds"] .entry-list .entry-card-shell::after,
+:root[data-theme="wilds"] .back-link::before {
+  display: inline-grid;
+  place-items: center;
+  width: 1.35em;
+  height: 1.35em;
+  border-radius: 50%;
+  background: var(--wilds-tan);
+  color: #1a1510;
+  font-family: var(--ff-sans);
+  font-size: .72rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / .6);
+}
+
+/* Inventory cursor: four bright corner brackets that breathe on hover/focus. */
+:root[data-theme="wilds"] .entry-list .entry-card-shell {
+  display: block;
+  position: absolute;
+  inset: 5px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  --b: 2px;
+  --l: 1rem;
+  background:
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) top left / var(--l) var(--b),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) top left / var(--b) var(--l),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) top right / var(--l) var(--b),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) top right / var(--b) var(--l),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) bottom left / var(--l) var(--b),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) bottom left / var(--b) var(--l),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) bottom right / var(--l) var(--b),
+    linear-gradient(var(--wilds-cursor), var(--wilds-cursor)) bottom right / var(--b) var(--l);
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 0 3px rgb(255 240 200 / .85));
+  transition: opacity var(--wilds-duration) var(--wilds-ease);
+}
+
+:root[data-theme="wilds"] .entry-list a:hover .entry-card-shell,
+:root[data-theme="wilds"] .entry-list a:focus-visible .entry-card-shell { opacity: 1; }
+
+/* "Ⓐ 阅读" prompt, revealed with the cursor. */
+:root[data-theme="wilds"] .entry-list .entry-card-shell::after {
+  content: "A";
+  position: absolute;
+  inset-inline-end: .7rem;
+  inset-block-end: .65rem;
+}
+:root[data-theme="wilds"] .entry-list .entry-card-shell::before {
+  content: "阅读";
+  position: absolute;
+  inset-inline-end: 2.55rem;
+  inset-block-end: .72rem;
+  color: var(--wilds-tan);
+  font-family: var(--font-body);
+  font-size: .78rem;
+  letter-spacing: .1em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-theme="wilds"] .entry-list a:hover .entry-card-shell,
+  :root[data-theme="wilds"] .entry-list a:focus-visible .entry-card-shell {
+    animation: wilds-cursor-breathe 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes wilds-cursor-breathe {
+  0%, 100% { inset: 5px; }
+  50% { inset: 2px; }
+}
+
+:root[data-theme="wilds"] .entry-list a:focus-visible { outline: none; border-color: var(--wilds-gold); }
+
+/* Back link carries the B button, as in every in-game menu. */
+:root[data-theme="wilds"] .back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  text-decoration: none;
+  letter-spacing: .08em;
+}
+:root[data-theme="wilds"] .back-link::before { content: "B"; }
+
+/* Inner pages open on an adventure-log label between two diamonds. */
+:root[data-theme="wilds"] .entry-header::before,
+:root[data-theme="wilds"] .about-page h1::before {
+  content: "◆  冒险日志  ◆";
+  display: block;
+  margin-block-end: 1.4rem;
+  color: var(--wilds-gold);
+  font-family: var(--font-body);
+  font-size: .74rem;
+  letter-spacing: .4em;
+  white-space: pre;
+}
+:root[data-theme="wilds"] .about-page h1::before { content: "◆  人物志  ◆"; font-size: .3em; }
+
+:root[data-theme="wilds"] .prose h2 {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+:root[data-theme="wilds"] .prose h2::before {
+  content: "";
+  flex: none;
+  width: .5rem;
+  height: .5rem;
+  border: 1px solid var(--wilds-gold);
+  background: rgb(196 155 82 / .35);
+  transform: rotate(45deg);
+}
+:root[data-theme="wilds"] .prose h2::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgb(196 155 82 / .5), transparent);
+}
+
+:root[data-theme="wilds"] .prose a { color: var(--wilds-sheikah); text-decoration-color: rgb(60 211 252 / .4); }
+:root[data-theme="wilds"] .prose a:hover { text-shadow: 0 0 8px rgb(60 211 252 / .6); }
+:root[data-theme="wilds"] .prose strong { color: var(--wilds-yellow); font-weight: 600; }
+:root[data-theme="wilds"] .prose ul li::marker { content: "◆  "; color: var(--wilds-gold); font-size: .7em; }
+
+@media (max-width: 42rem) {
+  :root[data-theme="wilds"] .entry-list .entry-card-shell::before,
+  :root[data-theme="wilds"] .entry-list .entry-card-shell::after { display: none; }}
+:root[data-theme="wilds"] .back-arrow { display: none; }
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="wilds"] {
+  --display-font: var(--ff-roman);
+  --body-font: var(--ff-serif);
+  --font-display: var(--ff-roman);
+  --font-body: var(--ff-serif);
+  --font-ui: var(--ff-serif);
+  --font-mono: var(--ff-mono);
+}
+
+/* Topics: gold labels and serif chapter numbers. */
+:root[data-theme="wilds"] .topic-stats dt { color: var(--wilds-gold); }
+:root[data-theme="wilds"] .topic-badge__label { background: var(--wilds-gold); color: #1a1510; }
+:root[data-theme="wilds"] .topic-outline__number { color: var(--wilds-gold); font-family: var(--font-display); }
+:root[data-theme="wilds"] .topic-outline h3 { font-weight: 400; letter-spacing: .04em; }
+:root[data-theme="wilds"] .prose table { font-family: var(--font-body); }
+:root[data-theme="wilds"] .prose thead th { border-bottom-color: rgb(196 155 82 / .6); color: var(--wilds-gold); }

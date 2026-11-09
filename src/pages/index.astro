@@ -1,11 +1,24 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import EntryList from '../components/EntryList.astro';
+import CardList from '../components/CardList.astro';
+import { buildTopicView, getEntries, getTopics, topicStatus } from '../lib/content';
 
-const entries = (await getCollection('entries', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
-const latest = entries.slice(0, 6);
+const entries = await getEntries();
+// Drafts (including the example templates) never appear in the homepage feed, even locally.
+const latest = entries.filter((entry) => !entry.data.draft).slice(0, 6);
+const learning = (await getTopics())
+  .filter((topic) => topic.data.status === 'learning')
+  .map((topic) => buildTopicView(topic, entries))
+  .map(({ topic, progress, updated }) => ({
+    href: `/topics/${topic.id}/`,
+    title: topic.data.title,
+    description: topic.data.description,
+    labels: [topicStatus[topic.data.status], `${progress.written} / ${progress.total} 章`],
+    date: updated,
+    detail: '尚未开始',
+    progress: progress.total ? progress.written / progress.total : 0,
+  }));
 ---
 
 <BaseLayout>
@@ -21,4 +34,14 @@ const latest = entries.slice(0, 6);
     </div>
     <EntryList entries={latest} showSection />
   </section>
+
+  {learning.length > 0 && (
+    <section class="home-section">
+      <div class="home-section-header">
+        <h2>正在学</h2>
+        <a href="/topics/">全部专题</a>
+      </div>
+      <CardList items={learning} variant="topics" />
+    </section>
+  )}
 </BaseLayout>

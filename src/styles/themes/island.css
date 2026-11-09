@@ -607,3 +607,129 @@
   :root[data-theme="persona"] .page-header h1.p5-title {
     font-size: clamp(1.65rem, 7vw, 2.4rem);
   }}
+
+/* ------------------------------------------------------------------
+ * Fidelity pass: island-life UI.
+ * One rounded type family (no mixed rounded/square glyphs in a line),
+ * the intro becomes a dialogue box with a tilted name tag and a bouncing
+ * ▼ prompt, and inner pages wear a tilted section tag.
+ * ------------------------------------------------------------------ */
+:root[data-theme="island"] {
+  --island-rounded: "Arial Rounded MT Bold", "Yuanti SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --island-tag: oklch(0.86 0.15 88);
+  --island-tag-text: oklch(0.36 0.07 62);
+  --font-display: var(--island-rounded);
+  --font-ui: var(--island-rounded);
+  --display-font: var(--island-rounded);
+  --body-font: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --font-body: var(--body-font);
+}
+
+:root[data-theme="island"] ::selection { background: oklch(0.9 0.12 95); color: var(--text); }
+
+/* Shared tilted name-tag pill. */
+:root[data-theme="island"] .intro::before,
+:root[data-theme="island"] .entry::before,
+:root[data-theme="island"] .about-page::before {
+  position: absolute;
+  inset-inline-start: clamp(1.1rem, 4vw, 2.25rem);
+  inset-block-start: 0;
+  z-index: 2;
+  padding: .4rem 1.15rem .45rem;
+  border-radius: 999px;
+  background: var(--island-tag);
+  color: var(--island-tag-text);
+  font-family: var(--island-rounded);
+  font-size: .95rem;
+  font-weight: 800;
+  letter-spacing: .04em;
+  box-shadow: 0 3px 0 oklch(0.72 0.13 80);
+  transform: translateY(-55%) rotate(-4deg);
+}
+
+/* Intro: a dialogue box. */
+:root[data-theme="island"] .intro {
+  position: relative;
+  margin-block-start: 2.75rem;
+  border-radius: 2.5rem 2.25rem 2.5rem 2.25rem / 2.25rem 2.5rem 2.25rem 2.5rem;
+}
+:root[data-theme="island"] .intro::before { content: "W."; }
+:root[data-theme="island"] .intro::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: clamp(1.4rem, 4vw, 2.4rem);
+  inset-block-end: clamp(1rem, 2.5vw, 1.5rem);
+  width: .95rem;
+  height: .7rem;
+  background: oklch(0.74 0.15 62);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+:root[data-theme="island"] .intro h1 { font-family: var(--island-rounded); letter-spacing: 0; }
+
+@media (prefers-reduced-motion: no-preference) {
+  :root[data-theme="island"] .intro::after { animation: island-next 1s ease-in-out infinite; }
+}
+
+@keyframes island-next {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(.3rem); }
+}
+
+/* Inner pages: the section name hangs on the card as a tag. */
+:root[data-theme="island"] .entry,
+:root[data-theme="island"] .about-page { position: relative; margin-block-start: 3.25rem; }
+:root[data-theme="island"] .entry::before,
+:root[data-theme="island"] .about-page::before { content: attr(data-section); }
+
+:root[data-theme="island"] .entry-header h1,
+:root[data-theme="island"] .page-header h1,
+:root[data-theme="island"] .about-page h1,
+:root[data-theme="island"] .entry-list h2,
+:root[data-theme="island"] .home-section-header h2,
+:root[data-theme="island"] .prose h2,
+:root[data-theme="island"] .prose h3 { font-family: var(--island-rounded); letter-spacing: 0; }
+
+:root[data-theme="island"] .prose ul li::marker { content: "✿  "; color: var(--accent); }
+:root[data-theme="island"] .prose strong { background: linear-gradient(transparent 58%, oklch(0.9 0.12 95 / .8) 58%); }
+:root[data-theme="island"] .prose a { color: var(--accent-deep); text-decoration-color: var(--accent); text-decoration-thickness: 2px; }
+
+@media (max-width: 42rem) {
+  :root[data-theme="island"] .intro::before,
+  :root[data-theme="island"] .entry::before,
+  :root[data-theme="island"] .about-page::before { font-size: .82rem; }}
+
+/* Embedded fonts: identical rendering on every device. Stacks are defined in global.css. */
+:root[data-theme="island"] {
+  --display-font: var(--ff-round);
+  --body-font: var(--ff-round);
+  --font-display: var(--ff-round);
+  --font-body: var(--ff-round);
+  --font-ui: var(--ff-round);
+  --font-mono: var(--ff-mono);
+  --island-rounded: var(--ff-round);
+  /* TangYuan ships one weight; let headings embolden it instead of mixing bold Latin with regular Hanzi. */
+  font-synthesis-weight: auto;
+}
+
+/* Topics: rounded meters, pills and round chapter numbers. */
+:root[data-theme="island"] .card-progress { height: 6px; border-radius: 999px; }
+:root[data-theme="island"] .card-progress i { border-radius: 999px; }
+:root[data-theme="island"] .topic-badge__label { border-radius: 999px; padding-inline: .6rem; }
+:root[data-theme="island"] .topic-pager__home { border-width: 2px; border-radius: 999px; font-weight: 700; }
+:root[data-theme="island"] .topic-outline > li { border-bottom-style: dashed; }
+:root[data-theme="island"] .topic-outline__number {
+  display: inline-grid;
+  place-items: center;
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent-deep);
+  font-family: var(--font-ui);
+  font-weight: 800;
+}
+:root[data-theme="island"] .topic-outline .is-planned .topic-outline__number { background: oklch(0.93 0.02 95); color: var(--muted); }
+:root[data-theme="island"] .topic-outline__head { align-items: center; }
+:root[data-theme="island"] .prose thead th { border-bottom-color: var(--line); color: var(--accent-deep); }
+:root[data-theme="island"] .prose td,
+:root[data-theme="island"] .prose tbody th { border-bottom-style: dashed; }
