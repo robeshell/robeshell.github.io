@@ -114,3 +114,13 @@ export default {
 ## 发布
 
 提交并推送到 GitHub 的 `main` 分支后，GitHub Actions 会自动构建并发布到 GitHub Pages。
+
+## 收录与订阅
+
+构建时会自动生成这些文件，不需要手工维护：
+
+- `sitemap-index.xml`：站点地图，由 `@astrojs/sitemap` 生成，404 页不收录。
+- `rss.xml`：全部已发布文章的订阅源，见 `src/pages/rss.xml.ts`，草稿不会进入。
+- `robots.txt`：在 `public/` 下，指向站点地图。
+
+分享卡片默认使用 `public/og.png`（1200×630）。页面想用自己的图，给 `BaseLayout` 传 `image` 即可。站点名和默认简介在 `src/lib/site.ts`。
